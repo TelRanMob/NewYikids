@@ -12,7 +12,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 /**
- * Created by Vladimir, Iakov Volf
+ * Created by Iakov Volf
  */
 public class SignUPPage extends Page {
     //private static Logger Log = Logger.getLogger(LogLog4j.class.getName());
@@ -61,6 +61,12 @@ public class SignUPPage extends Page {
     public SignUPPage fillFirstnameField(String username) {
         //Log.info("Filling username field");
         setElementText(firstNameField, username);
+        return this;
+    }
+
+    public SignUPPage fillLastNameField(String lastname) {
+        //Log.info("Filling username field");
+        setElementText(lastNameField, lastname);
         return this;
     }
 
