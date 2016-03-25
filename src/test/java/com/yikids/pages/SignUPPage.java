@@ -45,12 +45,12 @@ public class SignUPPage extends Page {
 
     public SignUPPage(WebDriver driver) {
         super(driver);
-        //this.PAGE_URL = baseUrl;
+        this.PAGE_URL = "http://physician.yikids.com/recruiter/signup";
         PageFactory.initElements(driver, this);
     }
 
-    public SignUPPage openLoginPage() {
-        //Log.info("Opening Login page");
+    public SignUPPage openSignUpPage() {
+        //Log.info("Opening SignUp page");
         driver.get(PAGE_URL);
         return this;
     }
@@ -70,5 +70,34 @@ public class SignUPPage extends Page {
         return this;
     }
 
-   
+    public SignUPPage fillEmsilField(String lastname) {
+        //Log.info("Filling username field");
+        setElementText(emailField, lastname);
+        return this;
+    }
+
+    public SignUPPage fillZip1Field(String lastname) {
+        //Log.info("Filling username field");
+        setElementText(zipCodeField, lastname);
+        return this;
+    }
+
+    public SignUPPage fillZip21Field(String lastname) {
+        //Log.info("Filling username field");
+        setElementText(zipCode2Field, lastname);
+        return this;
+    }
+
+    public SignUPPage fillCompany1Field(String lastname) {
+        //Log.info("Filling username field");
+        setElementText(companyField, lastname);
+        return this;
+    }
+
+
+    public SignUPPage clickToContinue() {
+        //Log.info("Filling username field");
+        clickElement(continueButton);
+        return this;
+    }
 }
