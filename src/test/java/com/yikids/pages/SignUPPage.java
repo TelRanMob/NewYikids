@@ -41,6 +41,9 @@ public class SignUPPage extends Page {
     @FindBy(id = "create-account")
     WebElement continueButton;
 
+    //System messages
+    @FindBy(xpath = "//*[@id='section-account']/span")
+    WebElement CaptchaMessage;
 
 
     public SignUPPage(WebDriver driver) {
