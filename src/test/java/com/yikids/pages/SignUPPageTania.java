@@ -1,10 +1,8 @@
 package com.yikids.pages;
 
 /**
- * Created by Iakov Volf on 3/22/2016.
+ * Created by Tania on 3/22/2016.
  */
-//import com.telran.LogLog4j;
-//import org.apache.log4j.Logger;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -12,9 +10,9 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 /**
- * Created by Iakov Volf
+ * Created by Tania
  */
-public class SignUPPage extends Page {
+public class SignUPPageTania extends Page {
     //private static Logger Log = Logger.getLogger(LogLog4j.class.getName());
 
 
@@ -43,14 +41,14 @@ public class SignUPPage extends Page {
 
 
 
-    public SignUPPage(WebDriver driver) {
+    public SignUPPageTania(WebDriver driver) {
         super(driver);
-        this.PAGE_URL = "http://physician.yikids.com/recruiter/signup";
+        //this.PAGE_URL = baseUrl;
         PageFactory.initElements(driver, this);
     }
 
-    public SignUPPage openSignUpPage() {
-        //Log.info("Opening SignUp page");
+    public SignUPPageTania openLoginPage() {
+        //Log.info("Opening Login page");
         driver.get(PAGE_URL);
         return this;
     }
@@ -58,46 +56,43 @@ public class SignUPPage extends Page {
     //Fill the fields
 
 
-    public SignUPPage fillFirstnameField(String username) {
+    public SignUPPageTania fillFirstnameField(String username) {
         //Log.info("Filling username field");
         setElementText(firstNameField, username);
         return this;
     }
 
-    public SignUPPage fillLastNameField(String lastname) {
+    public SignUPPageTania fillLastNameField(String lastname) {
         //Log.info("Filling username field");
         setElementText(lastNameField, lastname);
         return this;
     }
 
-    public SignUPPage fillEmsilField(String lastname) {
+    public SignUPPageTania fillemailField(String email) {
         //Log.info("Filling username field");
-        setElementText(emailField, lastname);
+        setElementText(emailField, email);
+        return this;
+    }
+    public SignUPPageTania fillzipcodeField(String zipcode) {
+        //Log.info("Filling username field");
+        setElementText(zipCodeField, zipcode);
+        return this;
+    }
+    public SignUPPageTania fillzipCode2Field(String zipcode2) {
+        //Log.info("Filling username field");
+        setElementText(zipCode2Field, zipcode2);
+        return this;
+    }
+    public SignUPPageTania fillcompanyField(String companyName) {
+        //Log.info("Filling username field");
+        setElementText(companyField, companyName);
         return this;
     }
 
-    public SignUPPage fillZip1Field(String lastname) {
-        //Log.info("Filling username field");
-        setElementText(zipCodeField, lastname);
-        return this;
-    }
-
-    public SignUPPage fillZip21Field(String lastname) {
-        //Log.info("Filling username field");
-        setElementText(zipCode2Field, lastname);
-        return this;
-    }
-
-    public SignUPPage fillCompany1Field(String lastname) {
-        //Log.info("Filling username field");
-        setElementText(companyField, lastname);
-        return this;
-    }
-
-
-    public SignUPPage clickToContinue() {
+    public SignUPPageTania buttoncontinueButton( ) {
         //Log.info("Filling username field");
         clickElement(continueButton);
         return this;
     }
+
 }

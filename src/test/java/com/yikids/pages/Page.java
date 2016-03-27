@@ -80,7 +80,7 @@ public abstract class Page {
   }
 
 
-  public void clickElement(WebElement element) {
+    public void clickElement(WebElement element) {
     // Log.info("clicking on element " + element + "");
     element.click();
   }
