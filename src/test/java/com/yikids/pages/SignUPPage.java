@@ -103,4 +103,5 @@ public class SignUPPage extends Page {
         clickElement(continueButton);
         return this;
     }
+
 }

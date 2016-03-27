@@ -37,6 +37,11 @@ public class SignUPPageIrina extends Page {
     @FindBy(id = "company")
     WebElement companyField;
 
+    //System messages
+    @FindBy(xpath = "//*[@id='section-account']/span")
+    WebElement CaptchaMessage;
+
+
     //buttons
     @FindBy(id = "create-account")
     WebElement continueButton;
@@ -44,10 +49,11 @@ public class SignUPPageIrina extends Page {
 
 
     public SignUPPageIrina(WebDriver driver) {
-        super(driver);
-        //this.PAGE_URL = baseUrl;
-        PageFactory.initElements(driver, this);
-    }
+            super(driver);
+            this.PAGE_URL = "http://physician.yikids.com/recruiter/signup";
+            PageFactory.initElements(driver, this);
+        }
+
 
     public SignUPPageIrina openLoginPage() {
         //Log.info("Opening Login page");
@@ -70,5 +76,34 @@ public class SignUPPageIrina extends Page {
         return this;
     }
 
-   
+    public SignUPPageIrina fillemailField(String email) {
+        //Log.info("Filling username field");
+        setElementText(emailField, email);
+        return this;
+    }
+
+    public SignUPPageIrina fillzipCodeField(String zipCode) {
+        //Log.info("Filling username field");
+        setElementText(zipCodeField, zipCode);
+        return this;
+    }
+    public SignUPPageIrina fillzipCod2Field(String zipCode2) {
+        //Log.info("Filling username field");
+        setElementText(zipCode2Field, zipCode2);
+        return this;
+    }
+    public SignUPPageIrina fillcompanyField(String company) {
+        //Log.info("Filling username field");
+        setElementText(companyField, company);
+        return this;
+    }
+    public SignUPPageIrina clickCaptcha(){
+        clickElement(CaptchaMessage);
+        return this;
+    }
+    public SignUPPageIrina clickElemToContinue (){
+        clickElement(continueButton);
+        return this;
+    }
+
 }
