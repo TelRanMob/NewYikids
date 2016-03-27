@@ -2,8 +2,6 @@ package com.yikids;
 
 import com.yikids.pages.SignUPPage;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.AfterClass;
@@ -16,13 +14,15 @@ public class SignUpTest {
     // private static Logger Log = Logger.getLogger(LogLog4j.class.getName());
     // public static String registered_username = "3339Doctor";
     // public static String registered_password = "LinkCare!!11";
+    static String driverPath = "C:\\Development\\browserDriver\\";
     public SignUPPage signUPPage;
     public WebDriver driver;
 
     @BeforeClass(alwaysRun = true)
     public void setup() {
-
-        driver = new InternetExplorerDriver();//ChromeDriver(); //
+        //System.setProperty("webdriver.chrome.driver", driverPath+"chromedriver.exe");
+        System.setProperty("webdriver.ie.driver", driverPath + "IEDriverServer.exe");
+        driver = new InternetExplorerDriver();
         signUPPage = PageFactory.initElements(driver, SignUPPage.class);
     }
 
