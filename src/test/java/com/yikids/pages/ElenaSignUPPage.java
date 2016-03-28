@@ -10,7 +10,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 
-public class SignUPPageElena extends Page {
+public class ElenaSignUPPage extends Page {
     //private static Logger Log = Logger.getLogger(LogLog4j.class.getName());
 
 
@@ -37,16 +37,20 @@ public class SignUPPageElena extends Page {
     @FindBy(id = "create-account")
     WebElement continueButton;
 
+    //ErrorCaptcha
+    @FindBy(xpath = "//*[@id='section-account']/span")
+    WebElement ErrorCaptcha;
 
 
-    public SignUPPageElena(WebDriver driver) {
+
+    public ElenaSignUPPage(WebDriver driver) {
         super(driver);
-        //this.PAGE_URL = baseUrl;
+        this.PAGE_URL = "http://physician.yikids.com/recruiter/signup";
         PageFactory.initElements(driver, this);
     }
 
-    public SignUPPageElena openLoginPage() {
-        //Log.info("Opening Login page");
+    public ElenaSignUPPage openElenaSignUPPage() {
+        //Log.info("Opening ElenaSignUPPage page");
         driver.get(PAGE_URL);
         return this;
     }
@@ -54,41 +58,45 @@ public class SignUPPageElena extends Page {
     //Fill the fields
 
 
-    public SignUPPageElena fillFirstnameField(String username) {
+    public ElenaSignUPPage fillFirstnameField(String username) {
         //Log.info("Filling username field");
         setElementText(firstNameField, username);
         return this;
     }
 
-    public SignUPPageElena fillLastNameField(String lastname) {
+    public ElenaSignUPPage fillLastNameField(String lastname) {
         //Log.info("Filling username field");
         setElementText(lastNameField, lastname);
         return this;
     }
-    public SignUPPageElena fillemailField(String email) {
+    public ElenaSignUPPage fillemailField(String email) {
         //Log.info("Filling username field");
         setElementText(emailField, email);
         return this;
     }
-    public SignUPPageElena fillzipcodeField(String zipcode) {
+    public ElenaSignUPPage fillzipcodeField(String zipcode) {
         //Log.info("Filling username field");
         setElementText(zipCodeField, zipcode);
         return this;
     }
-    public SignUPPageElena fillzipCode2Field(String zipcode2) {
+    public ElenaSignUPPage fillzipCode2Field(String zipcode2) {
         //Log.info("Filling username field");
         setElementText(zipCode2Field, zipcode2);
         return this;
     }
-    public SignUPPageElena fillcompanyField(String companyName) {
+    public ElenaSignUPPage fillcompanyField(String companyName) {
         //Log.info("Filling username field");
         setElementText(companyField, companyName);
         return this;
     }
-
-    public SignUPPageElena buttoncontinueButton( ) {
+//click button
+    public ElenaSignUPPage buttoncontinueButton( ) {
         //Log.info("Filling username field");
         clickElement(continueButton);
+        return this;
+    }
+    public ElenaSignUPPage checkelement(String error){
+        verifyText(ErrorCaptcha, error);
         return this;
     }
 }

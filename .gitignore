@@ -24,10 +24,8 @@ release.properties
 dependency-reduced-pom.xml
 buildNumber.properties
 .mvn/timing.properties
-
 /.idea
 /src/test/java/com/yikids/pages/HomePage.java
 /pom.xml
-
-
 # Created by .ignore support plugin (hsz.mobi)
+
