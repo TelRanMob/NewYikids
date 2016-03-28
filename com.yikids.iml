@@ -10,8 +10,6 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="Maven: log4j:log4j:1.2.17" level="project" />
-    <orderEntry type="library" name="Maven: com.github.yev:screenshot:0.2" level="project" />
     <orderEntry type="library" name="Maven: org.testng:testng:6.8.8" level="project" />
     <orderEntry type="library" name="Maven: org.beanshell:bsh:2.0b4" level="project" />
     <orderEntry type="library" name="Maven: com.beust:jcommander:1.27" level="project" />
@@ -65,5 +63,4 @@
     <orderEntry type="library" name="Maven: com.github.detro.ghostdriver:phantomjsdriver:1.1.0" level="project" />
     <orderEntry type="library" name="Maven: ru.stqa.selenium:webdriver-factory:1.0" level="project" />
   </component>
-  <component name="POM File Configuration" pomFile="" />
 </module>
