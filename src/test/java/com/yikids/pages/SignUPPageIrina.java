@@ -11,6 +11,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.util.Random;
+
+import static org.junit.Assert.assertNotEquals;
+
 /**
  * Created by Iakov Volf
  */
@@ -39,7 +43,7 @@ public class SignUPPageIrina extends Page {
 
     //System messages
     @FindBy(xpath = "//*[@id='section-account']/span")
-    WebElement CaptchaMessage;
+    WebElement captchaMessage;
 
 
     //buttons
@@ -47,15 +51,14 @@ public class SignUPPageIrina extends Page {
     WebElement continueButton;
 
 
-
     public SignUPPageIrina(WebDriver driver) {
-            super(driver);
-            this.PAGE_URL = "http://physician.yikids.com/recruiter/signup";
-            PageFactory.initElements(driver, this);
-        }
+        super(driver);
+        this.PAGE_URL = "http://physician.yikids.com/recruiter/signup";
+        PageFactory.initElements(driver, this);
+    }
 
 
-    public SignUPPageIrina openLoginPage() {
+    public SignUPPageIrina openSignUpPage() {
         //Log.info("Opening Login page");
         driver.get(PAGE_URL);
         return this;
@@ -87,23 +90,48 @@ public class SignUPPageIrina extends Page {
         setElementText(zipCodeField, zipCode);
         return this;
     }
+
     public SignUPPageIrina fillzipCod2Field(String zipCode2) {
         //Log.info("Filling username field");
         setElementText(zipCode2Field, zipCode2);
         return this;
     }
+
     public SignUPPageIrina fillcompanyField(String company) {
         //Log.info("Filling username field");
         setElementText(companyField, company);
         return this;
     }
-    public SignUPPageIrina clickCaptcha(){
-        clickElement(CaptchaMessage);
-        return this;
-    }
-    public SignUPPageIrina clickElemToContinue (){
+
+    public SignUPPageIrina clickElemToContinue() {
         clickElement(continueButton);
         return this;
+    }
+
+    public SignUPPageIrina fillSignUp() {
+        openSignUpPage();
+        fillFirstnameField("FirstName");
+        fillLastNameField("LastName");
+        fillcompanyField("Company");
+        fillzipCodeField("1234");
+        fillzipCod2Field("555");
+        fillemailField(generateEmail());
+        return this;
+    }
+
+    public String generateEmail() {
+        String rand = getRandomString(5);
+        String randEmail = rand + "@yopmail.com";
+        return randEmail;
+    }
+
+    private static String getRandomString(Integer length) {
+        String chars = "abcdefghijklmnopqrstuvwxyz";
+        StringBuilder buf = new StringBuilder();
+        for (int i = 0; i < length; i++) {
+            buf.append(chars);
+        }
+        return buf.toString();
     }
 
 }
