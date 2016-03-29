@@ -35,7 +35,7 @@ public class SignUpTest {
     public void fillSignUPFileds() {
         //  Log.info("TestLoginWithExtData was started....");
         signUPPage
-                .fillCompany1Field("company")
+                .fillCompany1Field("company1")
                 .fillEmsilField("ss@yuopmail.com")
                 .fillFirstnameField("firstname")
                 .fillLastNameField("last")
