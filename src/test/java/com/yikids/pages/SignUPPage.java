@@ -50,6 +50,11 @@ public class SignUPPage extends Page {
     @FindBy(xpath = "//*[@id='section-account']/span")
     WebElement ErrorCaptcha;
 
+
+    //Labels
+    @FindBy(xpath = "//*[@id='section-account']/div[1]/div/label")
+    WebElement FirstNameLabel;
+
     public SignUPPage(WebDriver driver) {
         super(driver);
         this.PAGE_URL = "http://physician.yikids.com/recruiter/signup";
@@ -135,8 +140,11 @@ public class SignUPPage extends Page {
         return username;
     }
 
-    //public boolean CheckPageForCapthcaMessage (){
-    //Boolean result = assertEquals("Please check Captcha!",(ErrorCaptcha.getText()));
-    //return result;
-    // }
+    public boolean CheckPageForCapthcaMessage() {
+        return verifyTextBoolean(ErrorCaptcha, "Please check Captcha!");
+    }
+
+    public boolean CheckFirstNameLabel() {
+        return verifyTextBoolean(FirstNameLabel, "First name");
+    }
 }
