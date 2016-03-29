@@ -11,12 +11,14 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.util.Random;
+
 /**
  * Created by Iakov Volf
  */
 public class SignUPPage extends Page {
     //private static Logger Log = Logger.getLogger(LogLog4j.class.getName());
-
+    private static Random rnd = new Random();
 
     //fields
     @FindBy(id = "firstname")
@@ -45,6 +47,13 @@ public class SignUPPage extends Page {
     @FindBy(xpath = "//*[@id='section-account']/span")
     WebElement CaptchaMessage;
 
+    @FindBy(xpath = "//*[@id='section-account']/span")
+    WebElement ErrorCaptcha;
+
+
+    //Labels
+    @FindBy(xpath = "//*[@id='section-account']/div[1]/div/label")
+    WebElement FirstNameLabel;
 
     public SignUPPage(WebDriver driver) {
         super(driver);
@@ -52,14 +61,22 @@ public class SignUPPage extends Page {
         PageFactory.initElements(driver, this);
     }
 
+    private static String getRandomString(final int length) {
+        String chars = "abcdefghijklmnopqrstuvwxyz";
+        StringBuilder buf = new StringBuilder();
+        for (int i = 0; i < length; i++) {
+            buf.append(chars.charAt(rnd.nextInt(chars.length())));
+        }
+        return buf.toString();
+    }
+
+    //Fill the fields
+
     public SignUPPage openSignUpPage() {
         //Log.info("Opening SignUp page");
         driver.get(PAGE_URL);
         return this;
     }
-
-    //Fill the fields
-
 
     public SignUPPage fillFirstnameField(String username) {
         //Log.info("Filling username field");
@@ -73,7 +90,7 @@ public class SignUPPage extends Page {
         return this;
     }
 
-    public SignUPPage fillEmsilField(String lastname) {
+    public SignUPPage fillEmailField(String lastname) {
         //Log.info("Filling username field");
         setElementText(emailField, lastname);
         return this;
@@ -97,11 +114,37 @@ public class SignUPPage extends Page {
         return this;
     }
 
-
     public SignUPPage clickToContinue() {
         //Log.info("Filling username field");
         clickElement(continueButton);
         return this;
     }
 
+    public SignUPPage FillsignUPFields() {
+        //Log.info("Filling all fields");
+        openSignUpPage();
+        fillFirstnameField("username");
+        fillLastNameField("lastname");
+        String email = generateEmail();
+        fillEmailField(email);
+        fillZip1Field("0011");
+        fillZip21Field("12");
+        fillCompany1Field("company");
+        return this;
+    }
+
+    public String generateEmail() {
+        String rand = getRandomString(5);
+        String username = rand + "@yopmail.com";
+        // Log.info("Doctor's Username generated is <" + username + ">");
+        return username;
+    }
+
+    public boolean CheckPageForCapthcaMessage() {
+        return verifyTextBoolean(ErrorCaptcha, "Please check Captcha!");
+    }
+
+    public boolean CheckFirstNameLabel() {
+        return verifyTextBoolean(FirstNameLabel, "First name");
+    }
 }
