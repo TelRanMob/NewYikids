@@ -43,7 +43,7 @@ public class SignUpTestRut {
                 .fillCompanyField("company")
                 .clickContinueButton();
     }
-    @AfterClass(alwaysRun = true)
+    //@AfterClass(alwaysRun = true)
     public void tearDown(){
         this.driver.quit();
     }

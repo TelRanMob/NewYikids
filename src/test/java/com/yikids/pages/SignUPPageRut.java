@@ -81,6 +81,7 @@ public class SignUPPageRut extends Page {
         setElementText(companyField, company);
         return this;
     }
+
     //Fill the buttons
     public SignUPPageRut clickContinueButton() {
         //Log.info("Filling continueButton field");
