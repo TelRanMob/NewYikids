@@ -8,6 +8,8 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import static org.testng.AssertJUnit.assertTrue;
+
 //@org.testng.annotations.Listeners(FailTestScreenshotListener.class)
 public class SignUpTest {
     // private static Logger Log = Logger.getLogger(LogLog4j.class.getName());
@@ -39,8 +41,10 @@ public class SignUpTest {
                 .fillFirstnameField("firstname")
                 .fillLastNameField("last")
                 .fillZip1Field("110000")
-                .fillZip21Field("55")
-                .clickToContinue();
+                .fillZip21Field("55");
+        assertTrue("First Namw text not confirmed", signUPPage.CheckFirstNameLabel());
+
+        signUPPage.clickToContinue();
     }
 
     @Test
