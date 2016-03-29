@@ -71,6 +71,7 @@ public abstract class Page {
 //  Assert.assertEquals(getTitle(), getPageTitle());
   }
 
+
   public void setElementText(WebElement element, String text) {
     element.click();
     element.clear();
@@ -208,5 +209,6 @@ public abstract class Page {
     String cellColorAfterClick = Color.fromString(cell.getCssValue("background-color")).asHex();
     return !cellColorBeforeClick.equals(cellColorAfterClick);
   }
+
 
 }
