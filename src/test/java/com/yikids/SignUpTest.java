@@ -4,10 +4,11 @@ import com.yikids.pages.SignUPPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.support.PageFactory;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+
+import static org.testng.AssertJUnit.assertTrue;
 
 //@org.testng.annotations.Listeners(FailTestScreenshotListener.class)
 public class SignUpTest {
@@ -35,19 +36,26 @@ public class SignUpTest {
     public void fillSignUPFileds() {
         //  Log.info("TestLoginWithExtData was started....");
         signUPPage
-                .fillCompany1Field("company")
-                .fillEmsilField("ss@yuopmail.com")
+                .fillCompany1Field("company1")
+                .fillEmailField("ss@yuopmail.com")
                 .fillFirstnameField("firstname")
                 .fillLastNameField("last")
                 .fillZip1Field("110000")
-                .fillZip21Field("55")
-                .clickToContinue();
+                .fillZip21Field("55");
+        assertTrue("First Namw text not confirmed", signUPPage.CheckFirstNameLabel());
+
+        signUPPage.clickToContinue();
+    }
+
+    @Test
+    public void fillSingupManual() {
+        signUPPage.FillsignUPFields();
     }
 
 
     // test of clicking on Registration link are written in another class
 
-    @AfterClass(alwaysRun = true)
+    //@AfterClass(alwaysRun = true)
     public void tearDown() {
         this.driver.quit();
     }

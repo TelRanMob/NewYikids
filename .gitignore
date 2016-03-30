@@ -27,5 +27,7 @@ buildNumber.properties
 /.idea
 /src/test/java/com/yikids/pages/HomePage.java
 /pom.xml
+/.gitignore
+
 # Created by .ignore support plugin (hsz.mobi)
 
