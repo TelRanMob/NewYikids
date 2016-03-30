@@ -13,26 +13,33 @@ import org.testng.annotations.Test;
 import static org.testng.AssertJUnit.assertTrue;
 
 /**
- * Created by saeser on 29-Mar-16.
+ * Created by Irina Primak on 29-Mar-16.
  */
 public class SignUpTestIrina {
     static String driverPath = "Z:\\Tel-RAN\\Drivers\\";
-    public SignUPPageIrina signUPPage;
+    public SignUPPageIrina signUPPageI;
     public WebDriver driver;
 
     @BeforeClass(alwaysRun = true)
     public void setup() {
-        //System.setProperty("webdriver.chrome.driver", driverPath+"chromedriver.exe");
-        System.setProperty("webdriver.cromDriver.driver", driverPath + "chromedriver.exe");
+        System.setProperty("webdriver.crome.driver", driverPath+"chromedriver.exe");
         driver = new ChromeDriver();
-        signUPPage = PageFactory.initElements(driver, SignUPPageIrina.class);
-            }
+        //System.setProperty("webdriver.ie.driver", driverPath+"IEDriverServer.exe");
+        //driver = new InternetExplorerDriver();
+        signUPPageI = PageFactory.initElements(driver, SignUPPageIrina.class);
+    }
+
+    @BeforeMethod(alwaysRun = true)
+    public void beforeMethodSetUp() {
+        signUPPageI.openSignUpPage();
+    }
+
     @Test
     public void fillFildes() {
-        signUPPage.fillSignUp();
+        signUPPageI.fillSignUp();
 
 
-        signUPPage.clickElemToContinue();
+        signUPPageI.clickElemToContinue();
     }
 
 

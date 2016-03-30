@@ -16,7 +16,7 @@ import java.util.Random;
 import static org.junit.Assert.assertNotEquals;
 
 /**
- * Created by Iakov Volf
+ * Created by Irina Primak
  */
 public class SignUPPageIrina extends Page {
     //private static Logger Log = Logger.getLogger(LogLog4j.class.getName());
@@ -107,18 +107,29 @@ public class SignUPPageIrina extends Page {
         clickElement(continueButton);
         return this;
     }
-
+    //fill all fields in one method
+/*
     public SignUPPageIrina fillSignUp() {
-        openSignUpPage();
         fillFirstnameField("FirstName");
         fillLastNameField("LastName");
         fillcompanyField("Company");
         fillzipCodeField("1234");
         fillzipCod2Field("555");
-        fillemailField(generateEmail());
+        generateEmail();
         return this;
     }
-
+*/
+    // filling all fields in one place
+    public SignUPPageIrina fillSignUp() {
+        setElementText(firstNameField, "FirstName");
+        setElementText(lastNameField, "LastName");
+        setElementText(zipCodeField, "ZipCode");
+        setElementText(zipCode2Field, "ZipCode2");
+        setElementText(companyField, "Company");
+        generateEmail();
+        return this;
+}
+    //emailGeneration
     public String generateEmail() {
         String rand = getRandomString(5);
         String randEmail = rand + "@yopmail.com";
