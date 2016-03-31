@@ -16,16 +16,16 @@ import static org.testng.AssertJUnit.assertTrue;
  * Created by Irina Primak on 29-Mar-16.
  */
 public class SignUpTestIrina {
-    static String driverPath = "Z:\\Tel-RAN\\Drivers\\";
+    static String driverPath = "Z:\\";
     public SignUPPageIrina signUPPageI;
     public WebDriver driver;
 
     @BeforeClass(alwaysRun = true)
     public void setup() {
-        System.setProperty("webdriver.crome.driver", driverPath+"chromedriver.exe");
-        driver = new ChromeDriver();
-        //System.setProperty("webdriver.ie.driver", driverPath+"IEDriverServer.exe");
-        //driver = new InternetExplorerDriver();
+        //System.setProperty("webdriver.crome.driver", driverPath+"chromedriver.exe");
+        //driver = new ChromeDriver();
+        System.setProperty("webdriver.ie.driver", driverPath+"IEDriverServer.exe");
+        driver = new InternetExplorerDriver();
         signUPPageI = PageFactory.initElements(driver, SignUPPageIrina.class);
     }
 
