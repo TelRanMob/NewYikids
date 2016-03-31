@@ -1,22 +1,21 @@
 package com.yikids.util;
 
-import com.yikids.pages.SignUPPage;
 import com.yikids.pages.SignUPPageRut;
-import org.junit.BeforeClass;
-import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
 /**
  * Created by rutga on 29.03.2016.
  */
 public class SignUpTestRut {
+    static String driverPath = "C:\\Telran\\browserDriver\\";
     public SignUPPageRut signUPPageRut;
     public WebDriver driver;
-    static String driverPath = "C:\\Telran\\browserDriver\\";
 
     @BeforeClass
     public void setup() {
