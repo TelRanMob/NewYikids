@@ -21,8 +21,8 @@ public class SignUpTest {
 
     @BeforeClass(alwaysRun = true)
     public void setup() {
-        //System.setProperty("webdriver.chrome.driver", driverPath+"chromedriver.exe");
-        System.setProperty("webdriver.ie.driver", driverPath + "IEDriverServer.exe");
+        // System.setProperty("webdriver.chrome.driver", driverPath+"chromedriver.exe");
+        //System.setProperty("webdriver.ie.driver", driverPath + "IEDriverServer.exe");
         driver = new InternetExplorerDriver();
         signUPPage = PageFactory.initElements(driver, SignUPPage.class);
     }
@@ -42,9 +42,9 @@ public class SignUpTest {
                 .fillLastNameField("last")
                 .fillZip1Field("110000")
                 .fillZip21Field("55");
-        assertTrue("First Namw text not confirmed", signUPPage.CheckFirstNameLabel());
+        assertTrue("First Name text not confirmed", signUPPage.CheckFirstNameLabel());
 
-        signUPPage.clickToContinue();
+        // signUPPage.clickToContinue();
     }
 
     @Test
