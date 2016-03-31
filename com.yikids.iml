@@ -8,7 +8,7 @@
       <sourceFolder url="file://$MODULE_DIR$/src/test/resources" type="java-test-resource" />
       <excludeFolder url="file://$MODULE_DIR$/target" />
     </content>
-    <orderEntry type="jdk" jdkName="1.8" jdkType="JavaSDK" />
+    <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="Maven: org.testng:testng:6.8.8" level="project" />
     <orderEntry type="library" name="Maven: org.beanshell:bsh:2.0b4" level="project" />
@@ -61,6 +61,6 @@
     <orderEntry type="library" name="Maven: org.apache.commons:commons-exec:1.1" level="project" />
     <orderEntry type="library" name="Maven: org.ini4j:ini4j:0.5.2" level="project" />
     <orderEntry type="library" name="Maven: com.github.detro.ghostdriver:phantomjsdriver:1.1.0" level="project" />
-    <orderEntry type="library" exported="" name="Maven: ru.stqa.selenium:webdriver-factory:1.0" level="project" />
+    <orderEntry type="library" name="Maven: ru.stqa.selenium:webdriver-factory:1.0" level="project" />
   </component>
 </module>
