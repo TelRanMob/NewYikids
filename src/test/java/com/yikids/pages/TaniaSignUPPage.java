@@ -22,10 +22,12 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.util.Random;
+
 
 public class TaniaSignUPPage extends Page {
     //private static Logger Log = Logger.getLogger(LogLog4j.class.getName());
-
+    private static Random rnd = new Random();
 
     //fields
     @FindBy(id = "firstname")
