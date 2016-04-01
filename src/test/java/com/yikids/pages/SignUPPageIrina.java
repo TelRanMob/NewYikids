@@ -114,10 +114,10 @@ public class SignUPPageIrina extends Page {
     public SignUPPageIrina fillSignUp() {
         setElementText(firstNameField, "FirstName");
         setElementText(lastNameField, "LastName");
-        setElementText(zipCodeField, "ZipCode");
-        setElementText(zipCode2Field, "ZipCode2");
+        setElementText(zipCodeField, "1234");
+        setElementText(zipCode2Field, "325");
         setElementText(companyField, "Company");
-        generateEmail();
+        setElementText(emailField, generateEmail());
         return this;
 }
     //emailGeneration
