@@ -4,12 +4,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-
-import java.util.Random;
 /**
  * Created by Irina Primak
  */
-public class SignUPPageIrina extends Page {
+public class IrinaSignUPPage extends Page {
     //private static Logger Log = Logger.getLogger(LogLog4j.class.getName());
 
 
@@ -42,65 +40,73 @@ public class SignUPPageIrina extends Page {
     WebElement continueButton;
 
 
-    public SignUPPageIrina(WebDriver driver) {
+    public IrinaSignUPPage(WebDriver driver) {
         super(driver);
         this.PAGE_URL = "http://physician.yikids.com/recruiter/signup";
         PageFactory.initElements(driver, this);
     }
 
+    private static String getRandomString(Integer length) {
+        String chars = "abcdefghijklmnopqrstuvwxyz";
+        StringBuilder buf = new StringBuilder();
+        for (int i = 0; i < length; i++) {
+            buf.append(chars);
+        }
+        return buf.toString();
+    }
 
-    public SignUPPageIrina openSignUpPage() {
+    //Fill the fields
+
+    public IrinaSignUPPage openSignUpPage() {
         //Log.info("Opening Login page");
         driver.get(PAGE_URL);
         return this;
     }
 
-    //Fill the fields
-
-
-    public SignUPPageIrina fillFirstnameField(String username) {
+    public IrinaSignUPPage fillFirstnameField(String username) {
         //Log.info("Filling username field");
         setElementText(firstNameField, username);
         return this;
     }
 
-    public SignUPPageIrina fillLastNameField(String lastname) {
+    public IrinaSignUPPage fillLastNameField(String lastname) {
         //Log.info("Filling username field");
         setElementText(lastNameField, lastname);
         return this;
     }
 
-    public SignUPPageIrina fillemailField(String email) {
+    public IrinaSignUPPage fillemailField(String email) {
         //Log.info("Filling username field");
         setElementText(emailField, email);
         return this;
     }
 
-    public SignUPPageIrina fillzipCodeField(String zipCode) {
+    public IrinaSignUPPage fillzipCodeField(String zipCode) {
         //Log.info("Filling username field");
         setElementText(zipCodeField, zipCode);
         return this;
     }
 
-    public SignUPPageIrina fillzipCod2Field(String zipCode2) {
+    public IrinaSignUPPage fillzipCod2Field(String zipCode2) {
         //Log.info("Filling username field");
         setElementText(zipCode2Field, zipCode2);
         return this;
     }
 
-    public SignUPPageIrina fillcompanyField(String company) {
+    public IrinaSignUPPage fillcompanyField(String company) {
         //Log.info("Filling username field");
         setElementText(companyField, company);
         return this;
     }
 
-    public SignUPPageIrina clickElemToContinue() {
+    public IrinaSignUPPage clickElemToContinue() {
         clickElement(continueButton);
         return this;
     }
+
     //fill all fields in one method
 /*
-    public SignUPPageIrina fillSignUp() {
+    public IrinaSignUPPage fillSignUp() {
         fillFirstnameField("FirstName");
         fillLastNameField("LastName");
         fillcompanyField("Company");
@@ -111,7 +117,7 @@ public class SignUPPageIrina extends Page {
     }
 */
     // filling all fields in one place
-    public SignUPPageIrina fillSignUp() {
+    public IrinaSignUPPage fillSignUp() {
         setElementText(firstNameField, "FirstName");
         setElementText(lastNameField, "LastName");
         setElementText(zipCodeField, "1234");
@@ -120,20 +126,12 @@ public class SignUPPageIrina extends Page {
         setElementText(emailField, generateEmail());
         return this;
 }
+
     //emailGeneration
     public String generateEmail() {
         String rand = getRandomString(5);
         String randEmail = rand + "@yopmail.com";
         return randEmail;
-    }
-
-    private static String getRandomString(Integer length) {
-        String chars = "abcdefghijklmnopqrstuvwxyz";
-        StringBuilder buf = new StringBuilder();
-        for (int i = 0; i < length; i++) {
-            buf.append(chars);
-        }
-        return buf.toString();
     }
 
 }
