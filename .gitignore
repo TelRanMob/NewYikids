@@ -16,6 +16,7 @@ hs_err_pid*
 /NewYikids.iml
 ### Maven template
 /debug.log
+/logging.log
 /.gitignore
 target/
 pom.xml.tag
@@ -29,7 +30,7 @@ buildNumber.properties
 /.idea
 /src/test/java/com/yikids/pages/HomePage.java
 /pom.xml
-/.gitignore
+
 
 # Created by .ignore support plugin (hsz.mobi)
 
