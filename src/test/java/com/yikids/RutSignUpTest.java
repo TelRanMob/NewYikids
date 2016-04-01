@@ -1,6 +1,6 @@
-package com.yikids.util;
+package com.yikids;
 
-import com.yikids.pages.SignUPPageRut;
+import com.yikids.pages.RutSignUPPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.support.PageFactory;
@@ -9,12 +9,14 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import static org.testng.AssertJUnit.assertTrue;
+
 /**
  * Created by rutga on 29.03.2016.
  */
-public class SignUpTestRut {
+public class RutSignUpTest {
     static String driverPath = "C:\\Telran\\browserDriver\\";
-    public SignUPPageRut signUPPageRut;
+    public RutSignUPPage rutSignUPPage;
     public WebDriver driver;
 
     @BeforeClass
@@ -25,22 +27,27 @@ public class SignUpTestRut {
 
         System.setProperty("webdriver.ie.driver", driverPath + "IEDriverServer.exe");
         driver = new InternetExplorerDriver();
-        signUPPageRut = PageFactory.initElements(driver, SignUPPageRut.class);
+        rutSignUPPage = PageFactory.initElements(driver, RutSignUPPage.class);
     }
     @BeforeMethod(alwaysRun = true)
     public void beforeMethodSetUp() {
-        signUPPageRut.openSignUpPage();
+        rutSignUPPage.openSignUpPage();
     }
     @Test
     public void fillSignUPFields(){
-        signUPPageRut
+        rutSignUPPage
                 .fillFirstnameField("firstname")
                 .fillLastNameField("lastname")
                 .fillEmailField("email@yopmail.com")
                 .fillZip1CodeField("111111")
                 .fillZip2CodeField("222")
-                .fillCompanyField("company")
-                .clickContinueButton();
+                .fillCompanyField("company");
+        assertTrue("First Name text not confirmed", rutSignUPPage.CheckFirstNameLabel());
+        rutSignUPPage.clickContinueButton();
+    }
+    @Test
+    public void fillSignUpManual(){
+        rutSignUPPage.fillSignUPFields();
     }
     @AfterClass(alwaysRun = true)
     public void tearDown(){
