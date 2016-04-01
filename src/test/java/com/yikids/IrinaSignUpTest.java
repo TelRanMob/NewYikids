@@ -1,4 +1,4 @@
-package com.yikids.util;
+package com.yikids;
 
 import com.yikids.pages.IrinaSignUPPage;
 import org.openqa.selenium.WebDriver;
@@ -8,12 +8,14 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import static org.testng.AssertJUnit.assertTrue;
+
 /**
  * Created by Irina Primak on 29-Mar-16.
  */
-public class SignUpTestIrina {
+public class IrinaSignUpTest {
   //  static String driverPath = "Z:\\Tel-RAN\\aQA\\BrowserDrivers";
-  public IrinaSignUPPage signUPPageI;
+    public IrinaSignUPPage signUPPageI;
     public WebDriver driver;
 
     @BeforeClass(alwaysRun = true)
