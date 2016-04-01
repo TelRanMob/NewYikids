@@ -1,24 +1,19 @@
 package com.yikids.util;
 
-import com.yikids.pages.SignUPPage;
-import com.yikids.pages.SignUPPageIrina;
+import com.yikids.pages.IrinaSignUPPage;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
-import static org.testng.AssertJUnit.assertTrue;
 
 /**
  * Created by Irina Primak on 29-Mar-16.
  */
 public class SignUpTestIrina {
   //  static String driverPath = "Z:\\Tel-RAN\\aQA\\BrowserDrivers";
-    public SignUPPageIrina signUPPageI;
+  public IrinaSignUPPage signUPPageI;
     public WebDriver driver;
 
     @BeforeClass(alwaysRun = true)
@@ -28,7 +23,7 @@ public class SignUpTestIrina {
         //System.setProperty("webdriver.ie.driver", driverPath+"IEDriverServer.exe");
         //driver = new InternetExplorerDriver();
         driver = new FirefoxDriver();
-        signUPPageI = PageFactory.initElements(driver, SignUPPageIrina.class);
+        signUPPageI = PageFactory.initElements(driver, IrinaSignUPPage.class);
     }
 
     @BeforeMethod(alwaysRun = true)
