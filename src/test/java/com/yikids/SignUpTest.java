@@ -43,7 +43,7 @@ public class SignUpTest {
                 .fillLastNameField("last")
                 .fillZip1Field("110000")
                 .fillZip21Field("55");
-        assertTrue("First Name text not confirmed", signUPPage.CheckFirstNameLabel());
+      //  assertTrue("First Name text not confirmed", signUPPage.CheckFirstNameLabel());
 
         // signUPPage.clickToContinue();
     }
