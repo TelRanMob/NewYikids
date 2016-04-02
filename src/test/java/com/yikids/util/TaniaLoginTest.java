@@ -1,6 +1,7 @@
-package com.yikids;
+package com.yikids.util;
 
-import com.yikids.pages.SignUPPage;
+
+import com.yikids.pages.TaniaLoginPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
@@ -12,12 +13,12 @@ import org.testng.annotations.Test;
 import static org.testng.AssertJUnit.assertTrue;
 
 //@org.testng.annotations.Listeners(FailTestScreenshotListener.class)
-public class SignUpTest {
+public class TaniaLoginTest {
     // private static Logger Log = Logger.getLogger(LogLog4j.class.getName());
     // public static String registered_username = "3339Doctor";
     // public static String registered_password = "LinkCare!!11";
     // static String driverPath = "C:\\Development\\browserDriver\\";
-    public SignUPPage signUPPage;
+    public TaniaLoginPage taniaLoginPage;
     public WebDriver driver;
 
     @BeforeClass(alwaysRun = true)
@@ -25,39 +26,44 @@ public class SignUpTest {
         // System.setProperty("webdriver.chrome.driver", driverPath+"chromedriver.exe");
         //System.setProperty("webdriver.ie.driver", driverPath + "IEDriverServer.exe");
         driver = new FirefoxDriver();
-        signUPPage = PageFactory.initElements(driver, SignUPPage.class);
+        taniaLoginPage = PageFactory.initElements(driver,TaniaLoginPage.class);
     }
 
     @BeforeMethod(alwaysRun = true)
     public void beforeMethodSetUp() {
-        signUPPage.openSignUpPage();
+        taniaLoginPage.openLoginPage();
     }
 
     @Test
-    public void fillSignUPFileds() {
+    public void FillLoginFields() {
         //  Log.info("TestLoginWithExtData was started....");
-        signUPPage
-                .fillCompany1Field("company1")
-                .fillEmailField("ss@yuopmail.com")
-                .fillFirstnameField("firstname")
-                .fillLastNameField("last")
-                .fillZip1Field("110000")
-                .fillZip21Field("55");
-      //  assertTrue("First Name text not confirmed", signUPPage.CheckFirstNameLabel());
+        taniaLoginPage
+                .fillEmailField("email333@yuopmail.com")
+                .fillpasswordField("307607608")
+                .clickLogInLinkButton();
 
-        // signUPPage.clickToContinue();
+      // Log.info("negative test - email not exist- sign up...");
+        assertTrue("First Name text not confirmed", taniaLoginPage.CheckPageForNotLogIn());
+
+
     }
+
+
 
     @Test
-    public void fillSingupManual() {
-        signUPPage.FillsignUPFields();
+    public void FillLogInFields() {
+        taniaLoginPage.FillLogInFields();
+        taniaLoginPage.clickLogInLinkButton();
+        // Log.info("negative test - email not exist- sign up...");
+        assertTrue("First Name text not confirmed", taniaLoginPage.CheckPageForNotLogIn());
     }
+
 
 
     // test of clicking on Registration link are written in another class
 
     //@AfterClass(alwaysRun = true)
-  //  public void tearDown() {
-  //      this.driver.quit();
+    //    public void tearDown() {
+     //   driver.quit();
   //  }
 }

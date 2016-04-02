@@ -28,12 +28,26 @@ public class TaniaLoginPage extends Page {
     WebElement passwordField;
 
     //Link Buttons
+    @FindBy(xpath = "//*[@id=\"login-form\"]/div/button")
+    WebElement logInLinkButton;
+
     @FindBy(xpath = "//*[@id=\"login-form\"]/div/a[1]")
     WebElement signUpLinkButton;
 
     @FindBy(xpath = "//*[@id=\"login-form\"]/div/a[2]")
     WebElement forgotPasswordLinkButton;
 
+    @FindBy(xpath = "//*[@id=\"login-form\"]/div[1]")
+    WebElement emailNotExist;
+
+
+    public boolean CheckPageForNotLogIn() {
+        return verifyTextBoolean(emailNotExist, "Please sign up because your email does not exist in our system.");
+    }
+
+  //  public boolean CheckFirstNameLabel() {
+   //     return verifyTextBoolean(FirstNameLabel, "First name");
+   // }
 
 
     public TaniaLoginPage(WebDriver driver) {
@@ -76,6 +90,13 @@ public class TaniaLoginPage extends Page {
         return this;
     }
 
+
+    public TaniaLoginPage clickLogInLinkButton() {
+        //Log.info("Click log-In LinkButton");
+        clickElement(logInLinkButton);
+        return this;
+    }
+
     public TaniaLoginPage clickSignUpLinkButton() {
         //Log.info("Click signUp LinkButton");
         clickElement(signUpLinkButton);
@@ -88,12 +109,12 @@ public class TaniaLoginPage extends Page {
     }
 
 
-    public TaniaLoginPage FillsignUPFields() {
+    public TaniaLoginPage FillLogInFields() {
         //Log.info("Filling all fields");
         openLoginPage();
         String email = generateEmail();
         fillEmailField(email);
-        fillpasswordField("307607607");
+        fillpasswordField("307607");
 
         return this;
     }
