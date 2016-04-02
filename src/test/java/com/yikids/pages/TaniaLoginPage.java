@@ -59,6 +59,10 @@ public class TaniaLoginPage extends Page {
         return this;
     }
 
+    public boolean isOnLoginPage(){
+        //Log.info("Filling username field");
+        return exists(emailField);
+    }
 
     public TaniaLoginPage fillEmailField(String email) {
         //Log.info("Filling username field");
