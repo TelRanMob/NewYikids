@@ -43,6 +43,18 @@ public class LoginPage extends Page {
     @FindBy(xpath = "//*[@id='section-account']/div[1]/div/label")
     WebElement FirstNameLabel;
 
+    @FindBy(xpath = "//*[@id='login-form']/div/button")
+    WebElement logInLinkButton;
+
+    @FindBy(xpath = "//*[@id='login-form']/div/a[1]")
+    WebElement signUpLinkButton;
+
+    @FindBy(xpath = "//*[@id='login-form']/div/a[2]")
+    WebElement forgotPasswordLinkButton;
+
+    @FindBy(xpath = "//*[@id='login-form']/div[1]")
+    WebElement emailNotExist;
+
     public LoginPage(WebDriver driver) {
         super(driver);
         this.PAGE_URL = "http://admin.yikids.com/";
@@ -78,5 +90,28 @@ public class LoginPage extends Page {
         return this;
     }
 
+    public LoginPage fillPassword(String lastname) {
+        //Log.info("Filling username field");
+        setElementText(passwordField, lastname);
+        return this;
+    }
 
+
+    public LoginPage clickLogInLinkButton() {
+        //Log.info("Click log-In LinkButton");
+        clickElement(logInLinkButton);
+        return this;
+    }
+
+    public LoginPage clickSignUpLinkButton() {
+        //Log.info("Click signUp LinkButton");
+        clickElement(signUpLinkButton);
+        return this;
+    }
+
+    public LoginPage clickForgotPasswordLinkButton() {
+        //Log.info("Click forgotPassword LinkButton");
+        clickElement(forgotPasswordLinkButton);
+        return this;
+    }
 }

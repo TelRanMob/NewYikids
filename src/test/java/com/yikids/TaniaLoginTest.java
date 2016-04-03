@@ -9,6 +9,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import static org.testng.AssertJUnit.assertFalse;
 import static org.testng.AssertJUnit.assertTrue;
 
 //@org.testng.annotations.Listeners(FailTestScreenshotListener.class)
@@ -43,6 +44,20 @@ public class TaniaLoginTest {
 
       // Log.info("negative test - email not exist- sign up...");
         assertTrue("No warning about wrong login data appears", taniaLoginPage.CheckPageForNotLogIn());
+        assertTrue("WE are not on login page", taniaLoginPage.isOnLoginPage());
+
+    }
+
+    @Test
+    public void loginPositiveTest() {
+        //  Log.info("TestLoginWithExtData was started....");
+        taniaLoginPage
+                .fillEmailField("admin@erdocfinder.com")
+                .fillpasswordField("Test123")
+                .clickLogInLinkButton();
+
+        // Log.info("negative test - email not exist- sign up...");
+        assertFalse("WE are still on login page", taniaLoginPage.isOnLoginPage());
 
 
     }
