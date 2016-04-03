@@ -28,26 +28,17 @@ public class TaniaLoginPage extends Page {
     WebElement passwordField;
 
     //Link Buttons
-    @FindBy(xpath = "//*[@id=\"login-form\"]/div/button")
+    @FindBy(xpath = "//*[@id='login-form']/div/button")
     WebElement logInLinkButton;
 
-    @FindBy(xpath = "//*[@id=\"login-form\"]/div/a[1]")
+    @FindBy(xpath = "//*[@id='login-form']/div/a[1]")
     WebElement signUpLinkButton;
 
-    @FindBy(xpath = "//*[@id=\"login-form\"]/div/a[2]")
+    @FindBy(xpath = "//*[@id='login-form']/div/a[2]")
     WebElement forgotPasswordLinkButton;
 
-    @FindBy(xpath = "//*[@id=\"login-form\"]/div[1]")
+    @FindBy(xpath = "//*[@id='login-form']/div[1]")
     WebElement emailNotExist;
-
-
-    public boolean CheckPageForNotLogIn() {
-        return verifyTextBoolean(emailNotExist, "Please sign up because your email does not exist in our system.");
-    }
-
-  //  public boolean CheckFirstNameLabel() {
-   //     return verifyTextBoolean(FirstNameLabel, "First name");
-   // }
 
 
     public TaniaLoginPage(WebDriver driver) {
@@ -56,6 +47,10 @@ public class TaniaLoginPage extends Page {
         PageFactory.initElements(driver, this);
     }
 
+    //  public boolean CheckFirstNameLabel() {
+    //     return verifyTextBoolean(FirstNameLabel, "First name");
+    // }
+
     private static String getRandomString(final int length) {
         String chars = "abcdefghijklmnopqrstuvwxyz";
         StringBuilder buf = new StringBuilder();
@@ -63,6 +58,10 @@ public class TaniaLoginPage extends Page {
             buf.append(chars.charAt(rnd.nextInt(chars.length())));
         }
         return buf.toString();
+    }
+
+    public boolean CheckPageForNotLogIn() {
+        return verifyTextBoolean(emailNotExist, "Please sign up because your email does not exist in our system.");
     }
 
     //Fill the fields

@@ -1,11 +1,10 @@
-package com.yikids.util;
+package com.yikids;
 
 
 import com.yikids.pages.TaniaLoginPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -35,7 +34,7 @@ public class TaniaLoginTest {
     }
 
     @Test
-    public void FillLoginFields() {
+    public void loginNegativeTest() {
         //  Log.info("TestLoginWithExtData was started....");
         taniaLoginPage
                 .fillEmailField("email333@yuopmail.com")
@@ -43,7 +42,7 @@ public class TaniaLoginTest {
                 .clickLogInLinkButton();
 
       // Log.info("negative test - email not exist- sign up...");
-        assertTrue("First Name text not confirmed", taniaLoginPage.CheckPageForNotLogIn());
+        assertTrue("No warning about wrong login data appears", taniaLoginPage.CheckPageForNotLogIn());
 
 
     }

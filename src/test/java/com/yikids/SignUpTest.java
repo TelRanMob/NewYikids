@@ -4,12 +4,9 @@ import com.yikids.pages.SignUPPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
-import static org.testng.AssertJUnit.assertTrue;
 
 //@org.testng.annotations.Listeners(FailTestScreenshotListener.class)
 public class SignUpTest {
@@ -34,7 +31,7 @@ public class SignUpTest {
     }
 
     @Test
-    public void fillSignUPFileds() {
+    public void SignUPPositive() {
         //  Log.info("TestLoginWithExtData was started....");
         signUPPage
                 .fillCompany1Field("company1")

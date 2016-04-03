@@ -67,6 +67,11 @@ public class LoginPage extends Page {
     }
 
 
+    public boolean isOnLoginPage() {
+        //Log.info("Filling username field");
+        return exists(emailField);
+    }
+
     public LoginPage fillEmailField(String lastname) {
         //Log.info("Filling username field");
         setElementText(emailField, lastname);
