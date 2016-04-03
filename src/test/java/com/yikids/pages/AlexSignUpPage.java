@@ -54,25 +54,31 @@ public class AlexSignUpPage extends Page {
 /* methods */
 
     public AlexSignUpPage(WebDriver driver) {
+
         super(driver);
         this.PAGE_URL = "http://physician.yikids.com/recruiter/signup";
         PageFactory.initElements(driver, this);
+
     }
 
-    private static String getRandomString(int length) {
+    private static String getRandomString(final int length) {
 
         String letters = "abcdefghijklmnopqrstuvwxyz";
         StringBuilder buf = new StringBuilder();
+
         for (int i = 0; i < length; i++) {
             buf.append(letters.charAt(rnd.nextInt(letters.length())));
         }
 
         return buf.toString();
+
     }
 
     public AlexSignUpPage openSignUpPage() {
+
         driver.get(PAGE_URL);
         return this;
+
     }
 
     private String generateEmail() {
@@ -87,38 +93,52 @@ public class AlexSignUpPage extends Page {
 
 
     public AlexSignUpPage fillFirstnameField(String firstname) {
+
         setElementText(firstNameField, firstname);
         return this;
+
     }
 
     public AlexSignUpPage fillLastNameField(String lastname) {
+
         setElementText(lastNameField, lastname);
         return this;
+
     }
 
     public AlexSignUpPage fillEmailField(String email) {
+
         setElementText(emailField, email);
         return this;
+
     }
 
     public AlexSignUpPage fillZip1Field(String Zipone) {
+
         setElementText(zipCodeField, Zipone);
         return this;
+
     }
 
     public AlexSignUpPage fillZip21Field(String Ziptwo) {
+
         setElementText(zipCode2Field, Ziptwo);
         return this;
+
     }
 
     public AlexSignUpPage fillCompany1Field(String company) {
+
         setElementText(companyField, company);
         return this;
+
     }
 
     public AlexSignUpPage clickToContinue() {
+
         clickElement(continueButton);
         return this;
+
     }
 
     public AlexSignUpPage FillSignUp() {

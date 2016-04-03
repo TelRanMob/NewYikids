@@ -15,15 +15,12 @@ import org.testng.annotations.Test;
 
 public class AlexSignUpTest {
 
-
-    //static String driverPath = "C:\\Users\\Alexandr\\Documents\\WebDriver\\";
     public AlexSignUpPage alexsignuppage;
     public WebDriver driver;
 
     @BeforeClass(alwaysRun = true)
     public void setup() {
 
-        //System.setProperty("webdriver.chrome.driver", driverPath+"chromedriver.exe");
         driver = new FirefoxDriver();
         alexsignuppage = PageFactory.initElements(driver, AlexSignUpPage.class);
 
