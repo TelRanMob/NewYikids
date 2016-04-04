@@ -1,5 +1,6 @@
 package com.yikids;
 
+import com.yikids.pages.IrinaLoginPage;
 import com.yikids.pages.IrinaSignUPPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -9,14 +10,12 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import static org.testng.AssertJUnit.assertTrue;
-
 /**
  * Created by Irina Primak on 29-Mar-16.
  */
-public class IrinaSignUpTest {
+public class IrinaLoginTest {
   //  static String driverPath = "Z:\\Tel-RAN\\aQA\\BrowserDrivers";
-    public IrinaSignUPPage signUPPageI;
+    public IrinaLoginPage loginI;
     public WebDriver driver;
 
     @BeforeClass(alwaysRun = true)
@@ -26,24 +25,22 @@ public class IrinaSignUpTest {
         //System.setProperty("webdriver.ie.driver", driverPath+"IEDriverServer.exe");
         //driver = new InternetExplorerDriver();
         driver = new FirefoxDriver();
-        signUPPageI = PageFactory.initElements(driver, IrinaSignUPPage.class);
+        loginI = PageFactory.initElements(driver, IrinaLoginPage.class);
     }
 
     @BeforeMethod(alwaysRun = true)
     public void beforeMethodSetUp() {
-        signUPPageI.openSignUpPage();
+        loginI.openLoginPage();
        // signUPPageI.checkPageOpen();
     }
 
 
     @Test
-    public void fillFildesPositiv() {
-        signUPPageI.fillSignUp();
-        signUPPageI.clickElemToContinue();
-        signUPPageI.checkPageForCapthcaMessage();
+    public void PositivLogin() {
+        loginI.FillLodInFieldsPozitive();
 
     }
-    @Test
+   /* @Test
     public void fillFildesNegativFirstNameEmpty(){
         signUPPageI
                 .fillFirstnameField(" ")
@@ -111,7 +108,7 @@ public class IrinaSignUpTest {
    @AfterClass(alwaysRun = true)
    public void tearDown() {
         this.driver.quit();
-    }
+    }*/
 }
 
 
