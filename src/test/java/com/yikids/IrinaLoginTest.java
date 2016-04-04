@@ -17,6 +17,8 @@ public class IrinaLoginTest {
   //  static String driverPath = "Z:\\Tel-RAN\\aQA\\BrowserDrivers";
     public IrinaLoginPage loginI;
     public WebDriver driver;
+    public String email = "admin@erdocfinder.com";
+    public String password = "Test123";
 
     @BeforeClass(alwaysRun = true)
     public void setup() {
@@ -31,76 +33,65 @@ public class IrinaLoginTest {
     @BeforeMethod(alwaysRun = true)
     public void beforeMethodSetUp() {
         loginI.openLoginPage();
-       // signUPPageI.checkPageOpen();
+        //verification
+       loginI.isOnLoginPage();
     }
 
 
     @Test
-    public void PositivLogin() {
-        loginI.FillLodInFieldsPozitive();
+    public void positivLogin() {
+        loginI.fillLodInFieldsPozitive();
+
+        loginI.clickToLoginButton();
+       // verification
+        loginI.loginned();
+    }
+   @Test
+    public void negativEmptyEmailLogin(){
+       loginI.fillEmailField(" ")
+               .fillPasswordField(password);
+       loginI.clickToLoginButton();
+       //verufication
+       loginI.isOnLoginPage();
+
+   }
+    @Test
+    public void negativEmptyPasswordLogin(){
+        loginI.fillEmailField(email)
+                .fillPasswordField(" ");
+        loginI.clickToLoginButton();
+        //verufication
+        loginI.passwordNotCorrect();
+        loginI.isOnLoginPage();
 
     }
-   /* @Test
-    public void fillFildesNegativFirstNameEmpty(){
-        signUPPageI
-                .fillFirstnameField(" ")
-                .fillLastNameField("LastName")
-                .fillemailField("email@yopmail.com")
-                .fillzipCodeField("4562")
-                .fillcompanyField("Compani")
-                .fillzipCod2Field("111");
-        signUPPageI.clickElemToContinue();
-                signUPPageI.checkfirstNameEmptyFieldMessage();
-            }
     @Test
-    public void fillFildesNegativLastNameEmpty(){
-        signUPPageI
-                .fillFirstnameField("FirstName")
-                .fillLastNameField(" ")
-                .fillemailField("email@yopmail.com")
-                .fillcompanyField("Compani")
-                .fillzipCodeField("4562")
-                .fillzipCod2Field("111");
-        signUPPageI.clickElemToContinue();
-                signUPPageI.checkLastNameEmptyFieldMessage();
-    }
-    @Test
-    public void fillFildesNegativEmailEmpty(){
-        signUPPageI
-                .fillFirstnameField("FirstName")
-                .fillLastNameField("LastName")
-                .fillemailField(" ")
-                .fillcompanyField("Compani")
-                .fillzipCodeField("4562")
-                .fillzipCod2Field("111")
-                .clickElemToContinue()
-                .checkEmailEmptyFieldMessage();
-    }
-    @Test
-    public void fillFildesNegativZipCodeEmpty(){
-        signUPPageI
-                .fillFirstnameField("FirstName")
-                .fillLastNameField("LastName")
-                .fillemailField("email@yopmail.com")
-                .fillcompanyField("Compani")
-                .fillzipCod2Field("111")
-                .clickElemToContinue()
-                .checkZipEmptyFieldMessage();
-    }
-    @Test
-    public void fillFildesInvalidEmailZipCode(){
-        signUPPageI
-                .fillFirstnameField("FirstName")
-                .fillLastNameField("LastName")
-                .fillemailField("email")
-                .fillcompanyField("Compani")
-                .fillzipCodeField("gffdh")
-                .clickElemToContinue()
-                .checkEmailInvalidFieldMessage();
-        signUPPageI.checkZipInvalidFieldMessage();
+    public void EmptyEdLogin(){
+        loginI.fillEmailField(email)
+                .fillPasswordField("password");
+        loginI.clickToLoginButton();
+           //verufication
+        loginI.passwordNotCorrect();
+        loginI.isOnLoginPage();
 
     }
 
+    @Test
+    public void signUp(){
+        loginI.clickToSignUpButton();
+        //verufication
+
+        loginI.checkPageSignUpOpen();
+
+    }
+    @Test
+    public void forgotPassword(){
+        loginI.clickToForgotPasswordButton();
+        //verufication
+
+        loginI.checkPageResetPassword();
+
+    }
 
 
     // test of clicking on Registration link are written in another class
@@ -108,7 +99,7 @@ public class IrinaLoginTest {
    @AfterClass(alwaysRun = true)
    public void tearDown() {
         this.driver.quit();
-    }*/
+    }
 }
 
 

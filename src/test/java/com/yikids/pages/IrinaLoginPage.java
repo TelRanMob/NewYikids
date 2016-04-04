@@ -13,6 +13,7 @@ import java.util.Random;
 public class IrinaLoginPage extends Page {
     //private static Logger Log = Logger.getLogger(LogLog4j.class.getName());
     private static Random rnd = new Random();
+    public String PAGE_URL;
 
     //fields
     @FindBy(id = "email")
@@ -25,16 +26,25 @@ public class IrinaLoginPage extends Page {
     @FindBy(id = "//*[@id='login-form']/div/button")
     WebElement loginButton;
 
+    @FindBy(id = "//*[@id='logout-container']/a")
+    WebElement logOutButton;
+
     @FindBy(id = "//*[@id='login-form']/div/a[1]")
-    WebElement SignUpButton;
+    WebElement signUpButton;
 
     @FindBy(id = "//*[@id='login-form']/div/a[2]")
-    WebElement ForgotPasswordButton;
+    WebElement forgotPasswordButton;
 
-   /* //Labels
-    @FindBy(xpath = "//*[@id='section-account']/div[1]/div/label")
-    WebElement FirstNameLabel;
-*/
+    //Labels
+    @FindBy(xpath = "//*[@id='login-form']/div[1]")
+    WebElement errorPasswordMessage;
+
+    @FindBy(xpath = "//*[@id='contentContainer']/p[1]")
+    WebElement pageSignUpTitle;
+
+    @FindBy(xpath = "//*[@id='contentContainer']/p")
+    WebElement resetPasswordTitle;
+
     public IrinaLoginPage(WebDriver driver) {
         super(driver);
         this.PAGE_URL = "http://admin.yikids.com/";
@@ -51,8 +61,7 @@ public class IrinaLoginPage extends Page {
     //Fill the fields
 
 
-
-   public IrinaLoginPage fillEmailField(String email) {
+    public IrinaLoginPage fillEmailField(String email) {
         //Log.info("Filling email field");
         setElementText(emailField, email);
         return this;
@@ -69,19 +78,21 @@ public class IrinaLoginPage extends Page {
         clickElement(loginButton);
         return this;
     }
+
     public IrinaLoginPage clickToSignUpButton() {
         //Log.info("SignUp");
-        clickElement(SignUpButton);
+        clickElement(signUpButton);
         return this;
     }
+
     public IrinaLoginPage clickToForgotPasswordButton() {
         //Log.info("ForgotPassword");
-        clickElement(ForgotPasswordButton);
+        clickElement(forgotPasswordButton);
         return this;
     }
 
     //illing all fields
-    public IrinaLoginPage FillLodInFieldsPozitive() {
+    public IrinaLoginPage fillLodInFieldsPozitive() {
         fillEmailField("admin@erdocfinder.com");
         fillPasswordField("Test123");
         clickToLoginButton();
@@ -105,11 +116,28 @@ public class IrinaLoginPage extends Page {
     }
 
     //verification methods
-    public boolean IsOnLoginPage() {
+    public boolean isOnLoginPage() {
         // Log.info(");
-            return exists(emailField);
-        }
+        return exists(loginButton);
+    }
 
-    // public boolean CheckFirstNameLabel() {return verifyTextBoolean(FirstNameLabel, "First name");
-    //}
-}
+    public boolean loginned() {
+        // Log.info(");
+        return exists(logOutButton);
+    }
+
+    public boolean passwordNotCorrect() {
+        return verifyTextBoolean(errorPasswordMessage, "Your password is not correct. Please try again. Forgot password?");
+    }
+
+    public boolean checkPageSignUpOpen() {
+        return verifyTextBoolean(pageSignUpTitle, "Step one of finding your physicians");
+    }
+    public boolean checkPageResetPassword() {
+        return verifyTextBoolean(resetPasswordTitle, "Reset Password");
+
+    }
+
+        // public boolean CheckFirstNameLabel() {return verifyTextBoolean(FirstNameLabel, "First name");
+        //}
+    }
