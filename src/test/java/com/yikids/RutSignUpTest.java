@@ -2,7 +2,7 @@ package com.yikids;
 
 import com.yikids.pages.RutSignUPPage;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -23,10 +23,10 @@ public class RutSignUpTest {
     public void setup() {
 //        driver = new FirefoxDriver();
 //        System.setProperty("webdriver.ie.driver", driverPath + "chromedriver.exe");
-        driver = new ChromeDriver();
+//      driver = new ChromeDriver();
 
       //  System.setProperty("webdriver.ie.driver", driverPath + "IEDriverServer.exe");
-       // driver = new InternetExplorerDriver();
+        driver = new InternetExplorerDriver();
         rutSignUPPage = PageFactory.initElements(driver, RutSignUPPage.class);
     }
     @BeforeMethod(alwaysRun = true)
