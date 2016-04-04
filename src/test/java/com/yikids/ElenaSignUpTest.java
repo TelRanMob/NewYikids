@@ -14,8 +14,7 @@ import static org.testng.AssertJUnit.assertTrue;
 
 //@org.testng.annotations.Listeners(FailTestScreenshotListener.class)
 public class ElenaSignUpTest {
-
-  //static String driverPath = "D:\\Tel_Ran\\Java\\webDrivers\\";
+    //static String driverPath = "D:\\Tel_Ran\\Java\\webDrivers\\";
     public ElenaSignUPPage elenaSignUPPage;
     public WebDriver driver;
 

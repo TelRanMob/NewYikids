@@ -20,9 +20,6 @@ public class ElenaLoginPage extends Page {
     private static Random rnd = new Random();
 
 
-
-
-
     @FindBy(id = "email")
     WebElement emailField;
 
