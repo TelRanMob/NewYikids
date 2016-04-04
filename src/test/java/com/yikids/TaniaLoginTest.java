@@ -42,7 +42,10 @@ public class TaniaLoginTest {
                 .fillpasswordField("307607608")
                 .clickLogInLinkButton();
 
-      // Log.info("negative test - email not exist- sign up...");
+
+     ;
+
+        // Log.info("negative test - email not exist- sign up...");
         assertTrue("No warning about wrong login data appears", taniaLoginPage.CheckPageForNotLogIn());
         assertTrue("WE are not on login page", taniaLoginPage.isOnLoginPage());
 
@@ -55,9 +58,9 @@ public class TaniaLoginTest {
                 .fillEmailField("admin@erdocfinder.com")
                 .fillpasswordField("Test123")
                 .clickLogInLinkButton();
-
+        assertTrue("WE are on overview page", taniaLoginPage.isOnOverviewPage());
         // Log.info("negative test - email not exist- sign up...");
-        assertFalse("WE are still on login page", taniaLoginPage.isOnLoginPage());
+      //  assertFalse("WE are still on login page", taniaLoginPage.isOnLoginPage());
 
 
     }

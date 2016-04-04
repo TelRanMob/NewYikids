@@ -40,6 +40,8 @@ public class TaniaLoginPage extends Page {
     @FindBy(xpath = "//*[@id='login-form']/div[1]")
     WebElement emailNotExist;
 
+    @FindBy(xpath = "//*[@id='logout-container']/a")
+    WebElement LogOutLinkButton;
 
     public TaniaLoginPage(WebDriver driver) {
         super(driver);
@@ -59,7 +61,13 @@ public class TaniaLoginPage extends Page {
         }
         return buf.toString();
     }
-
+    public boolean exists(WebElement element) {
+        try {
+            return element.isDisplayed();
+        } catch (org.openqa.selenium.NoSuchElementException ignored) {
+            return false;
+        }
+    }
     public boolean CheckPageForNotLogIn() {
         return verifyTextBoolean(emailNotExist, "Please sign up because your email does not exist in our system.");
     }
@@ -76,7 +84,10 @@ public class TaniaLoginPage extends Page {
         //Log.info("Filling username field");
         return exists(emailField);
     }
-
+    public boolean isOnOverviewPage(){
+        //Log.info("Filling username field");
+        return exists(LogOutLinkButton);
+    }
     public TaniaLoginPage fillEmailField(String email) {
         //Log.info("Filling username field");
         setElementText(emailField, email);

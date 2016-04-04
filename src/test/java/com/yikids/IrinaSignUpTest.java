@@ -36,7 +36,7 @@ public class IrinaSignUpTest {
     }
 
 
-    @Test
+ /*   @Test
     public void fillFildesPositiv() {
         signUPPageI.fillSignUp();
         signUPPageI.clickElemToContinue();
@@ -111,7 +111,7 @@ public class IrinaSignUpTest {
    @AfterClass(alwaysRun = true)
    public void tearDown() {
         this.driver.quit();
-    }
+    }*/
 }
 
 
