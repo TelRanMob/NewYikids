@@ -36,7 +36,7 @@ public class IrinaSignUpTest {
     }
 
 
- /*   @Test
+  /*  @Test
     public void fillFildesPositiv() {
         signUPPageI.fillSignUp();
         signUPPageI.clickElemToContinue();
