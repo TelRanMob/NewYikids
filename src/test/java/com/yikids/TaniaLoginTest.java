@@ -3,7 +3,7 @@ package com.yikids;
 
 import com.yikids.pages.TaniaLoginPage;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
@@ -25,7 +25,8 @@ public class TaniaLoginTest {
     public void setup() {
         // System.setProperty("webdriver.chrome.driver", driverPath+"chromedriver.exe");
         //System.setProperty("webdriver.ie.driver", driverPath + "IEDriverServer.exe");
-        driver = new FirefoxDriver();
+       // driver = new FirefoxDriver();
+        driver =new ChromeDriver();
         taniaLoginPage = PageFactory.initElements(driver,TaniaLoginPage.class);
     }
 

@@ -146,11 +146,11 @@ public abstract class Page {
 
 
     public boolean verifyTextBoolean(WebElement element, String text) {
-    //  Log.info("verifying that text from element " + element + " - ('" + element.getText() + "') - is equal to text '" + text + "'");
+   //   Log.info("verifying that text from element " + element + " - ('" + element.getText() + "') - is equal to text '" + text + "'");
     return text.equals(element.getText());
   }
 
-  // Verifies that we chose the label that we wanted.
+
   public boolean verifyTextBooleanInDropDown(String label, String chosenOption) {
     return chosenOption.equals(label);
   }
@@ -210,6 +210,13 @@ public abstract class Page {
     String cellColorAfterClick = Color.fromString(cell.getCssValue("background-color")).asHex();
     return !cellColorBeforeClick.equals(cellColorAfterClick);
   }
+    public String getTextElement(WebElement element) {
+
+        String text_elemen;
+        text_elemen = element.getText();
+
+        return text_elemen;
+    }
 
 
 }

@@ -19,7 +19,7 @@ hs_err_pid*
 /debug.log
 /logging.log
 /.gitignore
-target/
+
 pom.xml.tag
 pom.xml.releaseBackup
 pom.xml.versionsBackup
@@ -34,4 +34,5 @@ buildNumber.properties
 
 
 # Created by .ignore support plugin (hsz.mobi)
+
 
