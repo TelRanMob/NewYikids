@@ -1,13 +1,18 @@
 package com.yikids.pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+
+import java.util.Random;
+
 /**
  * Created by Irina Primak
  */
 public class IrinaSignUPPage extends Page {
+    private static Random rnd = new Random();
     //private static Logger Log = Logger.getLogger(LogLog4j.class.getName());
 
 
@@ -34,6 +39,24 @@ public class IrinaSignUPPage extends Page {
     @FindBy(xpath = "//*[@id='section-account']/span")
     WebElement captchaMessage;
 
+    @FindBy(xpath = "//*[@id='section-account']/div[1]/div/div[2]/span")
+    WebElement firstNameEmptyFieldMessage;
+
+    @FindBy(xpath = "//*[@id='section-account']/div[2]/div/div[2]/span")
+    WebElement lastNameEmptyFieldMessage;
+
+    @FindBy(xpath = "//*[@id='email-error']/span[1]")
+    WebElement emailEmptyFieldMessage;
+
+    @FindBy(xpath = "//*[@id='section-account']/div[4]/div/div[2]/span[1]")
+    WebElement zipCodeFieldMessage;
+
+
+    @FindBy(xpath = "//*[@id='email-error']/span[1]")
+    WebElement invalidEmaildMessage;
+
+    @FindBy(xpath = "//*[@id='section-account']/div[4]/div/div[2]/span[1")
+    WebElement invalidZipdMessage;
 
     //buttons
     @FindBy(id = "create-account")
@@ -46,22 +69,15 @@ public class IrinaSignUPPage extends Page {
         PageFactory.initElements(driver, this);
     }
 
-    private static String getRandomString(Integer length) {
-        String chars = "abcdefghijklmnopqrstuvwxyz";
-        StringBuilder buf = new StringBuilder();
-        for (int i = 0; i < length; i++) {
-            buf.append(chars);
-        }
-        return buf.toString();
-    }
-
-    //Fill the fields
 
     public IrinaSignUPPage openSignUpPage() {
         //Log.info("Opening Login page");
         driver.get(PAGE_URL);
         return this;
     }
+
+    //Fill the fields
+
 
     public IrinaSignUPPage fillFirstnameField(String username) {
         //Log.info("Filling username field");
@@ -103,29 +119,17 @@ public class IrinaSignUPPage extends Page {
         clickElement(continueButton);
         return this;
     }
-
     //fill all fields in one method
-/*
+
     public IrinaSignUPPage fillSignUp() {
         fillFirstnameField("FirstName");
         fillLastNameField("LastName");
         fillcompanyField("Company");
-        fillzipCodeField("1234");
+        fillzipCodeField("4565");
         fillzipCod2Field("555");
-        generateEmail();
+        fillemailField(generateEmail());
         return this;
     }
-*/
-    // filling all fields in one place
-    public IrinaSignUPPage fillSignUp() {
-        setElementText(firstNameField, "FirstName");
-        setElementText(lastNameField, "LastName");
-        setElementText(zipCodeField, "1234");
-        setElementText(zipCode2Field, "325");
-        setElementText(companyField, "Company");
-        setElementText(emailField, generateEmail());
-        return this;
-}
 
     //emailGeneration
     public String generateEmail() {
@@ -134,4 +138,48 @@ public class IrinaSignUPPage extends Page {
         return randEmail;
     }
 
+    private static String getRandomString(Integer length) {
+        String chars = "abcdefghijklmnopqrstuvwxyz";
+        StringBuilder buf = new StringBuilder();
+        for (int i = 0; i < length; i++) {
+            buf.append(chars.charAt(rnd.nextInt(chars.length())));
+        }
+        return buf.toString();
+    }
+    //public boolean checkPageOpen() {
+       // return super.verifyTextBoolean(pageTitle, "Step one of finding your physicians");
+    //
+    //verification methods
+    public boolean isOnSignUpPage() {
+        // Log.info(");
+        return exists(continueButton);
+    }
+    public boolean checkfirstNameEmptyFieldMessage() {
+        return verifyTextBoolean(firstNameEmptyFieldMessage, "The first name field is required.");
+    }
+
+    public boolean checkLastNameEmptyFieldMessage() {
+        return verifyTextBoolean(lastNameEmptyFieldMessage, "The last name field is required.");
+    }
+
+    public boolean checkEmailEmptyFieldMessage() {
+        return verifyTextBoolean(emailEmptyFieldMessage, "The email field is required.");
+    }
+    public boolean checkEmailInvalidFieldMessage() {
+        return verifyTextBoolean(invalidEmaildMessage, "The email format is invalid.");
+    }
+
+    public boolean checkZipEmptyFieldMessage() {
+        return verifyTextBoolean(zipCodeFieldMessage, "The zipcode field is required.");
+    }
+    public boolean checkZipInvalidFieldMessage() {
+        return verifyTextBoolean(invalidZipdMessage, "The zipcode must be a number.");
+    }
+
+    public boolean checkPageForCapthcaMessage() {
+        return verifyTextBoolean(captchaMessage, "Please check Captcha!");
+    }
+
+    //public boolean checkFirstNameLabel() {
+     // return verifyTextBoolean(FirstNameLabel, "First")}
 }
