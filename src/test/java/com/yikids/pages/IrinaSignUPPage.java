@@ -132,7 +132,7 @@ public class IrinaSignUPPage extends Page {
         fillLastNameField("LastName");
         fillcompanyField("Company");
         fillzipCodeField("4565");
-        fillzipCod2Field("555");
+        fillzipCod2Field("");
         fillemailField(generateEmail());
         return this;
     }
@@ -152,7 +152,7 @@ public class IrinaSignUPPage extends Page {
         // Log.info(");
         return exists(continueButton);
     }
-    public boolean checkfirstNameEmptyFieldMessage() {
+    public boolean checkFirstNameEmptyFieldMessage() {
         return verifyTextBoolean(firstNameEmptyFieldMessage, "The first name field is required.");
     }
 
@@ -168,15 +168,42 @@ public class IrinaSignUPPage extends Page {
     }
 
     public boolean checkZipEmptyFieldMessage() {
-        return verifyTextBoolean(zipCodeFieldMessage, "The zipcode field is required.");
+        return verifyTextBoolean(zipCodeFieldMessage,"The zipcode field is required.");
     }
     public boolean checkZipInvalidFieldMessage() {
         return verifyTextBoolean(invalidZipdMessage, "The zipcode must be a number.");
     }
 
-    public boolean checkPageForCapthcaMessage() {
+    public boolean checkPageForCaptchaMessage() {
         return verifyTextBoolean(captchaMessage, "Please check Captcha!");
     }
+
+    //Implicity wait -method on SignUpPage
+
+    public void waitForWarningFirstNameEmpty() {
+        waitUntilIsLoaded(firstNameEmptyFieldMessage);
+    }
+
+    public void waitForWarningLastNameEmpty() {
+        waitUntilIsLoaded(lastNameEmptyFieldMessage);
+    }
+    public void waitForWarningEmailEmptyField() {
+        waitUntilIsLoaded(emailEmptyFieldMessage);
+    }
+    public void waitForWarningInvalidEmail() {
+        waitUntilIsLoaded(invalidEmaildMessage);
+    }
+    public void waitForWarningZipEmptyField() {
+        waitUntilIsLoaded(zipCodeFieldMessage);
+    }
+    public void waitForWarningInvalidZip() {
+        waitUntilIsLoaded(invalidZipdMessage);
+    }
+    public void waitForCaptcha() {
+        waitUntilIsLoaded(captchaMessage);
+    }
+
+
 
     //public boolean checkFirstNameLabel() {
      // return verifyTextBoolean(FirstNameLabel, "First")}
