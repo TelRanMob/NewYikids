@@ -55,6 +55,11 @@ public class SignUPPage extends Page {
     @FindBy(xpath = "//*[@id='section-account']/div[1]/div/label")
     WebElement FirstNameLabel;
 
+    @FindBy(xpath = "//span[@class='error error-first_name']")
+    WebElement firstNameEmptyFieldMessage;
+
+
+
     public SignUPPage(WebDriver driver) {
         super(driver);
         this.PAGE_URL = "http://physician.yikids.com/recruiter/signup";
@@ -140,6 +145,10 @@ public class SignUPPage extends Page {
         return username;
     }
 
+    public void waitForFirstNameWarning() {
+        waitUntilIsLoaded(firstNameEmptyFieldMessage);
+    }
+
     public boolean CheckPageForCapthcaMessage() {
         return verifyTextBoolean(ErrorCaptcha, "Please check Captcha!");
     }
@@ -147,4 +156,10 @@ public class SignUPPage extends Page {
     public boolean CheckFirstNameLabel() {
         return verifyTextBoolean(FirstNameLabel, "First name");
     }
+
+    public boolean checkfirstNameEmptyFieldMessage() {
+        return verifyTextBoolean(firstNameEmptyFieldMessage, "The first name field is required.");
+    }
+
+
 }

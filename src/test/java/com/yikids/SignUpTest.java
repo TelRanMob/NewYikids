@@ -8,6 +8,8 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import static org.testng.AssertJUnit.assertTrue;
+
 //@org.testng.annotations.Listeners(FailTestScreenshotListener.class)
 public class SignUpTest {
     // private static Logger Log = Logger.getLogger(LogLog4j.class.getName());
@@ -43,6 +45,23 @@ public class SignUpTest {
       //  assertTrue("First Name text not confirmed", signUPPage.CheckFirstNameLabel());
 
         // signUPPage.clickToContinue();
+    }
+
+    @Test
+    public void fillFildesNegativFirstNameEmpty() throws InterruptedException {
+
+        signUPPage
+                .fillFirstnameField(" ")
+                .fillLastNameField("LastName")
+                .fillEmailField("email@yopmail.com")
+                .fillZip1Field("4562")
+                .fillCompany1Field("Compani")
+                .fillZip21Field("111")
+                .clickToContinue()
+                .waitForFirstNameWarning();
+
+        assertTrue("No Firstname empty warning", signUPPage.checkfirstNameEmptyFieldMessage());
+        Thread.sleep(3000);
     }
 
     @Test
