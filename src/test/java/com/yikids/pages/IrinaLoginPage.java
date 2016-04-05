@@ -120,8 +120,7 @@ public class IrinaLoginPage extends Page {
         // Log.info(");
         return exists(loginButton);
     }
-
-    public boolean loginned() {
+    public boolean isAfterLoginPage() {
         // Log.info(");
         return exists(logOutButton);
     }

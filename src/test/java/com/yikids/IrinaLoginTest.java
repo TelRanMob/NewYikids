@@ -10,6 +10,8 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import static org.testng.AssertJUnit.assertTrue;
+
 /**
  * Created by Irina Primak on 29-Mar-16.
  */
@@ -34,25 +36,24 @@ public class IrinaLoginTest {
     public void beforeMethodSetUp() {
         loginI.openLoginPage();
         //verification
-       loginI.isOnLoginPage();
+        //assertTrue("loginButtom not appeare",loginI.isOnLoginPage());
     }
-
 
     @Test
     public void positivLogin() {
         loginI.fillLodInFieldsPozitive();
 
         loginI.clickToLoginButton();
-       // verification
-        loginI.loginned();
+        // verification
+        assertTrue("logOutButtom desappeare", loginI.isAfterLoginPage());
     }
-   @Test
+     @Test
     public void negativEmptyEmailLogin(){
        loginI.fillEmailField(" ")
                .fillPasswordField(password);
        loginI.clickToLoginButton();
        //verufication
-       loginI.isOnLoginPage();
+       assertTrue("loginButtom desappeare",loginI.isOnLoginPage());
 
    }
     @Test
@@ -61,8 +62,7 @@ public class IrinaLoginTest {
                 .fillPasswordField(" ");
         loginI.clickToLoginButton();
         //verufication
-        loginI.passwordNotCorrect();
-        loginI.isOnLoginPage();
+        assertTrue("loginButtom disappeare",loginI.isOnLoginPage());
 
     }
     @Test
@@ -71,8 +71,8 @@ public class IrinaLoginTest {
                 .fillPasswordField("password");
         loginI.clickToLoginButton();
            //verufication
-        loginI.passwordNotCorrect();
-        loginI.isOnLoginPage();
+        assertTrue("UncorrectPasswordMessage desapeare", loginI.passwordNotCorrect());
+        assertTrue("loginButtom disappeare",loginI.isOnLoginPage());
 
     }
 
@@ -80,16 +80,14 @@ public class IrinaLoginTest {
     public void signUp(){
         loginI.clickToSignUpButton();
         //verufication
-
-        loginI.checkPageSignUpOpen();
+         assertTrue("SignUp Page Title desappear",loginI.checkPageSignUpOpen());
 
     }
     @Test
     public void forgotPassword(){
         loginI.clickToForgotPasswordButton();
         //verufication
-
-        loginI.checkPageResetPassword();
+        assertTrue("ResetPasswordPage desapeare",loginI.checkPageResetPassword());
 
     }
 
