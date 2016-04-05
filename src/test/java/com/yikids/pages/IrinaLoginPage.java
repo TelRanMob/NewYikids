@@ -23,16 +23,16 @@ public class IrinaLoginPage extends Page {
     WebElement passwordField;
 
     //buttons
-    @FindBy(id = "//*[@id='login-form']/div/button")
+    @FindBy(xpath = "//*[@id='login-form']/div/button")
     WebElement loginButton;
 
-    @FindBy(id = "//*[@id='logout-container']/a")
+    @FindBy(xpath = "//*[@id='logout-container']/a")
     WebElement logOutButton;
 
-    @FindBy(id = "//*[@id='login-form']/div/a[1]")
+    @FindBy(xpath = "//*[@id='login-form']/div/a[1]")
     WebElement signUpButton;
 
-    @FindBy(id = "//*[@id='login-form']/div/a[2]")
+    @FindBy(xpath = "//*[@id='login-form']/div/a[2]")
     WebElement forgotPasswordButton;
 
     //Labels
@@ -51,15 +51,23 @@ public class IrinaLoginPage extends Page {
         PageFactory.initElements(driver, this);
     }
 
+    private static String getRandomString(final int length) {
+        String chars = "abcdefghijklmnopqrstuvwxyz";
+        StringBuilder buf = new StringBuilder();
+        for (int i = 0; i < length; i++) {
+            buf.append(chars.charAt(rnd.nextInt(chars.length())));
+        }
+        return buf.toString();
+    }
+
+    //Fill the fields
+
     //Open Page
     public IrinaLoginPage openLoginPage() {
         //Log.info("Opening Login page");
         driver.get(PAGE_URL);
         return this;
     }
-
-    //Fill the fields
-
 
     public IrinaLoginPage fillEmailField(String email) {
         //Log.info("Filling email field");
@@ -97,15 +105,6 @@ public class IrinaLoginPage extends Page {
         fillPasswordField("Test123");
         clickToLoginButton();
         return this;
-    }
-
-    private static String getRandomString(final int length) {
-        String chars = "abcdefghijklmnopqrstuvwxyz";
-        StringBuilder buf = new StringBuilder();
-        for (int i = 0; i < length; i++) {
-            buf.append(chars.charAt(rnd.nextInt(chars.length())));
-        }
-        return buf.toString();
     }
 
     public String generateEmail() {

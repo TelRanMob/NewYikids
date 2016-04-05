@@ -1,6 +1,5 @@
 package com.yikids.pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -55,7 +54,7 @@ public class IrinaSignUPPage extends Page {
     @FindBy(xpath = "//*[@id='email-error']/span[1]")
     WebElement invalidEmaildMessage;
 
-    @FindBy(xpath = "//*[@id='section-account']/div[4]/div/div[2]/span[1")
+    @FindBy(xpath = "//*[@id='section-account']/div[4]/div/div[2]/span[1]")
     WebElement invalidZipdMessage;
 
     //buttons
@@ -69,15 +68,22 @@ public class IrinaSignUPPage extends Page {
         PageFactory.initElements(driver, this);
     }
 
+    private static String getRandomString(Integer length) {
+        String chars = "abcdefghijklmnopqrstuvwxyz";
+        StringBuilder buf = new StringBuilder();
+        for (int i = 0; i < length; i++) {
+            buf.append(chars.charAt(rnd.nextInt(chars.length())));
+        }
+        return buf.toString();
+    }
+
+    //Fill the fields
 
     public IrinaSignUPPage openSignUpPage() {
         //Log.info("Opening Login page");
         driver.get(PAGE_URL);
         return this;
     }
-
-    //Fill the fields
-
 
     public IrinaSignUPPage fillFirstnameField(String username) {
         //Log.info("Filling username field");
@@ -114,12 +120,12 @@ public class IrinaSignUPPage extends Page {
         setElementText(companyField, company);
         return this;
     }
+    //fill all fields in one method
 
     public IrinaSignUPPage clickElemToContinue() {
         clickElement(continueButton);
         return this;
     }
-    //fill all fields in one method
 
     public IrinaSignUPPage fillSignUp() {
         fillFirstnameField("FirstName");
@@ -138,14 +144,6 @@ public class IrinaSignUPPage extends Page {
         return randEmail;
     }
 
-    private static String getRandomString(Integer length) {
-        String chars = "abcdefghijklmnopqrstuvwxyz";
-        StringBuilder buf = new StringBuilder();
-        for (int i = 0; i < length; i++) {
-            buf.append(chars.charAt(rnd.nextInt(chars.length())));
-        }
-        return buf.toString();
-    }
     //public boolean checkPageOpen() {
        // return super.verifyTextBoolean(pageTitle, "Step one of finding your physicians");
     //
