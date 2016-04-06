@@ -39,15 +39,7 @@ public class IrinaLoginTest {
         //assertTrue("loginButtom not appeare",loginI.isOnLoginPage());
     }
 
-    @Test
-    public void positivLogin() {
-        loginI.fillLodInFieldsPozitive()
-                .clickToLoginButton()
-                .waitForlogOutButton();
-        // verification
-        assertTrue("No logOut Buttom ", loginI.isOnMainPage());
-    }
-    @Test
+        @Test
     public void negativEmptyEmailLoginEmptyPassword(){
         loginI.clickToLoginButton()
               .waitForloginButton();
@@ -82,8 +74,8 @@ public class IrinaLoginTest {
                 .fillPasswordField("password")
                 .clickToLoginButton()
                 .waitForErrorPasswordMessage();
-           //verufication
-        assertTrue("No UncorrectPasswordMessage ", loginI.passwordNotCorrect());
+        //verufication
+        assertTrue("No Error PasswordMessage ", loginI.passwordNotCorrect());
         assertTrue("No login Buttom",loginI.isOnLoginPage());
 
     }
@@ -100,6 +92,74 @@ public class IrinaLoginTest {
         assertTrue("loginButtom disappeare",loginI.isOnLoginPage());
 
     }
+
+    @Test
+    public void positivLogin() {
+        loginI.fillLodInFieldsPozitive()
+                .clickToLoginButton()
+                .waitForlogOutButton();
+        // verification
+        assertTrue("No logOut Buttom ", loginI.isOnMainPage());
+    }
+    @Test
+    public void negativ5TimesNotCorrectPasswordLogin(){
+        loginI.fillEmailField(email)
+                .fillPasswordField("password")
+                .clickToLoginButton()
+                .waitForErrorPasswordMessage();
+        //verufication
+        assertTrue("No No Error PasswordMessage1 ", loginI.passwordNotCorrect());
+        assertTrue("No login Buttom",loginI.isOnLoginPage());
+        loginI.fillEmailField(email)
+                .fillPasswordField("password")
+                .clickToLoginButton()
+                .waitForErrorPasswordMessage();
+        //verufication
+        assertTrue("No No Error PasswordMessage2 ", loginI.passwordNotCorrect());
+        assertTrue("No login Buttom",loginI.isOnLoginPage());
+        loginI.fillEmailField(email)
+                .fillPasswordField("password")
+                .clickToLoginButton()
+                .waitForErrorPasswordMessage();
+        //verufication
+        assertTrue("No No Error PasswordMessage3 ", loginI.passwordNotCorrect());
+        assertTrue("No login Buttom",loginI.isOnLoginPage());
+        loginI.fillEmailField(email)
+                .fillPasswordField("password")
+                .clickToLoginButton()
+                .waitForErrorPasswordMessage();
+        //verufication
+        assertTrue("No Error PasswordMessage4 ", loginI.passwordNotCorrect());
+        assertTrue("No login Buttom",loginI.isOnLoginPage());
+        loginI.fillEmailField(email)
+                .fillPasswordField("password")
+                .clickToLoginButton();
+
+        loginI.waitForWarningLoginMessage();
+        assertTrue("No Warning LoginMessage", loginI.checkWarningLoginMessage());
+    }
+
+    /*@Test
+    public void negativ5TimesNotCorrectPasswordLogin2() {
+        Integer i;
+        for (i = 1; i < 4; i++) {
+            loginI.fillEmailField(email)
+                    .fillPasswordField("password")
+                    .clickToLoginButton()
+                    .waitForErrorPasswordMessage();
+            //verufication
+            assertTrue("No Error PasswordMessage ", loginI.passwordNotCorrect());
+            assertTrue("No login Buttom", loginI.isOnLoginPage());
+        }
+        loginI.fillEmailField(email)
+                .fillPasswordField("password")
+                .clickToLoginButton();
+        loginI.waitForWarningLoginMessage();
+        assertTrue("No Warning LoginMessage", loginI.checkWarningLoginMessage());
+    }
+
+*/
+
 
     @Test
     public void signUp(){

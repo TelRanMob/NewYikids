@@ -54,6 +54,10 @@ public class IrinaLoginPage extends Page {
     @FindBy(xpath = "//*[@id='contentContainer']/p")
     WebElement resetPasswordTitle;
 
+    @FindBy(xpath = "//*[@id='login-form']/div[1]")
+    WebElement warningLoginMessage;
+
+
 
 
     public IrinaLoginPage(WebDriver driver) {
@@ -162,8 +166,12 @@ public class IrinaLoginPage extends Page {
         return verifyTextBoolean(resetPasswordTitle, "Reset Password");
 
     }
+    public boolean checkWarningLoginMessage() {
+        return verifyTextBoolean(warningLoginMessage,
+                "You have been suspended from trying to login into account \"admin@erdocfinder.com\" for 15 minutes.");
 
-    //Implicity waits -methods on LogInPage
+    }
+     //Implicity waits -methods on LogInPage
 
     public void waitForloginButton()    {
         waitUntilIsLoaded(loginButton);
@@ -186,6 +194,11 @@ public class IrinaLoginPage extends Page {
     public void waitForResetPasswordTitle()    {
         waitUntilIsLoaded(resetPasswordTitle);
     }
+    public void waitForWarningLoginMessage(){
+        waitUntilIsLoaded(warningLoginMessage);
+    }
+
+
         // public boolean CheckFirstNameLabel() {return verifyTextBoolean(FirstNameLabel, "First name");
         //}
     }
