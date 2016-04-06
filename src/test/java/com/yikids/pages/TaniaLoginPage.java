@@ -129,6 +129,15 @@ public class TaniaLoginPage extends Page {
         return this;
     }
 
+    //filling all fields
+    public TaniaLoginPage fillLoginFieldsPozitive() {
+        fillEmailField("admin@erdocfinder.com");
+        fillpasswordField("Test123");
+        clickLogInLinkButton();
+        return this;
+    }
+
+
     public String generateEmail() {
         String rand = getRandomString(5);
         String username = rand + "@yopmail.com";

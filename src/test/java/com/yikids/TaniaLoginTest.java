@@ -66,7 +66,14 @@ public class TaniaLoginTest {
 
     }
 
-
+  /*  @Test
+    public void positivLogin() {
+        loginI.fillLodInFieldsPozitive()
+                .clickToLoginButton()
+                .waitForlogOutButton();
+        // verification
+        assertTrue("No logOut Buttom ", loginI.isOnMainPage());
+    }*/
 
     @Test
     public void FillLogInFields() {
