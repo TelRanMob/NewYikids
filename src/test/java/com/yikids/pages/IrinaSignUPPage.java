@@ -178,7 +178,7 @@ public class IrinaSignUPPage extends Page {
         return verifyTextBoolean(captchaMessage, "Please check Captcha!");
     }
 
-    //Implicity wait -method on SignUpPage
+    //Implicity waits -method on SignUpPage
 
     public void waitForWarningFirstNameEmpty() {
         waitUntilIsLoaded(firstNameEmptyFieldMessage);

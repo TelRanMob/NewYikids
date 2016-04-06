@@ -41,56 +41,84 @@ public class IrinaLoginTest {
 
     @Test
     public void positivLogin() {
-        loginI.fillLodInFieldsPozitive();
-
-        loginI.clickToLoginButton();
+        loginI.fillLodInFieldsPozitive()
+                .clickToLoginButton()
+                .waitForlogOutButton();
         // verification
-        assertTrue("logOutButtom desappeare", loginI.isAfterLoginPage());
+        assertTrue("No logOut Buttom ", loginI.isOnMainPage());
     }
-     @Test
-    public void negativEmptyEmailLogin(){
+    @Test
+    public void negativEmptyEmailLoginEmptyPassword(){
+        loginI.clickToLoginButton()
+              .waitForloginButton();
+        //verufication
+        assertTrue("No login Buttom ",loginI.isOnLoginPage());
+
+    }
+
+       @Test
+    public void negativEmptyEmail(){
        loginI.fillEmailField(" ")
-               .fillPasswordField(password);
-       loginI.clickToLoginButton();
+               .fillPasswordField(password)
+               .clickToLoginButton()
+               .waitForloginButton();
        //verufication
-       assertTrue("loginButtom desappeare",loginI.isOnLoginPage());
+       assertTrue("No login Buttom",loginI.isOnLoginPage());
 
    }
     @Test
     public void negativEmptyPasswordLogin(){
         loginI.fillEmailField(email)
-                .fillPasswordField(" ");
-        loginI.clickToLoginButton();
+                .fillPasswordField(" ")
+                .clickToLoginButton()
+                .waitForloginButton();
         //verufication
-        assertTrue("loginButtom disappeare",loginI.isOnLoginPage());
+        assertTrue("No login Buttom",loginI.isOnLoginPage());
 
     }
     @Test
-    public void EmptyEdLogin(){
+    public void negativNotCorrectPasswordLogin(){
         loginI.fillEmailField(email)
-                .fillPasswordField("password");
-        loginI.clickToLoginButton();
+                .fillPasswordField("password")
+                .clickToLoginButton()
+                .waitForErrorPasswordMessage();
            //verufication
-        assertTrue("UncorrectPasswordMessage desapeare", loginI.passwordNotCorrect());
+        assertTrue("No UncorrectPasswordMessage ", loginI.passwordNotCorrect());
+        assertTrue("No login Buttom",loginI.isOnLoginPage());
+
+    }
+    @Test
+    public void positivForFprgotPasswordPage(){
+        loginI.fillEmailField(email)
+                .fillPasswordField("password")
+                .clickToLoginButton()
+                .clickNotCorrectPasswordForgotPasswordButton()
+                .waitForResetPasswordButtom();
+        //verufication
+        assertTrue("No ResetPassord Buttom", loginI.isOnResetPasswordPage());
+        assertTrue("Not on resetPassword Page",loginI.checkPageResetPassword());
         assertTrue("loginButtom disappeare",loginI.isOnLoginPage());
 
     }
 
     @Test
     public void signUp(){
-        loginI.clickToSignUpButton();
+        loginI.clickToSignUpButton()
+                .waitForcontinueButtonOnSignUp();
         //verufication
          assertTrue("SignUp Page Title desappear",loginI.checkPageSignUpOpen());
+         assertTrue("No Continue Buttom",loginI.isOnSingUpPage());
 
     }
     @Test
     public void forgotPassword(){
-        loginI.clickToForgotPasswordButton();
+        loginI.clickToForgotPasswordButton()
+                .waitForResetPasswordButtom();
         //verufication
-        assertTrue("ResetPasswordPage desapeare",loginI.checkPageResetPassword());
+        assertTrue("No ResetPassord Buttom", loginI.isOnResetPasswordPage());
+        assertTrue("Not on resetPassword Page",loginI.checkPageResetPassword());
 
     }
-
 
     // test of clicking on Registration link are written in another class
 
