@@ -65,12 +65,15 @@ public class TaniaSignUPPage extends Page {
     @FindBy(xpath = "//*[@id='section-account']/div[1]//label")
     WebElement firstNameLabel;
 
+    @FindBy(xpath = "//form[@id='section-account']/div[2]//div/span")
+    WebElement firstNameSpan;
+
     /* Methods */
 
     public TaniaSignUPPage(WebDriver driver) {
         super(driver);
         this.PAGE_URL = "http://physician.yikids.com/recruiter/signup";
-        PageFactory.initElements(driver, this);
+        PageFactory.initElements(driver,this);
     }
 
     public TaniaSignUPPage openTaniaSignUPPage() {
@@ -78,6 +81,7 @@ public class TaniaSignUPPage extends Page {
         driver.get(PAGE_URL);
         return this;
     }
+
     private static String getRandomString(final int length) {
         String chars = "abcdefghijklmnopqrstuvwxyz";
         StringBuilder buf = new StringBuilder();
@@ -104,35 +108,40 @@ public class TaniaSignUPPage extends Page {
 
     public TaniaSignUPPage fillFirstnameField(String username) {
         //Log.info("Filling username field");
-        setElementText(firstNameField, username);
+        setElementText(firstNameField,username);
         return this;
     }
 
     public TaniaSignUPPage fillLastNameField(String lastname) {
         //Log.info("Filling username field");
-        setElementText(lastNameField, lastname);
+        setElementText(lastNameField,lastname);
         return this;
     }
+
     public TaniaSignUPPage fillemailField(String email) {
         //Log.info("Filling username field");
-        setElementText(emailField, email);
+        setElementText(emailField,email);
         return this;
     }
+
     public TaniaSignUPPage fillzipcodeField(String zipcode) {
         //Log.info("Filling username field");
-        setElementText(zipCodeField, zipcode);
+        setElementText(zipCodeField,zipcode);
         return this;
     }
+
     public TaniaSignUPPage fillzipCode2Field(String zipcode2) {
         //Log.info("Filling username field");
-        setElementText(zipCode2Field, zipcode2);
+        setElementText(zipCode2Field,zipcode2);
         return this;
     }
+
     public TaniaSignUPPage fillcompanyField(String companyName) {
         //Log.info("Filling username field");
-        setElementText(companyField, companyName);
+        setElementText(companyField,companyName);
         return this;
     }
+
     /* Click  'Continue'  Button */
     public TaniaSignUPPage clickToContinue() {
         //Log.info("Filling username field");
@@ -153,11 +162,16 @@ public class TaniaSignUPPage extends Page {
         return this;
     }
 
-
+    public void waitForWarningFirstNameEmpty() {
+        waitUntilIsLoaded(firstNameSpan);
+    }
 
     public boolean CheckPageForCapthcaMessage() {
-        return verifyTextBoolean(ErrorCaptcha, "Please check Captcha!");
+        return verifyTextBoolean(ErrorCaptcha,"Please check Captcha!");
     }
+
+
+    public boolean checkFirstNameSpan(){return verifyTextBoolean(firstNameSpan, "The first name field is required.");}
 
     public boolean checkforCompanyLabel() {
         return verifyTextBoolean(companyLabel, "Company");
