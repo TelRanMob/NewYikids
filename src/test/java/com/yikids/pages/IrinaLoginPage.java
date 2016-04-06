@@ -35,6 +35,15 @@ public class IrinaLoginPage extends Page {
     @FindBy(xpath = "//*[@id='login-form']/div/a[2]")
     WebElement forgotPasswordButton;
 
+    @FindBy(xpath = "//*[@id='login-form']/div[1]")
+    WebElement NotCorrectPasswordForgotPasswordButton;
+
+    @FindBy(id = "create-account")
+    WebElement continueButton;
+
+    @FindBy(xpath = "html/body/div[2]/form/button")
+    WebElement resetPasswordButtom;
+
     //Labels
     @FindBy(xpath = "//*[@id='login-form']/div[1]")
     WebElement errorPasswordMessage;
@@ -45,12 +54,15 @@ public class IrinaLoginPage extends Page {
     @FindBy(xpath = "//*[@id='contentContainer']/p")
     WebElement resetPasswordTitle;
 
+
+
     public IrinaLoginPage(WebDriver driver) {
         super(driver);
         this.PAGE_URL = "http://admin.yikids.com/";
         PageFactory.initElements(driver, this);
     }
 
+    //random Email generatioin
     private static String getRandomString(final int length) {
         String chars = "abcdefghijklmnopqrstuvwxyz";
         StringBuilder buf = new StringBuilder();
@@ -60,7 +72,12 @@ public class IrinaLoginPage extends Page {
         return buf.toString();
     }
 
-    //Fill the fields
+    public String generateEmail() {
+        String rand = getRandomString(5);
+        String username = rand + "@yopmail.com";
+        // Log.info("Doctor's Username generated is <" + username + ">");
+        return username;
+    }
 
     //Open Page
     public IrinaLoginPage openLoginPage() {
@@ -68,6 +85,7 @@ public class IrinaLoginPage extends Page {
         driver.get(PAGE_URL);
         return this;
     }
+    //Fill the fields
 
     public IrinaLoginPage fillEmailField(String email) {
         //Log.info("Filling email field");
@@ -98,8 +116,14 @@ public class IrinaLoginPage extends Page {
         clickElement(forgotPasswordButton);
         return this;
     }
+    public IrinaLoginPage clickNotCorrectPasswordForgotPasswordButton() {
+        //Log.info("ForgotPassword");
+        clickElement(NotCorrectPasswordForgotPasswordButton);
+        return this;
+    }
 
-    //illing all fields
+
+    //filling all fields
     public IrinaLoginPage fillLodInFieldsPozitive() {
         fillEmailField("admin@erdocfinder.com");
         fillPasswordField("Test123");
@@ -107,35 +131,61 @@ public class IrinaLoginPage extends Page {
         return this;
     }
 
-    public String generateEmail() {
-        String rand = getRandomString(5);
-        String username = rand + "@yopmail.com";
-        // Log.info("Doctor's Username generated is <" + username + ">");
-        return username;
-    }
-
-    //verification methods
+       //verification methods
     public boolean isOnLoginPage() {
         // Log.info(");
         return exists(loginButton);
     }
-    public boolean isAfterLoginPage() {
+    public boolean isOnMainPage() {
         // Log.info(");
         return exists(logOutButton);
     }
+    public boolean isOnSingUpPage() {
+        // Log.info(");
+        return exists(continueButton);
+    }
+    public boolean isOnResetPasswordPage() {
+        // Log.info(");
+        return exists(resetPasswordButtom);
+    }
 
     public boolean passwordNotCorrect() {
-        return verifyTextBoolean(errorPasswordMessage, "Your password is not correct. Please try again. Forgot password?");
+        return verifyTextBoolean(errorPasswordMessage,
+                "Your password is not correct. Please try again. Forgot password?");
     }
 
     public boolean checkPageSignUpOpen() {
-        return verifyTextBoolean(pageSignUpTitle, "Step one of finding your physicians");
+        return verifyTextBoolean(pageSignUpTitle,
+                "Step one of finding your physicians");
     }
     public boolean checkPageResetPassword() {
         return verifyTextBoolean(resetPasswordTitle, "Reset Password");
 
     }
 
+    //Implicity waits -methods on LogInPage
+
+    public void waitForloginButton()    {
+        waitUntilIsLoaded(loginButton);
+    }
+    public void waitForlogOutButton()    {
+        waitUntilIsLoaded(logOutButton);
+    }
+    public void waitForcontinueButtonOnSignUp()    {
+        waitUntilIsLoaded(continueButton);
+    }
+    public void waitForResetPasswordButtom()    {
+        waitUntilIsLoaded(resetPasswordButtom);
+    }
+    public void waitForErrorPasswordMessage()    {
+        waitUntilIsLoaded(errorPasswordMessage);
+    }
+    public void waitForPageSignUpTitle(){
+        waitUntilIsLoaded(pageSignUpTitle);
+    }
+    public void waitForResetPasswordTitle()    {
+        waitUntilIsLoaded(resetPasswordTitle);
+    }
         // public boolean CheckFirstNameLabel() {return verifyTextBoolean(FirstNameLabel, "First name");
         //}
     }

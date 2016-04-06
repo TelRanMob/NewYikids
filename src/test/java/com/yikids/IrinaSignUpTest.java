@@ -10,11 +10,13 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import static org.testng.AssertJUnit.assertTrue;
+
 /**
  * Created by Irina Primak on 29-Mar-16.
  */
 public class IrinaSignUpTest {
-  //  static String driverPath = "Z:\\Tel-RAN\\aQA\\BrowserDrivers";
+    //  static String driverPath = "Z:\\Tel-RAN\\aQA\\BrowserDrivers";
     public IrinaSignUPPage signUPPageI;
     public WebDriver driver;
 
@@ -35,83 +37,128 @@ public class IrinaSignUpTest {
     }
 
 
-   @Test
-    public void fillFildesPositiv() {
-        signUPPageI.fillSignUp();
-        signUPPageI.clickElemToContinue();
-       //signUPPageI.checkPageForCapthcaMessage();
+    @Test
+    public void fillFilldesPositiv() {
+        signUPPageI.fillSignUp()
+                .clickElemToContinue()
+                .waitForCaptcha();
+        assertTrue("No captha message", signUPPageI.checkPageForCaptchaMessage());
 
     }
+
     @Test
-    public void fillFildesNegativFirstNameEmpty(){
+    public void fillFildesNegativFirstNameEmpty() {
         signUPPageI
                 .fillFirstnameField(" ")
                 .fillLastNameField("LastName")
                 .fillemailField("email@yopmail.com")
                 .fillzipCodeField("4562")
                 .fillcompanyField("Compani")
-                .fillzipCod2Field("111");
-        signUPPageI.clickElemToContinue();
-                signUPPageI.checkfirstNameEmptyFieldMessage();
-            }
+                .fillzipCod2Field("111")
+                .clickElemToContinue()
+                //Explicite wait
+                //Thread.sleep(3000);
+                //Implicity wait -method on SignUpPage
+                .waitForWarningFirstNameEmpty();
+        assertTrue("No firstName empty warning", signUPPageI.checkFirstNameEmptyFieldMessage());
+    }
+
     @Test
-    public void fillFildesNegativLastNameEmpty(){
+    public void fillFildesNegativLastNameEmpty() {
         signUPPageI
                 .fillFirstnameField("FirstName")
                 .fillLastNameField(" ")
                 .fillemailField("email@yopmail.com")
-                .fillcompanyField("Compani")
+                .fillcompanyField("Company")
                 .fillzipCodeField("4562")
-                .fillzipCod2Field("111");
-        signUPPageI.clickElemToContinue();
-        Assert.assertTrue(signUPPageI.checkLastNameEmptyFieldMessage(), "");
+                .fillzipCod2Field("111")
+                .clickElemToContinue()
+                .waitForWarningLastNameEmpty();
+        assertTrue("No lastName empty warning", signUPPageI.checkLastNameEmptyFieldMessage());
     }
+
     @Test
-    public void fillFildesNegativEmailEmpty(){
+    public void fillFildesNegativEmailEmpty() {
         signUPPageI
                 .fillFirstnameField("FirstName")
                 .fillLastNameField("LastName")
                 .fillemailField(" ")
-                .fillcompanyField("Compani")
+                .fillcompanyField("Company")
                 .fillzipCodeField("4562")
                 .fillzipCod2Field("111")
                 .clickElemToContinue()
-                .checkEmailEmptyFieldMessage();
+                .waitForWarningEmailEmptyField();
+        assertTrue("No emailEmptyField warning", signUPPageI.checkEmailEmptyFieldMessage());
     }
+
     @Test
-    public void fillFildesNegativZipCodeEmpty(){
+    public void fillFildesNegativEmailUncorrect() {
+        signUPPageI
+                .fillFirstnameField("FirstName")
+                .fillLastNameField("LastName")
+                .fillemailField(" yopmail.com")
+                .fillcompanyField("Company")
+                .fillzipCodeField("4562")
+                .fillzipCod2Field("111")
+                .clickElemToContinue()
+                .waitForWarningInvalidEmail();
+        assertTrue("No Invalid Email warning", signUPPageI.checkEmailInvalidFieldMessage());
+    }
+
+    @Test
+    public void fillFildesNegativZipCodeEmpty() {
         signUPPageI
                 .fillFirstnameField("FirstName")
                 .fillLastNameField("LastName")
                 .fillemailField("email@yopmail.com")
-                .fillcompanyField("Compani")
+                .fillcompanyField("Company")
                 .fillzipCod2Field("111")
                 .clickElemToContinue()
-                .checkZipEmptyFieldMessage();
+                .waitForWarningZipEmptyField();
+        assertTrue("No ZipEmptyField warning", signUPPageI.checkZipEmptyFieldMessage());
     }
+
     @Test
-    public void fillFildesInvalidEmailZipCode(){
+    public void fillFildeInvalidZipCode() {
         signUPPageI
                 .fillFirstnameField("FirstName")
                 .fillLastNameField("LastName")
-                .fillemailField("email")
-                .fillcompanyField("Compani")
+                .fillemailField("email@yopmail.com")
+                .fillcompanyField("Company")
                 .fillzipCodeField("gffdh")
                 .clickElemToContinue()
-                .checkEmailInvalidFieldMessage();
-        signUPPageI.checkZipInvalidFieldMessage();
+                .waitForWarningInvalidZip();
+        assertTrue(" No Invalid Zip warning", signUPPageI.checkZipInvalidFieldMessage());
+
 
     }
 
+    @Test
+    public void fullNegativ() {
+        signUPPageI
+                .fillFirstnameField("")
+                .fillLastNameField("")
+                .fillemailField("")
+                .fillcompanyField("")
+                .fillzipCodeField("")
+                .clickElemToContinue()
+                .waitForCaptcha();
+        assertTrue("No captha message", signUPPageI.checkPageForCaptchaMessage());
+        assertTrue("No firstName empty warning", signUPPageI.checkFirstNameEmptyFieldMessage());
+        assertTrue("No lastName empty warning", signUPPageI.checkLastNameEmptyFieldMessage());
+        assertTrue("No emailEmptyField warning", signUPPageI.checkEmailEmptyFieldMessage());
+        assertTrue("No ZipEmptyField warning", signUPPageI.checkZipEmptyFieldMessage());
+
+    }
 
 
     // test of clicking on Registration link are written in another class
 
-   @AfterClass(alwaysRun = true)
-   public void tearDown() {
+    @AfterClass(alwaysRun = true)
+    public void tearDown() {
         this.driver.quit();
     }
-}
 
+}
 
 
