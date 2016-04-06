@@ -44,12 +44,24 @@ public class AlexSignUpPage extends Page {
 /* System messages */
 
     @FindBy(xpath = "//*[@id='section-account']/span")
-    WebElement CaptchaErrorMessage;
+    WebElement captchaErrorMessage;
 
 /* Field labels */
 
     @FindBy(xpath = "//*[@id='section-account']/div[5]//label")
-    WebElement CompanyLabel;
+    WebElement companyLabel;
+
+    @FindBy(xpath = "//*[@id='section-account']/div[4]//label")
+    WebElement zipCodeLabel;
+
+    @FindBy(xpath = "//*[@id='section-account']/div[3]//label")
+    WebElement emailLabel;
+
+    @FindBy(xpath = "//*[@id='section-account']/div[2]//label")
+    WebElement lastNameLabel;
+
+    @FindBy(xpath = "//*[@id='section-account']/div[1]//label")
+    WebElement firstNameLabel;
 
 /* methods */
 
@@ -155,12 +167,28 @@ public class AlexSignUpPage extends Page {
 
     }
 
-    public boolean CheckForCapchaMessage() {
-        return verifyTextBoolean(CaptchaErrorMessage, "Please check Captcha!");
+    public boolean checkforCapchaMessage() {
+        return verifyTextBoolean(captchaErrorMessage, "Please check Captcha!");
     }
 
-    public boolean CheckForCompanyLabel() {
-        return verifyTextBoolean(CompanyLabel, "Company");
+    public boolean checkforCompanyLabel() {
+        return verifyTextBoolean(companyLabel, "Company");
+    }
+
+    public boolean checkforZipCodeLabel() {
+        return verifyTextBoolean(zipCodeLabel, "Zip code*");
+    }
+
+    public boolean checkforEmailLabel() {
+        return verifyTextBoolean(emailLabel, "Email*");
+    }
+
+    public boolean checkforLastNameLabel() {
+        return verifyTextBoolean(lastNameLabel, "Last name*");
+    }
+
+    public boolean checkforFirstNameLabel() {
+        return verifyTextBoolean(firstNameLabel, "First name*");
     }
 
 }

@@ -13,6 +13,8 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import static org.testng.AssertJUnit.assertTrue;
+
 public class AlexSignUpTest {
 
     public AlexSignUpPage alexsignuppage;
@@ -43,12 +45,18 @@ public class AlexSignUpTest {
                 .fillCompany1Field("TestCompany")
                 .clickToContinue();
 
+        assertTrue("First Name Label", alexsignuppage.checkforFirstNameLabel());
+        assertTrue("The Second Name Label is confirmed", alexsignuppage.checkforLastNameLabel());
+        assertTrue("The Email Label is confirmed", alexsignuppage.checkforEmailLabel());
+        assertTrue("The ZipCode Label is confirmed", alexsignuppage.checkforZipCodeLabel());
+        assertTrue("The Company Label is confirmed", alexsignuppage.checkforCompanyLabel());
+
     }
 
+    /*
     @Test
-    public void FillSignUpManually() {
-        alexsignuppage.FillSignUp();
-    }
+    public void FillSignUpManually() {alexsignuppage.FillSignUp();}
+    */
 
     @AfterClass(alwaysRun = true)
     public void tearDown() {
