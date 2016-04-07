@@ -3,6 +3,7 @@ package com.yikids.pages;
 /**
  * Created by Irina Primak on 4/01/2016.
  */
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;

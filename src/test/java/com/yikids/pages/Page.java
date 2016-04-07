@@ -78,7 +78,7 @@ public abstract class Page {
     //Log.info("entering text '" + text + "' into element " + element);
     element.sendKeys(text);
     // Assert.assertEquals(element.getAttribute("value"), text);
-  }
+        }
 
 
     public void clickElement(WebElement element) {

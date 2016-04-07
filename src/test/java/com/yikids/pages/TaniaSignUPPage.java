@@ -45,9 +45,6 @@ public class TaniaSignUPPage extends Page {
     @FindBy(id = "create-account")
     WebElement continueButton;
 
-    /* ErrorCaptcha */
-    @FindBy(xpath = "//*[@id='section-account']/span")
-    WebElement ErrorCaptcha;
 
     /* Labels */
     @FindBy(xpath = "//*[@id='section-account']/div[5]//label")
@@ -65,15 +62,37 @@ public class TaniaSignUPPage extends Page {
     @FindBy(xpath = "//*[@id='section-account']/div[1]//label")
     WebElement firstNameLabel;
 
+    /* ERROR Messages */
+    @FindBy(xpath = "//form[@id='section-account']/div[1]//div/span")
+    WebElement firstNameMessage;
+
     @FindBy(xpath = "//form[@id='section-account']/div[2]//div/span")
-    WebElement firstNameSpan;
+    WebElement lastNameMessage;
+
+    @FindBy(xpath = "//form[@id='section-account']/div[3]//div/span")
+    WebElement emailMessage;
+
+    @FindBy(xpath = "//form[@id='section-account']/div[4]//div[2]/span[1]")
+    WebElement zipCodeMessage;
+
+    @FindBy(xpath = "//form[@id='section-account']/div[4]//div[2]/span[2]")
+    WebElement zipPlusMessage;
+
+    /* ErrorCaptcha */
+    @FindBy(xpath = "//*[@id='section-account']/span")
+    WebElement ErrorCaptcha;
+
+    /* Title */
+    @FindBy(xpath = "//div[@id='contentContainer']/p[1]")
+    WebElement pageTitle;
+
 
     /* Methods */
 
     public TaniaSignUPPage(WebDriver driver) {
         super(driver);
         this.PAGE_URL = "http://physician.yikids.com/recruiter/signup";
-        PageFactory.initElements(driver,this);
+        PageFactory.initElements(driver, this);
     }
 
     public TaniaSignUPPage openTaniaSignUPPage() {
@@ -98,6 +117,16 @@ public class TaniaSignUPPage extends Page {
         return username;
     }
 
+    /* verification methods */
+    public boolean checkPageOpen() {
+        return super.verifyTextBoolean(pageTitle, "Step one of finding your physicians");
+    }
+
+    public boolean isOnSignUpPage() {
+        // Log.info(");
+        return exists(continueButton);
+    }
+
     /* Fill the fields */
 
     public TaniaSignUPPage opentaniaSignUPPage() {
@@ -108,37 +137,37 @@ public class TaniaSignUPPage extends Page {
 
     public TaniaSignUPPage fillFirstnameField(String username) {
         //Log.info("Filling username field");
-        setElementText(firstNameField,username);
+        setElementText(firstNameField, username);
         return this;
     }
 
     public TaniaSignUPPage fillLastNameField(String lastname) {
         //Log.info("Filling username field");
-        setElementText(lastNameField,lastname);
+        setElementText(lastNameField, lastname);
         return this;
     }
 
     public TaniaSignUPPage fillemailField(String email) {
         //Log.info("Filling username field");
-        setElementText(emailField,email);
+        setElementText(emailField, email);
         return this;
     }
 
     public TaniaSignUPPage fillzipcodeField(String zipcode) {
         //Log.info("Filling username field");
-        setElementText(zipCodeField,zipcode);
+        setElementText(zipCodeField, zipcode);
         return this;
     }
 
-    public TaniaSignUPPage fillzipCode2Field(String zipcode2) {
+    public TaniaSignUPPage fillzipPlusField(String zipcode2) {
         //Log.info("Filling username field");
-        setElementText(zipCode2Field,zipcode2);
+        setElementText(zipCode2Field, zipcode2);
         return this;
     }
 
     public TaniaSignUPPage fillcompanyField(String companyName) {
         //Log.info("Filling username field");
-        setElementText(companyField,companyName);
+        setElementText(companyField, companyName);
         return this;
     }
 
@@ -157,41 +186,77 @@ public class TaniaSignUPPage extends Page {
         String email = generateEmail();
         fillemailField(email);
         fillzipcodeField("0011");
-        fillzipCode2Field("12");
+        fillzipPlusField("12");
         fillcompanyField("company");
         return this;
     }
 
+    /*  Implicity waits -method on SignUpPage */
     public void waitForWarningFirstNameEmpty() {
-        waitUntilIsLoaded(firstNameSpan);
+        waitUntilIsLoaded(firstNameMessage);
     }
+
+    public void waitForWarningLastNameEmpty() {
+        waitUntilIsLoaded(lastNameMessage);
+    }
+
+    public void waitForWarningEmailEmpty() {
+        waitUntilIsLoaded(emailMessage);
+    }
+
+    public void waitForWarningCapchaMessage() {
+        waitUntilIsLoaded(ErrorCaptcha);
+    }
+
+
+    public void waitForWarningZipCodeMessageEmpty() {
+        waitUntilIsLoaded(zipCodeMessage);
+    }
+
+    public void waitForWarningPlusCodeEmpty() {
+        waitUntilIsLoaded(zipPlusMessage);
+    }
+
+    /* check your field is valid */
+    public boolean checkFirstNameErrorMessage() {
+        return verifyTextBoolean(firstNameMessage, "The first name field is required.");
+    }
+
+    public boolean checkLastNameErrorMessage() {
+        return verifyTextBoolean(lastNameMessage, "The last name field is required.");
+    }
+
+    public boolean checkEmailInvalidErrorMessage() {
+        return verifyTextBoolean(emailMessage, "The email format is invalid.");
+    }
+
+    public boolean checkEmailRequiredErrorMessage() {
+        return verifyTextBoolean(emailMessage, "The email field is required.");
+    }
+
+
+    public boolean checkZipCodeInvalidMessage(){return verifyTextBoolean(zipCodeMessage, "Zipcode is invalid");}
+    public boolean checkZipCodeEmptyMessage(){return verifyTextBoolean(zipCodeMessage, "The zipcode field is required.");}
+
+    public boolean checkZipPlusMessage(){return verifyTextBoolean(zipPlusMessage, "The zipcode must be a number.");}
+
 
     public boolean CheckPageForCapthcaMessage() {
         return verifyTextBoolean(ErrorCaptcha,"Please check Captcha!");
     }
 
-
-    public boolean checkFirstNameSpan(){return verifyTextBoolean(firstNameSpan, "The first name field is required.");}
-
-    public boolean checkforCompanyLabel() {
-        return verifyTextBoolean(companyLabel, "Company");
-    }
-
-    public boolean checkforZipCodeLabel() {
-        return verifyTextBoolean(zipCodeLabel, "Zip code*");
-    }
-
-    public boolean checkforEmailLabel() {
-        return verifyTextBoolean(emailLabel, "Email*");
-    }
-
-    public boolean checkforLastNameLabel() {
-        return verifyTextBoolean(lastNameLabel, "Last name*");
-    }
-
-    public boolean checkforFirstNameLabel() {
+    /* check text on labels*/
+    public boolean checkFirstNameLabel() {
         return verifyTextBoolean(firstNameLabel, "First name*");
     }
+    public boolean checkLastNameLabel() {
+        return verifyTextBoolean(lastNameLabel, "Last name*");
+    }
+    public boolean checkEmailLabel() {
+        return verifyTextBoolean(emailLabel, "Email*");
+    }
+    public boolean checkZipCodeLabel() {return verifyTextBoolean(zipCodeLabel, "Zip code*");}
+
 
 
     public TaniaSignUPPage checkelement(String error){

@@ -58,13 +58,13 @@ public class SignUPPage extends Page {
     @FindBy(xpath = "//span[@class='error error-first_name']")
     WebElement firstNameEmptyFieldMessage;
 
-
-
+    //constructor
     public SignUPPage(WebDriver driver) {
         super(driver);
         this.PAGE_URL = "http://physician.yikids.com/recruiter/signup";
         PageFactory.initElements(driver, this);
     }
+
 
     private static String getRandomString(final int length) {
         String chars = "abcdefghijklmnopqrstuvwxyz";
