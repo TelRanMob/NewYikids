@@ -45,7 +45,7 @@ public class ElenaLoginTest {
         System.out.println("Page title is: " + driver.getTitle());
       // System.out.println("Text element ="+elenaLoginPage.gettext());
 
-       assertTrue( "The text element LogOut is present on the page", elenaLoginPage.CheckTextOfElementLogOut());
+      assertTrue( "The text element LogOut is present on the page", elenaLoginPage.CheckTextOfElementLogOut());
 
       assertTrue("Check : the element LogOut is present on the page",elenaLoginPage.CheckElementLogOu());
 
