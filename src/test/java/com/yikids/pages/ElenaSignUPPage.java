@@ -12,7 +12,6 @@ import org.openqa.selenium.support.PageFactory;
 import java.io.IOException;
 import java.util.Random;
 
-
 public class ElenaSignUPPage extends Page {
     //private static Logger Log = Logger.getLogger(LogLog4j.class.getName());
     private static Random rnd = new Random();
