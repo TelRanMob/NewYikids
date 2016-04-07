@@ -34,10 +34,10 @@ public class ElenaSignUpTest {
 
     @Test
     public void CheckingLabelOnLoginPage(){
-        elenaSignUPPage.waitForFirstNameWarning();
+        //elenaSignUPPage.waitForFirstNameWarning();
 
         System.out.println("Page title is: " + driver.getTitle());
-        System.out.println("Text element ="+elenaSignUPPage.gettext());
+       // System.out.println("Text element ="+elenaSignUPPage.gettext());
 
         assertTrue( "First Name text is confirmed", elenaSignUPPage.CheckFirstNameLabel());
         assertTrue( "Last Name text is confirmed", elenaSignUPPage.CheckLastNameLabel());
@@ -45,11 +45,11 @@ public class ElenaSignUpTest {
         assertTrue( "Zip Code text is confirmed", elenaSignUPPage.CheckZipCodeLabel());
         assertTrue( "Company  text is confirmed", elenaSignUPPage.CheckCompanyNameLabel());
         assertTrue("Check kapcha",elenaSignUPPage.CheckPageForCapthcaMessage());
-        try {
+       /* try {
             Thread.sleep(3000);
         } catch (InterruptedException e) {
             e.printStackTrace();
-        }
+        }*/
     }
 
 
