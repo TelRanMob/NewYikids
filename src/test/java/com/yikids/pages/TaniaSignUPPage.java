@@ -46,7 +46,6 @@ public class TaniaSignUPPage extends Page {
     WebElement continueButton;
 
 
-
     /* Labels */
     @FindBy(xpath = "//*[@id='section-account']/div[5]//label")
     WebElement companyLabel;
@@ -74,17 +73,17 @@ public class TaniaSignUPPage extends Page {
     WebElement emailMessage;
 
     @FindBy(xpath = "//form[@id='section-account']/div[4]//div[2]/span[1]")
-    WebElement  zipCodeMessage;
+    WebElement zipCodeMessage;
 
     @FindBy(xpath = "//form[@id='section-account']/div[4]//div[2]/span[2]")
-    WebElement  zipPlusMessage;
+    WebElement zipPlusMessage;
 
     /* ErrorCaptcha */
     @FindBy(xpath = "//*[@id='section-account']/span")
     WebElement ErrorCaptcha;
 
     /* Title */
-    @FindBy(xpath ="//div[@id='contentContainer']/p[1]")
+    @FindBy(xpath = "//div[@id='contentContainer']/p[1]")
     WebElement pageTitle;
 
 
@@ -93,7 +92,7 @@ public class TaniaSignUPPage extends Page {
     public TaniaSignUPPage(WebDriver driver) {
         super(driver);
         this.PAGE_URL = "http://physician.yikids.com/recruiter/signup";
-        PageFactory.initElements(driver,this);
+        PageFactory.initElements(driver, this);
     }
 
     public TaniaSignUPPage openTaniaSignUPPage() {
@@ -117,9 +116,11 @@ public class TaniaSignUPPage extends Page {
         // Log.info("Doctor's Username generated is <" + username + ">");
         return username;
     }
+
     /* verification methods */
     public boolean checkPageOpen() {
-        return super.verifyTextBoolean(pageTitle, "Step one of finding your physicians");}
+        return super.verifyTextBoolean(pageTitle, "Step one of finding your physicians");
+    }
 
     public boolean isOnSignUpPage() {
         // Log.info(");
@@ -136,37 +137,37 @@ public class TaniaSignUPPage extends Page {
 
     public TaniaSignUPPage fillFirstnameField(String username) {
         //Log.info("Filling username field");
-        setElementText(firstNameField,username);
+        setElementText(firstNameField, username);
         return this;
     }
 
     public TaniaSignUPPage fillLastNameField(String lastname) {
         //Log.info("Filling username field");
-        setElementText(lastNameField,lastname);
+        setElementText(lastNameField, lastname);
         return this;
     }
 
     public TaniaSignUPPage fillemailField(String email) {
         //Log.info("Filling username field");
-        setElementText(emailField,email);
+        setElementText(emailField, email);
         return this;
     }
 
     public TaniaSignUPPage fillzipcodeField(String zipcode) {
         //Log.info("Filling username field");
-        setElementText(zipCodeField,zipcode);
+        setElementText(zipCodeField, zipcode);
         return this;
     }
 
     public TaniaSignUPPage fillzipPlusField(String zipcode2) {
         //Log.info("Filling username field");
-        setElementText(zipCode2Field,zipcode2);
+        setElementText(zipCode2Field, zipcode2);
         return this;
     }
 
     public TaniaSignUPPage fillcompanyField(String companyName) {
         //Log.info("Filling username field");
-        setElementText(companyField,companyName);
+        setElementText(companyField, companyName);
         return this;
     }
 
@@ -194,25 +195,52 @@ public class TaniaSignUPPage extends Page {
     public void waitForWarningFirstNameEmpty() {
         waitUntilIsLoaded(firstNameMessage);
     }
+
     public void waitForWarningLastNameEmpty() {
         waitUntilIsLoaded(lastNameMessage);
     }
+
     public void waitForWarningEmailEmpty() {
         waitUntilIsLoaded(emailMessage);
     }
+
+    public void waitForWarningCapchaMessage() {
+        waitUntilIsLoaded(ErrorCaptcha);
+    }
+
+
     public void waitForWarningZipCodeMessageEmpty() {
         waitUntilIsLoaded(zipCodeMessage);
     }
+
     public void waitForWarningPlusCodeEmpty() {
         waitUntilIsLoaded(zipPlusMessage);
     }
 
     /* check your field is valid */
-    public boolean checkFirstNameErrorMessage(){return verifyTextBoolean(firstNameMessage, "The first name field is required.");}
-    public boolean checkLastNameErrorMessage(){return verifyTextBoolean(lastNameMessage, "The last name field is required.");}
-    public boolean checkEmailErrorMessage(){return verifyTextBoolean(emailMessage, "The email field is required.");}
-    public boolean checkZipCodeMessage(){return verifyTextBoolean(zipCodeMessage, "The zipcode field is required.");}
+    public boolean checkFirstNameErrorMessage() {
+        return verifyTextBoolean(firstNameMessage, "The first name field is required.");
+    }
+
+    public boolean checkLastNameErrorMessage() {
+        return verifyTextBoolean(lastNameMessage, "The last name field is required.");
+    }
+
+    public boolean checkEmailInvalidErrorMessage() {
+        return verifyTextBoolean(emailMessage, "The email format is invalid.");
+    }
+
+    public boolean checkEmailRequiredErrorMessage() {
+        return verifyTextBoolean(emailMessage, "The email field is required.");
+    }
+
+
+    public boolean checkZipCodeInvalidMessage(){return verifyTextBoolean(zipCodeMessage, "Zipcode is invalid");}
+    public boolean checkZipCodeEmptyMessage(){return verifyTextBoolean(zipCodeMessage, "The zipcode field is required.");}
+
     public boolean checkZipPlusMessage(){return verifyTextBoolean(zipPlusMessage, "The zipcode must be a number.");}
+
+
     public boolean CheckPageForCapthcaMessage() {
         return verifyTextBoolean(ErrorCaptcha,"Please check Captcha!");
     }
