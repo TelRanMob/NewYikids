@@ -19,7 +19,7 @@ public class ElenaSignUpTest {
 
     @BeforeClass(alwaysRun = true)
     public void setup() {
-      //System.setProperty("webdriver.chrome.driver", driverPath+"chromedriver.exe");
+        //System.setProperty("webdriver.chrome.driver", driverPath+"chromedriver.exe");
         driver = new ChromeDriver();
 
         //driver = new FirefoxDriver();
@@ -29,7 +29,7 @@ public class ElenaSignUpTest {
 
     @BeforeMethod(alwaysRun = true)
     public void beforeMethodSetUp(){
-            elenaSignUPPage.openElenaSignUPPage();
+        elenaSignUPPage.openElenaSignUPPage();
     }
 
     @Test
@@ -39,7 +39,7 @@ public class ElenaSignUpTest {
         System.out.println("Page title is: " + driver.getTitle());
         System.out.println("Text element ="+elenaSignUPPage.gettext());
 
-       assertTrue( "First Name text is confirmed", elenaSignUPPage.CheckFirstNameLabel());
+        assertTrue( "First Name text is confirmed", elenaSignUPPage.CheckFirstNameLabel());
         assertTrue( "Last Name text is confirmed", elenaSignUPPage.CheckLastNameLabel());
         assertTrue( "Email text is confirmed", elenaSignUPPage.CheckEmailLabel());
         assertTrue( "Zip Code text is confirmed", elenaSignUPPage.CheckZipCodeLabel());
@@ -63,7 +63,7 @@ public class ElenaSignUpTest {
                 .fillLastNameField("last")
                 .fillzipcodeField("110000")
                 .fillzipCode2Field("55");
-                //pass the captcha manually
+        //pass the captcha manually
         try {
             Thread.sleep(10000);
         } catch (InterruptedException e) {
@@ -81,7 +81,7 @@ public class ElenaSignUpTest {
                 .buttoncontinueButton()
                 .waitForFirstNameWarning();
         System.out.println(elenaSignUPPage.gettext());
-       assertTrue("Check warning message the first name feld is ampty ",elenaSignUPPage.CheckWarningMessageFirstName());
+        assertTrue("Check warning message the first name feld is ampty ",elenaSignUPPage.CheckWarningMessageFirstName());
 
     }
     @Test //negative
@@ -98,9 +98,9 @@ public class ElenaSignUpTest {
     @Test//negative
     public void WorningFieldFirstNameOneNumber(){
         elenaSignUPPage
-               .OneNumbFillFirstName()
+                .OneNumbFillFirstName()
                 .buttoncontinueButton()
-               .waitForFirstNameWarning2();
+                .waitForFirstNameWarning2();
         assertTrue("Check warning message the first name field is one number ",elenaSignUPPage.CheckWarningMessageFirstNameisOneNumber());
 
     }
@@ -128,7 +128,7 @@ public class ElenaSignUpTest {
         elenaSignUPPage
                 .NoFillEmailFields()
                 .buttoncontinueButton()
-               .waitForEmailWarning1();
+                .waitForEmailWarning1();
         assertTrue("Check warning message the email field is ampty ",elenaSignUPPage.CheckWarningMessageEmail());
 
     }
@@ -163,9 +163,9 @@ public class ElenaSignUpTest {
 
     // test of clicking on Registration link are writtenw in another class
 
-     @AfterMethod(alwaysRun = true)
+    @AfterMethod(alwaysRun = true)
     public void tearDown() {
-       this.driver.quit();
+        this.driver.quit();
     }
 
    /* @AfterClass(alwaysRun = true)

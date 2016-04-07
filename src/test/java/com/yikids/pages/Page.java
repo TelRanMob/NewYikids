@@ -9,7 +9,6 @@ import org.testng.Assert;
 
 import java.io.IOException;
 
-
 /**
  * Abstract class representation of a Page in the UI. Page object pattern
  */
