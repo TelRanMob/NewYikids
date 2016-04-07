@@ -29,7 +29,7 @@ public class RutSignUPPage extends Page {
     WebElement emailField;
 
     @FindBy(id = "zipcode")
-    WebElement zip1CodeField;
+    WebElement zipCode1Field;
 
     @FindBy(id = "zip-plus")
     WebElement zipCode2Field;
@@ -45,16 +45,40 @@ public class RutSignUPPage extends Page {
     @FindBy(xpath = "//*[@id='section-account']/span")
     WebElement captchaMessage;
 
-    @FindBy(xpath = "//*[@id='section-account']/span")
-    WebElement errorCaptcha;
+    @FindBy(xpath = "//span[@class='error error-first_name']")
+    WebElement firstNameEmptyFieldMessage;
+
+    @FindBy(xpath = "//span[@class='error error-last_name']")
+    WebElement lastNameEmptyFieldMessage;
+
+    @FindBy(xpath = "//span[@class='error error-email']")
+    WebElement emailEmptyFieldMessage;          //and not valid
+
+//    @FindBy(xpath = "//*[@id='hints[]']")
+//    WebElement emailNotBeSharredMessage;
+
+    @FindBy(xpath = "//span[@class='error error-zipcode']")
+    WebElement zipCodeEmptyFieldMessage;        //and not valid
 
     //Labels
-    @FindBy(xpath = "//*[@id='section-account']/div[1]/div/label")
+    @FindBy(xpath = "//*[@id='section-account']/div[1]//label")
     WebElement firstNameLabel;
+
+//    @FindBy(xpath = "//*[@id='section-account']/div[2]//label")
+//    WebElement lastNameLabel;
+//
+//    @FindBy(xpath = "//*[@id='section-account']/div[3]//label")
+//    WebElement emailLabel;
+//
+//    @FindBy(xpath = "//*[@id='section-account']/div[4]/div/label")
+//    WebElement zipCodeLabel;
+//
+//    @FindBy(xpath = "//*[@id='section-account']/div[5]/div/label")
+//    WebElement companyLabel;
 
     public RutSignUPPage(WebDriver driver) {
         super(driver);
-        this.PAGE_URL = "http://physician.yikids.com/recruiter/signup";
+        this.PAGE_URL = "http://physician.yikids.com/recruiter/signup/";
         PageFactory.initElements(driver, this);
     }
     public RutSignUPPage openSignUpPage() {
@@ -79,14 +103,14 @@ public class RutSignUPPage extends Page {
         setElementText(emailField, email);
         return this;
     }
-    public RutSignUPPage fillZip1CodeField(String zipcode) {
+    public RutSignUPPage fillZipCode1Field(String zipcode1) {
         //Log.info("Filling zipcode field");
-        setElementText(zip1CodeField, zipcode);
+        setElementText(zipCode1Field, zipcode1);
         return this;
     }
-    public RutSignUPPage fillZip2CodeField(String zipplus) {
+    public RutSignUPPage fillZipCode2Field(String zipcode2) {
         //Log.info("Filling zipplus field");
-        setElementText(zipCode2Field, zipplus);
+        setElementText(zipCode2Field, zipcode2);
         return this;
     }
     public RutSignUPPage fillCompanyField(String company) {
@@ -95,8 +119,8 @@ public class RutSignUPPage extends Page {
         return this;
     }
 
-    //Fill the buttons
-    public RutSignUPPage clickContinueButton() {
+    //Click the buttons
+    public RutSignUPPage clickToContinue() {
         //Log.info("Filling continueButton field");
         clickElement(continueButton);
         return this;
@@ -108,8 +132,8 @@ public class RutSignUPPage extends Page {
         fillLastNameField("lastname");
         String email = generateEmail();
         fillEmailField(email);
-        fillZip1CodeField("0011");
-        fillZip2CodeField("12");
+        fillZipCode1Field("00501");
+        fillZipCode2Field("11");
         fillCompanyField("company");
         return this;
     }
@@ -127,10 +151,40 @@ public class RutSignUPPage extends Page {
         // Log.info("User's Email generated is <" + username + ">");
         return username;
     }
-    public boolean CheckPageForCapthcaMessage() {
-        return verifyTextBoolean(errorCaptcha, "Please check Captcha!");
-    }
-    public boolean CheckFirstNameLabel() {
+//  check page for message
+    public boolean checkFirstNameLabel() {
         return verifyTextBoolean(firstNameLabel, "First name");
     }
+    public boolean checkFirstNameEmptyFieldMessage() {
+        return verifyTextBoolean(firstNameEmptyFieldMessage, "The first name field is required.");
+    }
+    public boolean checkLastNameEmptyFieldMessage() {
+        return verifyTextBoolean(lastNameEmptyFieldMessage, "The last name field is required.");
+    }
+    public boolean checkEmailEmptyFieldMessage() {
+        return verifyTextBoolean(emailEmptyFieldMessage, "The email field is required.");
+    }
+    public boolean checkZipCodeEmptyFieldMessage() {
+        return verifyTextBoolean(zipCodeEmptyFieldMessage, "The zipcode field is required.");
+    }
+    public boolean checkPageForCaptchaMessage() {
+        return verifyTextBoolean(captchaMessage, "Please check Captcha!");
+    }
+//  wait for warning
+    public void waitForFirstNameWarning() {
+        waitUntilIsLoaded(firstNameEmptyFieldMessage);
+    }
+    public void waitForLastNameWarning() {
+        waitUntilIsLoaded(lastNameEmptyFieldMessage);
+    }
+    public void waitForEmailWarning() {
+        waitUntilIsLoaded(emailEmptyFieldMessage);
+    }
+    public void waitForZipCodeWarning() {
+        waitUntilIsLoaded(zipCodeEmptyFieldMessage);
+    }
+    public void waitForCapchaWarning() {
+        waitUntilIsLoaded(captchaMessage);
+    }
+
 }
