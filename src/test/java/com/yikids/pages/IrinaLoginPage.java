@@ -46,8 +46,12 @@ public class IrinaLoginPage extends Page {
     WebElement resetPasswordButtom;
 
     //Labels
-    @FindBy(xpath = "//*[@id='login-form']/div[1]")
+    /*@FindBy(xpath = "/*//*[@id='login-form']/div[1]")
+    WebElement errorPasswordMessage;*/
+
+    @FindBy(xpath = "//div[@class='err'][contains(text(),'Your password is not correct. Please try again.')]")
     WebElement errorPasswordMessage;
+
 
     @FindBy(xpath = "//*[@id='contentContainer']/p[1]")
     WebElement pageSignUpTitle;
@@ -155,8 +159,7 @@ public class IrinaLoginPage extends Page {
     }
 
     public boolean passwordNotCorrect() {
-        return verifyTextBoolean(errorPasswordMessage,
-                "Your password is not correct. Please try again. Forgot password?");
+        return exists(errorPasswordMessage);
     }
 
     public boolean checkPageSignUpOpen() {

@@ -55,6 +55,10 @@ public class LoginPage extends Page {
     @FindBy(xpath = "//*[@id='login-form']/div[1]")
     WebElement emailNotExist;
 
+    @FindBy(xpath = "//div[@class='err'][contains(text(),'Your password is not correct. Please try again.')]")
+    WebElement wrongPassErrMessage;
+
+
     public LoginPage(WebDriver driver) {
         super(driver);
         this.PAGE_URL = "http://admin.yikids.com/";
@@ -121,4 +125,9 @@ public class LoginPage extends Page {
         return this;
     }
 
+
+    public boolean checkWrongPassMessage() {
+
+        return exists(wrongPassErrMessage);
+    }
 }
