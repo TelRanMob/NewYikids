@@ -2,10 +2,11 @@ package com.yikids;
 
 import com.yikids.pages.TaniaSignUPPage;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
-import org.testng.annotations.*;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
 import static org.testng.AssertJUnit.assertTrue;
 
@@ -68,7 +69,7 @@ public class TaniaSignUpTest {
                 .clickToContinue()
                 .waitForWarningFirstNameEmpty();
 
-        assertTrue("Firstname empty warning message", taniaSignUPPage.checkFirstNameErrorMessage());
+        assertTrue("No Firstname empty warning message", taniaSignUPPage.checkFirstNameErrorMessage());
         Thread.sleep(3000);
     }
 
