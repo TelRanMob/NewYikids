@@ -58,13 +58,18 @@ public class SignUPPage extends Page {
     @FindBy(xpath = "//span[@class='error error-first_name']")
     WebElement firstNameEmptyFieldMessage;
 
-    //constructor
+    @FindBy(xpath = "//*[@id='contentContainer']/p[1]")
+    WebElement signupLabelTitle;
+
+
+
+
+
     public SignUPPage(WebDriver driver) {
         super(driver);
         this.PAGE_URL = "http://physician.yikids.com/recruiter/signup";
         PageFactory.initElements(driver, this);
     }
-
 
     private static String getRandomString(final int length) {
         String chars = "abcdefghijklmnopqrstuvwxyz";
@@ -145,6 +150,10 @@ public class SignUPPage extends Page {
         return username;
     }
 
+    public boolean isOnSignupPage() {
+        return exists(signupLabelTitle);
+    }
+
     public void waitForFirstNameWarning() {
         waitUntilIsLoaded(firstNameEmptyFieldMessage);
     }
@@ -156,6 +165,7 @@ public class SignUPPage extends Page {
     public boolean CheckFirstNameLabel() {
         return verifyTextBoolean(FirstNameLabel, "First name");
     }
+
 
     public boolean checkfirstNameEmptyFieldMessage() {
         return verifyTextBoolean(firstNameEmptyFieldMessage, "The first name field is required.");

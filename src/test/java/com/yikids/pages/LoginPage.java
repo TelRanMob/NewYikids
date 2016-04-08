@@ -114,4 +114,11 @@ public class LoginPage extends Page {
         clickElement(forgotPasswordLinkButton);
         return this;
     }
+
+    public LoginPage goToForgotPasswordLink() {
+        //Log.info("Go to forgotPassword LinkButton");
+        driver.get("http://admin.yikids.com/forgot-password");
+        return this;
+    }
+
 }

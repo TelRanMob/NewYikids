@@ -51,6 +51,12 @@ public class MainPage extends Page {
         return this;
     }
 
+    public MainPage goToAddHospitalLink() {
+        //Log.info("Clicking Add Hospital");
+        driver.get("http://admin.yikids.com/hospital/add");
+        return this;
+    }
+
     public void waitForMainPageLoad() throws IOException, InterruptedException {
         waitUntilElementIsLoaded(hospitalLink);
     }
