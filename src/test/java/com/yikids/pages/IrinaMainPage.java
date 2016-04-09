@@ -15,10 +15,10 @@ public class IrinaMainPage extends Page {
 
 
     // /fields // TODO: find real locator
-    @FindBy(id = "hospital")
+    @FindBy(id = "http://admin.yikids.com/admin/hospital-overview")
     WebElement hospitalLink;
 
-    @FindBy(id = "hospital2")
+    @FindBy(id = "http://admin.yikids.com/hospital/add")
     WebElement addHospitalLink;
 
     // links
@@ -28,7 +28,7 @@ public class IrinaMainPage extends Page {
     //constructor
     public IrinaMainPage(WebDriver driver) {
         super(driver);
-        this.PAGE_URL = "http://admin.yikids.com/hospital/add";
+        this.PAGE_URL = "http://admin.yikids.com/";
         PageFactory.initElements(driver, this);
     }
 
