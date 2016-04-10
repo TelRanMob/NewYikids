@@ -13,19 +13,24 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import static org.testng.Assert.assertTrue;
+import static org.testng.AssertJUnit.assertTrue;
+
+/***
+ * CLASS STARTS
+ ***/
 
 public class AlexLoginTest {
 
     public AlexLoginPage alexloginpage;
     public WebDriver driver;
+    public String adminLogin = "admin@erdocfinder.com";
+    public String adminPassword = "Test123";
+    public String url = "http://admin.yikids.com/";
 
     @BeforeClass(alwaysRun = true)
     public void setup() {
-
         driver = new FirefoxDriver();
         alexloginpage = PageFactory.initElements(driver, AlexLoginPage.class);
-
     }
 
     @BeforeMethod(alwaysRun = true)
@@ -33,24 +38,93 @@ public class AlexLoginTest {
         alexloginpage.OpenLoginPage();
     }
 
+    /* Positive tests */
 
     @Test
-    public void FillLoginFields() {
+    public void loginPositiveTest() {
 
         alexloginpage
-                .fillEmailField("TestEmail@mail.com")
-                .fillPasswordField("TestPassword")
+                .fillEmailField(adminLogin)
+                .fillPasswordField(adminPassword)
                 .clickLoginButton();
+        assertTrue("Login failed", alexloginpage.isOnMainPage());
 
-        assertTrue(alexloginpage.checkforEmailErrorText(),
-                "Please sign up because your email does not exist in our system.");
-        assertTrue(alexloginpage.checkforStillOnLoginPage());
+    }
 
+    @Test
+    public void loginPositiveForgotPasswordTest() {
+        alexloginpage
+                .fillEmailField(adminLogin)
+                .fillPasswordField("wrong")
+                .clickLoginButton()
+                .waitforPasswordWarningMessage();
+        assertTrue("Wrong password accepted", alexloginpage.isOnLoginPage());
+        assertTrue("No wrong password warning", alexloginpage.checkforWrongPassword());
+        alexloginpage.clickForgotPasswordAfterPasswordWarning()
+                .waitforResetButton();
+        assertTrue("Forgot password link after wrong password didn't work",
+                alexloginpage.checkforForgotPasswordEmailLabel());
+        alexloginpage.OpenLoginPage();
+        alexloginpage.clickForgotPasswordLink()
+                .waitforResetButton();
+        assertTrue("Forgot password link on login page didn't work",
+                alexloginpage.checkforForgotPasswordEmailLabel());
+    }
+
+    @Test
+    public void loginPositiveSignUpLink() {
+        alexloginpage.clickSignUpLink()
+                .waitforZipCodeField();
+        assertTrue("Going to Sign Up page failed", alexloginpage.isOnSignUpPage());
+    }
+
+    /* Negative tests */
+
+    @Test
+    public void loginNegativeWrongLoginTest() {
+        alexloginpage.fillEmailField("asdasd@youpmail.com")
+                .fillPasswordField(adminPassword)
+                .checkforWrongEmail();
+        assertTrue("Wrong login accepted", alexloginpage.isOnLoginPage());
+    }
+
+    @Test
+    public void loginNegativeEmptyLoginTest() throws InterruptedException {
+        alexloginpage.fillEmailField(" ")
+                .fillPasswordField(adminPassword)
+                .clickLoginButton();
+        assertTrue("Empty login accepted", alexloginpage.isOnLoginPage());
+    }
+
+    @Test
+    public void loginNegativeWrongPasswordTest() {
+        alexloginpage.fillEmailField(adminLogin)
+                .fillPasswordField("wrong")
+                .clickLoginButton()
+                .waitforPasswordWarningMessage();
+        assertTrue("No wrong password warning", alexloginpage.checkforWrongPassword());
+    }
+
+    @Test
+    public void loginNegativeEmptyPasswordTest() {
+        alexloginpage.fillEmailField(adminLogin)
+                .fillPasswordField(" ")
+                .waitforPasswordWarningMessage();
+        assertTrue("Empty password accepted", alexloginpage.isOnLoginPage());
+    }
+
+    @Test
+    public void loginNegativeEmptyFieldsTest() {
+        alexloginpage.fillEmailField(" ")
+                .fillPasswordField(" ");
+        assertTrue("Empty fields accepted", alexloginpage.isOnLoginPage());
     }
 
     @AfterClass(alwaysRun = true)
     public void tearDown() {
         this.driver.quit();
     }
+
+    /*** CLASS ENDS ***/
 
 }
