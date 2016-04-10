@@ -11,9 +11,13 @@ import org.openqa.selenium.support.PageFactory;
 
 import java.util.Random;
 
+/***
+ * CLASS STARTS
+ ***/
+
 public class AlexLoginPage extends Page {
 
-    public static Random rnd;
+    private static Random rnd = new Random();
 
     /* Fields */
 
@@ -23,116 +27,167 @@ public class AlexLoginPage extends Page {
     @FindBy(id = "password")
     WebElement passwordField;
 
-    @FindBy(xpath = "//*[@id='login-form']/div[1]")
-    WebElement emailNotInBase;
+    @FindBy(xpath = "//*[@class='container']/form[@action='reset']/input[@id='email']")
+    WebElement forgotpasswordEmailField;
 
-    /* Buttons */
+    @FindBy(xpath = "html/body/div[2]/form/label")
+    WebElement forgotpasswordEmailLabel;
+
+    /* Buttons and links */
 
     @FindBy(xpath = "//*[@id='login-form']/div/button")
     WebElement loginButton;
 
     @FindBy(xpath = "//*[@id='login-form']/div/a[1]")
-    WebElement signUpButton;
+    WebElement signUpLink;
 
     @FindBy(xpath = "//*[@id='login-form']/div/a[2]")
-    WebElement forgotPasswordButton;
+    WebElement forgotPasswordLink;
 
-    public AlexLoginPage(WebDriver driver) {
+    @FindBy(xpath = "//*[@id='login-form']/div[1]/a")
+    WebElement wrongPasswordForgotPasswordLink;
 
-        super(driver);
-        this.PAGE_URL = "http://admin.yikids.com/";
-        PageFactory.initElements(driver, this);
+    @FindBy(xpath = "//*[@id='logout-container']/a")
+    WebElement mainpageLogOutLink;
 
-    }
+    @FindBy(xpath = "//*[@id='zipcode']")
+    WebElement signuppageZipCodeField;
 
-    private static String getRandomString(final int length) {
+    @FindBy(xpath = "html/body/div[2]/form/button")
+    WebElement forgotpasswordpageResetButton;
 
-        String letters = "abcdefghijklmnopqrstuvwxyz";
-        StringBuilder buf = new StringBuilder();
+    /* System messages */
 
-        for (int i = 0; i < length; i++) {
-            buf.append(letters.charAt(rnd.nextInt(letters.length())));
-        }
-
-        return buf.toString();
-
-    }
+    @FindBy(xpath = "//*[@id='login-form']/div[1]")
+    WebElement titleEmailPasswordWarningMessage;
 
     /* Methods */
 
-    public AlexLoginPage OpenLoginPage() {
+    // Construct and OpenPage.
+    public AlexLoginPage(WebDriver driver) {
+        super(driver);
+        this.PAGE_URL = "http://admin.yikids.com/";
+        PageFactory.initElements(driver, this);
+    }
 
+    // Generate random emails.
+    private static String getRandomString(final int length) {
+        String letters = "abcdefghijklmnopqrstuvwxyz";
+        StringBuilder buf = new StringBuilder();
+        for (int i = 0; i < length; i++) {
+            buf.append(letters.charAt(rnd.nextInt(letters.length())));
+        }
+        return buf.toString();
+    }
+
+    public AlexLoginPage OpenLoginPage() {
         driver.get(PAGE_URL);
         return this;
-
     }
 
     private String generateEmail() {
-
         String rand = getRandomString(5);
         String mail = rand + "@yopmail.com";
         return mail;
-
     }
 
-    /* Fill Fields */
+    /* Fill the fields */
 
     public AlexLoginPage fillEmailField(String email) {
-
         setElementText(emailField, email);
         return this;
-
     }
 
     public AlexLoginPage fillPasswordField(String password) {
-
         setElementText(passwordField, password);
         return this;
-
     }
 
     public AlexLoginPage clickLoginButton() {
-
         clickElement(loginButton);
         return this;
-
     }
 
-    public AlexLoginPage clickSignUpButton() {
-
-        clickElement(signUpButton);
+    public AlexLoginPage clickSignUpLink() {
+        clickElement(signUpLink);
         return this;
-
     }
 
-    public AlexLoginPage clickForgotPasswordButton() {
-
-        clickElement(forgotPasswordButton);
+    public AlexLoginPage clickForgotPasswordLink() {
+        clickElement(forgotPasswordLink);
         return this;
-
     }
 
-    public AlexLoginPage fillLogin() {
+    public AlexLoginPage clickForgotPasswordAfterPasswordWarning() {
+        clickElement(wrongPasswordForgotPasswordLink);
+        return this;
+    }
 
+    public AlexLoginPage fillLoginPageFields() {
         OpenLoginPage();
         String rndEmail = generateEmail();
         fillEmailField(rndEmail);
         fillPasswordField("TestPassword");
         return this;
-
     }
 
     /* Check */
 
-    public boolean checkforEmailErrorText() {
-        return verifyElementIsPresent(emailNotInBase);
+    // Wrong field messages.
+    public boolean checkforWrongEmail() {
+        return verifyTextBoolean(titleEmailPasswordWarningMessage,
+                "Please sign up because your email does not exist in our system.");
     }
 
-    public boolean checkforStillOnLoginPage() {
-        return verifyElementIsPresent(loginButton)
-                && verifyElementIsPresent(forgotPasswordButton)
-                && verifyElementIsPresent(signUpButton);
-
+    public boolean checkforWrongPassword() {
+        return verifyTextBoolean(titleEmailPasswordWarningMessage,
+                "Your password is not correct. Please try again. Forgot password?");
     }
+
+    public boolean checkforForgotPasswordEmailLabel() {
+        return verifyTextBoolean(forgotpasswordEmailLabel,
+                "Enter your email");
+    }
+
+
+    // Going on relation pages.
+    public boolean isOnLoginPage() {
+        exists(forgotPasswordLink);
+        return true;
+    }
+
+    public boolean isOnMainPage() {
+        exists(mainpageLogOutLink);
+        return true;
+    }
+
+    public boolean isOnSignUpPage() {
+        exists(signuppageZipCodeField);
+        return true;
+    }
+
+    public boolean isOnForgotPasswordPage() {
+        exists(forgotpasswordpageResetButton);
+        return true;
+    }
+
+    // Waiting.
+    public void waitforPasswordWarningMessage() {
+        waitUntilIsLoaded(titleEmailPasswordWarningMessage);
+    }
+
+    public void waitforLogOutLink() {
+        waitUntilIsLoaded(mainpageLogOutLink);
+    }
+
+    public void waitforZipCodeField() {
+        waitUntilIsLoaded(signuppageZipCodeField);
+    }
+
+    public void waitforResetButton() {
+        waitUntilIsLoaded(forgotpasswordpageResetButton);
+    }
+
+    /*** CLASS ENDS ***/
 
 }

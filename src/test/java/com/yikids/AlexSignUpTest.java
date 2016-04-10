@@ -15,6 +15,10 @@ import org.testng.annotations.Test;
 
 import static org.testng.AssertJUnit.assertTrue;
 
+/***
+ * CLASS STARTS
+ ***/
+
 public class AlexSignUpTest {
 
     public AlexSignUpPage alexsignuppage;
@@ -22,10 +26,8 @@ public class AlexSignUpTest {
 
     @BeforeClass(alwaysRun = true)
     public void setup() {
-
         driver = new FirefoxDriver();
         alexsignuppage = PageFactory.initElements(driver, AlexSignUpPage.class);
-
     }
 
     @BeforeMethod(alwaysRun = true)
@@ -33,24 +35,137 @@ public class AlexSignUpTest {
         alexsignuppage.openSignUpPage();
     }
 
-    @Test
-    public void FillSiteFields() {
+    /* Positive tests */
 
+    @Test
+    public void signUpPositiveTest() {
         alexsignuppage
                 .fillFirstnameField("TestName")
                 .fillLastNameField("TestSurname")
                 .fillEmailField("TestMail@youpmail.com")
-                .fillZip1Field("11000")
-                .fillZip21Field("55")
+                .fillZip1Field("12341")
+                .fillZip21Field("5646")
                 .fillCompany1Field("TestCompany")
                 .clickToContinue();
+        assertTrue("First Name isn't confirmed", alexsignuppage.checkforFirstNameLabel());
+        assertTrue("Last Name isn't confirmed", alexsignuppage.checkforLastNameLabel());
+        assertTrue("Email isn't confirmed", alexsignuppage.checkforEmailLabel());
+        assertTrue("ZipCode isn't confirmed", alexsignuppage.checkforZipCodeLabel());
+        assertTrue("Company isn't confirmed", alexsignuppage.checkforCompanyLabel());
+    }
 
-        assertTrue("First Name Label", alexsignuppage.checkforFirstNameLabel());
-        assertTrue("The Second Name Label is confirmed", alexsignuppage.checkforLastNameLabel());
-        assertTrue("The Email Label is confirmed", alexsignuppage.checkforEmailLabel());
-        assertTrue("The ZipCode Label is confirmed", alexsignuppage.checkforZipCodeLabel());
-        assertTrue("The Company Label is confirmed", alexsignuppage.checkforCompanyLabel());
+    /* Negative tests */
 
+    @Test
+    public void signUpNegativeFIrstNameTest() throws InterruptedException {
+        alexsignuppage
+                .fillFirstnameField(" ")
+                .fillLastNameField("TestSurname")
+                .fillEmailField("TestMail@youpmail.com")
+                .fillZip1Field("12341")
+                .fillZip21Field("5646")
+                .fillCompany1Field("TestCompany")
+                .clickToContinue()
+                .waitforFirstNameWarning();
+        assertTrue("No first name empty warning", alexsignuppage.checkforFirstNameEmptyFieldMessage());
+    }
+
+    @Test
+    public void signUpNegativeLastNameTest() {
+        alexsignuppage
+                .fillFirstnameField("TestName")
+                .fillLastNameField(" ")
+                .fillEmailField("TestMail@youpmail.com")
+                .fillZip1Field("12341")
+                .fillZip21Field("5646")
+                .fillCompany1Field("TestCompany")
+                .clickToContinue()
+                .waitforLastNameWarning();
+        assertTrue("No last name empty warning", alexsignuppage.checkforLastNameEmptyFieldMessage());
+    }
+
+    @Test
+    public void signUpNegativeEmailEmptyTest() {
+        alexsignuppage
+                .fillFirstnameField("TestName")
+                .fillLastNameField("TestSurname")
+                .fillEmailField(" ")
+                .fillZip1Field("12341")
+                .fillZip21Field("5646")
+                .fillCompany1Field("TestCompany")
+                .clickToContinue()
+                .waitforEmailWarning();
+        assertTrue("No email empty warning", alexsignuppage.checkforEmailEmptyFieldMessage());
+    }
+
+    @Test
+    public void signUpNegativeEmailWrongFormatTest() {
+        alexsignuppage
+                .fillFirstnameField("TestName")
+                .fillLastNameField("TestSurname")
+                .fillEmailField("123343@44444")
+                .fillZip1Field("12341")
+                .fillZip21Field("5646")
+                .fillCompany1Field("TestCompany")
+                .clickToContinue()
+                .waitforEmailWarning();
+        assertTrue("No email wrong format warning", alexsignuppage.checkforEmailWrongFormatMessage());
+    }
+
+    @Test
+    public void signUpNegativeZipCodeWrongTest() {
+        alexsignuppage
+                .fillFirstnameField("TestName")
+                .fillLastNameField("TestSurname")
+                .fillEmailField("TestMail@youpmail.com")
+                .fillZip1Field("342")
+                .fillZip21Field("5646")
+                .fillCompany1Field("TestCompany")
+                .clickToContinue()
+                .waitforZipCodeWarning();
+        assertTrue("No zipcode invalid warning", alexsignuppage.checkforZipCodeInvalidFieldMessage());
+    }
+
+    @Test
+    public void signUpNegativeZipCodeEmptyTest() {
+        alexsignuppage
+                .fillFirstnameField("TestName")
+                .fillLastNameField("TestSurname")
+                .fillEmailField("TestMail@youpmail.com")
+                .fillZip1Field(" ")
+                .fillZip21Field(" ")
+                .fillCompany1Field("TestCompany")
+                .clickToContinue()
+                .waitforZipCodeWarning();
+        assertTrue("No zipcode empty warning", alexsignuppage.checkforZipCodeEmptyFieldMessage());
+    }
+
+    @Test
+    public void signUpNegativeZipCodeWrongFormatTest() {
+        alexsignuppage
+                .fillFirstnameField("TestName")
+                .fillLastNameField("TestSurname")
+                .fillEmailField("TestMail@youpmail.com")
+                .fillZip1Field("dfgdf")
+                .fillZip21Field("dfgdf")
+                .fillCompany1Field("TestCompany")
+                .clickToContinue()
+                .waitforZipCodeWarning();
+        assertTrue("No zipcode wrong format warning", alexsignuppage.checkforZipCodeWrongFormatMessage());
+    }
+
+    @Test
+    public void signUpNegativeCaptchaTest() {
+        alexsignuppage
+                .fillFirstnameField("TestName")
+                .fillLastNameField("TestSurname")
+                .fillEmailField("TestMail@youpmail.com")
+                .fillZip1Field("342")
+                .fillZip21Field("5646")
+                .fillCompany1Field("TestCompany")
+                .clickToContinue()
+                .waitforCaptchaWarning();
+        assertTrue("No captcha warning", alexsignuppage.checkforCapchaErrorMessage());
     }
 
     /*
@@ -62,5 +177,7 @@ public class AlexSignUpTest {
     public void tearDown() {
         this.driver.quit();
     }
+
+    /*** CLASS ENDS ***/
 
 }
