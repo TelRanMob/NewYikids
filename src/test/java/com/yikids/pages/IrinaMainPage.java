@@ -15,14 +15,17 @@ public class IrinaMainPage extends Page {
 
 
     // /fields // TODO: find real locator
-    @FindBy(id = "http://admin.yikids.com/admin/hospital-overview")
+    @FindBy(xpath="//li[@id='nav_benefits']/a)[10]")
+            // " http://admin.yikids.com/admin/hospital-overview")
     WebElement hospitalLink;
 
-    @FindBy(id = "http://admin.yikids.com/hospital/add")
+    @FindBy(xpath="//li[@id='nav_benefits']/a)[13]")
+             // "http://admin.yikids.com/hospital/add")
     WebElement addHospitalLink;
 
     // links
-    @FindBy(xpath = "//*[@id='logout-container']/a")
+    @FindBy(xpath ="//div[@id='logout-container']/a")
+            //"http://admin.yikids.com/logout")
     WebElement logOutLink;
 
     //constructor
@@ -51,12 +54,13 @@ public class IrinaMainPage extends Page {
         waitUntilElementIsLoaded(hospitalLink);
     }
 
-    public void WaitForLogoutSign() {
+    public void waitForLogoutSign()
+    {
         waitUntilIsLoaded(logOutLink);
     }
 
     public boolean isOnMainPage() {
-        WaitForLogoutSign();
+        waitForLogoutSign();
         return exists(logOutLink);
     }
 }

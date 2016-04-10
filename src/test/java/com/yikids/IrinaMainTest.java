@@ -10,6 +10,8 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import java.io.IOException;
+
 import static org.testng.AssertJUnit.assertTrue;
 
 /**
@@ -18,10 +20,10 @@ import static org.testng.AssertJUnit.assertTrue;
 public class IrinaMainTest {
   //  static String driverPath = "Z:\\Tel-RAN\\aQA\\BrowserDrivers";
     public IrinaMainPage mainI;
-    //public IrinaLoginPage loginI;
+    public IrinaLoginPage loginI;
     public WebDriver driver;
-    public String email = "admin@erdocfinder.com";
-    public String password = "Test123";
+    //public String email = "admin@erdocfinder.com";
+    //public String password = "Test123";
 
     @BeforeClass(alwaysRun = true)
     public void setup() {
@@ -31,21 +33,23 @@ public class IrinaMainTest {
         //driver = new InternetExplorerDriver();
         driver = new FirefoxDriver();
         mainI = PageFactory.initElements(driver, IrinaMainPage.class);
+        loginI = PageFactory.initElements(driver, IrinaLoginPage.class);
     }
 
     @BeforeMethod(alwaysRun = true)
     public void beforeMethodSetUp() {
         mainI.openAdminMainPage();
-        //mainI.fillLodInFieldsPozitive();
+        loginI.fillLodInFieldsPozitive();
         //verification
         //assertTrue("loginButtom not appeare",loginI.isOnLoginPage());
     }
 
         @Test
-    public void goToAddHospitalPositiv() {
-       mainI.goToAddHospital();
-
-        }
+    public void goToAddHospitalPositiv() throws IOException, InterruptedException {
+       mainI.goToAddHospital()
+               .waitForMainPageLoad();
+              assertTrue("Main Page not open",mainI.isOnMainPage());
+            }
 
     // test of clicking on Registration link are written in another class
 
