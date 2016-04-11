@@ -15,96 +15,10 @@ import org.openqa.selenium.support.PageFactory;
 
 public class AlexMainPage extends Page {
 
-    /* Links - Starts */
+    /* Links */
 
     @FindBy(xpath = "//*[@id='logout-container']/a")
     WebElement logoutLink;
-
-    // Menu bar - main.
-    @FindBy(xpath = "")
-    WebElement aaa;
-    @FindBy(xpath = "")
-    WebElement bbb;
-    @FindBy(xpath = "")
-    WebElement ccc;
-    @FindBy(xpath = "")
-    WebElement ddd;
-    @FindBy(xpath = "")
-    WebElement eee;
-    @FindBy(xpath = "")
-    WebElement fff;
-    @FindBy(xpath = "")
-    WebElement ggg;
-    @FindBy(xpath = "")
-    WebElement hhh;
-
-    // Menu bar - Overview.
-    @FindBy(xpath = "")
-    WebElement aaa0;
-
-    // Menu bar - Physician.
-    @FindBy(xpath = "")
-    WebElement aaa1;
-    @FindBy(xpath = "")
-    WebElement bbb1;
-    @FindBy(xpath = "")
-    WebElement ccc1;
-    @FindBy(xpath = "")
-    WebElement ddd1;
-    @FindBy(xpath = "")
-    WebElement eee1;
-
-    // Menu bar - Recruiter.
-    @FindBy(xpath = "")
-    WebElement aaa00;
-
-    // Menu bar - Hospital.
-    @FindBy(xpath = "")
-    WebElement aaa2;
-    @FindBy(xpath = "")
-    WebElement bbb3;
-    @FindBy(xpath = "")
-    WebElement ccc4;
-    @FindBy(xpath = "")
-    WebElement ddd5;
-    @FindBy(xpath = "")
-    WebElement eee6;
-    @FindBy(xpath = "")
-    WebElement fff7;
-    @FindBy(xpath = "")
-    WebElement ggg8;
-
-    // Menu bar - Messages.
-    @FindBy(xpath = "")
-    WebElement a0aa;
-
-    // Menu bar - Accounting.
-    @FindBy(xpath = "")
-    WebElement aaa2a;
-    @FindBy(xpath = "")
-    WebElement bbb3a;
-    @FindBy(xpath = "")
-    WebElement ccc4a;
-    @FindBy(xpath = "")
-    WebElement ddd5a;
-
-    // Menu bar - Web Tracking.
-    @FindBy(xpath = "")
-    WebElement aaa2aa;
-    @FindBy(xpath = "")
-    WebElement bbb3aa;
-    @FindBy(xpath = "")
-    WebElement ccc4aa;
-    @FindBy(xpath = "")
-    WebElement ddd5aa;
-
-    // Menu bar - Jobs.
-    @FindBy(xpath = "")
-    WebElement aaa22aa;
-    @FindBy(xpath = "")
-    WebElement bbb23aa;
-
-    /* Links - Ends */
 
     /* Methods */
 
@@ -117,6 +31,141 @@ public class AlexMainPage extends Page {
 
     public AlexMainPage OpenMainPage() {
         driver.get(PAGE_URL);
+        return this;
+    }
+
+    /* Go to... */
+
+    // Overview.
+    public AlexMainPage gotoOverview() {
+        driver.get("http://admin.yikids.com/admin/overview");
+        return this;
+    }
+
+    // Physician.
+    public AlexMainPage gotoPhysicianOverview() {
+        driver.get("http://admin.yikids.com/admin/physician-overview");
+        return this;
+    }
+
+    public AlexMainPage gotoPhysicianProfileTracking() {
+        driver.get("http://admin.yikids.com/admin/physician-profile-tracking");
+        return this;
+    }
+
+    public AlexMainPage gotoFilesOnBox() {
+        driver.get("http://admin.yikids.com/admin/boxfiles");
+        return this;
+    }
+
+    public AlexMainPage gotoPhysicianReferral() {
+        driver.get("http://admin.yikids.com/admin/physicianreferralsummary");
+        return this;
+    }
+
+    public AlexMainPage gotoPlacements() {
+        driver.get("http://admin.yikids.com/admin/placement_summary");
+        return this;
+    }
+
+    // Recruiter.
+    public AlexMainPage gotoRecruiter() {
+        driver.get("http://admin.yikids.com/admin/recruiter-overview");
+        return this;
+    }
+
+    // Hospital.
+    public AlexMainPage gotoHospitalOverview() {
+        driver.get("http://admin.yikids.com/admin/hospital-overview");
+        return this;
+    }
+
+    public AlexMainPage gotoHospitalOwnerManagement() {
+        driver.get("http://admin.yikids.com/admin/hospital_owner_management");
+        return this;
+    }
+
+    public AlexMainPage gotoAddHospital() {
+        driver.get("http://admin.yikids.com/hospital/add");
+        return this;
+    }
+
+    public AlexMainPage gotoOrphanHospitalManagement() {
+        driver.get("http://admin.yikids.com/admin/orphan_hospital_management");
+        return this;
+    }
+
+    public AlexMainPage gotoHospitalReferral() {
+        driver.get("http://admin.yikids.com/admin/hospreferralsummary");
+        return this;
+    }
+
+    public AlexMainPage gotoPremiumAd() {
+        driver.get("http://admin.yikids.com/admin/premium_ad");
+        return this;
+    }
+
+    public AlexMainPage gotoCmtAppr() {
+        driver.get("http://admin.yikids.com/admin/cmtappr");
+        return this;
+    }
+
+    // Messages.
+    public AlexMainPage gotoManageMandrillTemplates() {
+        driver.get("http://admin.yikids.com/admin/manage-mandrill-templates");
+        return this;
+    }
+
+    // Accounting.
+    public AlexMainPage gotoAccMonthlyAllCustomers() {
+        driver.get("http://admin.yikids.com/admin/accountingmonthlyallcustomers");
+        return this;
+    }
+
+    public AlexMainPage gotoAccountingOverview() {
+        driver.get("http://admin.yikids.com/admin/accountingoverviewpercustomer");
+        return this;
+    }
+
+    public AlexMainPage gotoAccountingMonthly() {
+        driver.get("http://admin.yikids.com/admin/accountingmonthlypercustomer");
+        return this;
+    }
+
+    public AlexMainPage gotoAccOverviewAllCustomers() {
+        driver.get("http://admin.yikids.com/admin/accountingoverviewallcustomers");
+        return this;
+    }
+
+    // Web Tracking.
+    public AlexMainPage gotoUserDump() {
+        driver.get("http://admin.yikids.com/admin/user-dump");
+        return this;
+    }
+
+    public AlexMainPage gotoUserLogTask() {
+        driver.get("http://admin.yikids.com/admin/user-log-task");
+        return this;
+    }
+
+    public AlexMainPage gotoUserActivity() {
+        driver.get("http://admin.yikids.com/admin/user-activity");
+        return this;
+    }
+
+    public AlexMainPage gotoPotentialCustomer() {
+        driver.get("http://admin.yikids.com/admin/potential-customer");
+        return this;
+    }
+
+    // Jobs.
+    public AlexMainPage gotoRewrite() {
+        driver.get("http://admin.yikids.com/rewrite");
+        return this;
+    }
+
+    public AlexMainPage gotoJobFilter() {
+        driver.get("http://admin.yikids.com/job/jobfilter");
         return this;
     }
 
