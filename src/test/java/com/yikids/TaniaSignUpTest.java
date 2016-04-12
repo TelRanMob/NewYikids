@@ -2,25 +2,28 @@ package com.yikids;
 
 import com.yikids.pages.TaniaSignUPPage;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.PageFactory;
-import org.testng.annotations.*;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+
 import static org.testng.AssertJUnit.assertTrue;
 
 public class TaniaSignUpTest {
-    // static String driverPath = "C:\\Development\\browserDriver\\";
+   // static String driverPath = "C:\\Development\\browserDriver\\";
 
     public TaniaSignUPPage taniaSignUPPage;
     public WebDriver driver;
 
     @BeforeClass(alwaysRun = true)
     public void setup() {
-        // System.setProperty("webdriver.chrome.driver", driverPath+"chromedriver.exe");
-        //  driver = new ChromeDriver();
-        //System.setProperty("webdriver.ie.driver", driverPath + "IEDriverServer.exe");
-        // driver = new InternetExplorerDriver();
+      // System.setProperty("webdriver.chrome.driver", driverPath+"chromedriver.exe");
+      driver = new ChromeDriver();
+      //System.setProperty("webdriver.ie.driver", driverPath + "IEDriverServer.exe");
+       // driver = new InternetExplorerDriver();
 
-        driver = new FirefoxDriver();
+        //driver = new FirefoxDriver();
         taniaSignUPPage = PageFactory.initElements(driver, TaniaSignUPPage.class);
     }
 
@@ -29,25 +32,6 @@ public class TaniaSignUpTest {
         taniaSignUPPage.openTaniaSignUPPage();
     }
 
-    @Test
-    public void CheckingLabelOnLoginPage(){
-
-        System.out.println("Page title is: " + driver.getTitle());
-
-        assertTrue( "First Name text is confirmed", taniaSignUPPage.checkFirstNameLabel());
-        assertTrue( "Last Name text is confirmed", taniaSignUPPage.checkLastNameLabel());
-        assertTrue( "Email text is confirmed", taniaSignUPPage.checkEmailLabel());
-        assertTrue( "Zip Code text is confirmed", taniaSignUPPage.checkZipCodeLabel());
-        assertTrue( "Company  text is confirmed", taniaSignUPPage.checkCompanyLabel());
-        //assertTrue("Check captcha",taniaSignUPPage.CheckPageForCapthcaMessage());
-    }
-
-    @Test  /* Positive */
-    public void positiveSignUpTest(){
-        taniaSignUPPage
-                .FillsignUPFields()
-                .clickToContinue();
-    }
     /* Negative tests */
     @Test
     public void fillSignUPFileds() {
@@ -61,15 +45,15 @@ public class TaniaSignUpTest {
                 .fillzipPlusField("55")
                 .clickToContinue()
                 .waitForWarningCapchaMessage();
-        assertTrue("No captha message", taniaSignUPPage.CheckPageForCapthcaMessage());
+        assertTrue(" captha message", taniaSignUPPage.CheckPageForCapthcaMessage());
         try {
             Thread.sleep(3000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }
-    //  .checkelement("Please check Captcha!");
-    //  System.out.println("Page title is: " + driver.getTitle());
+              //  .checkelement("Please check Captcha!");
+      //  System.out.println("Page title is: " + driver.getTitle());
 
 
     @Test
@@ -85,8 +69,8 @@ public class TaniaSignUpTest {
                 .clickToContinue()
                 .waitForWarningFirstNameEmpty();
 
-        assertTrue("No Firstname empty warning message", taniaSignUPPage.checkFirstNameErrorMessage());
-        // Thread.sleep(3000);
+        assertTrue("Firstname empty warning message", taniaSignUPPage.checkFirstNameErrorMessage());
+        //Thread.sleep(3000);
     }
 
     @Test
@@ -102,8 +86,8 @@ public class TaniaSignUpTest {
                 .clickToContinue()
                 .waitForWarningLastNameEmpty();
 
-        assertTrue("No Lastname empty warning message", taniaSignUPPage.checkLastNameErrorMessage());
-        Thread.sleep(3000);
+        assertTrue("Lastname empty warning message", taniaSignUPPage.checkLastNameErrorMessage());
+        //Thread.sleep(3000);
     }
     @Test
     public void fillFildesNegativInvalidEmail() throws InterruptedException {
@@ -118,8 +102,8 @@ public class TaniaSignUpTest {
                 .clickToContinue()
                 .waitForWarningEmailEmpty();
 
-        assertTrue("No valid Email warning message", taniaSignUPPage.checkEmailInvalidErrorMessage());
-        // Thread.sleep(3000);
+        assertTrue("Not valid Email warning message", taniaSignUPPage.checkEmailInvalidErrorMessage());
+       // Thread.sleep(3000);
     }
     @Test
     public void fillFildesNegativRequiredEmail() throws InterruptedException {
@@ -134,8 +118,8 @@ public class TaniaSignUpTest {
                 .clickToContinue()
                 .waitForWarningEmailEmpty();
 
-        assertTrue("No Empty Email warning message", taniaSignUPPage.checkEmailRequiredErrorMessage());
-        Thread.sleep(3000);
+        assertTrue("Empty Email warning message", taniaSignUPPage.checkEmailRequiredErrorMessage());
+       // Thread.sleep(3000);
     }
 
     @Test
@@ -151,8 +135,8 @@ public class TaniaSignUpTest {
                 .clickToContinue()
                 .waitForWarningZipCodeMessageEmpty();
 
-        assertTrue("No Zip Code Empty warning message", taniaSignUPPage.checkZipCodeEmptyMessage());
-        Thread.sleep(3000);
+        assertTrue("Zip Code Empty warning message", taniaSignUPPage.checkZipCodeEmptyMessage());
+       // Thread.sleep(3000);
     }
 
     @Test
@@ -168,8 +152,8 @@ public class TaniaSignUpTest {
                 .clickToContinue()
                 .waitForWarningZipCodeMessageEmpty();
 
-        assertTrue("No Zip Code Invalid warning message", taniaSignUPPage.checkZipCodeInvalidMessage());
-        Thread.sleep(3000);
+        assertTrue("Zip Code Invalid warning message", taniaSignUPPage.checkZipCodeInvalidMessage());
+       // Thread.sleep(3000);
     }
     @Test
     public void fillFildesNegativInvalidZipPlusCode() throws InterruptedException {
@@ -184,32 +168,13 @@ public class TaniaSignUpTest {
                 .clickToContinue()
                 .checkZipPlusMessage();
 
-        assertTrue("No Zip Plus Invalid warning message", taniaSignUPPage.checkZipPlusMessage());
+        assertTrue("Zip Plus Invalid warning message", taniaSignUPPage.checkZipPlusMessage());
 
     }
+    //hbh
 
-    @Test
-    public void fillFildesFullNegative() throws InterruptedException {
-
-        taniaSignUPPage
-                .fillFirstnameField("")
-                .fillLastNameField("")
-                .fillemailField("")
-                .fillzipcodeField("")
-                .fillcompanyField("")
-                .fillzipPlusField("")
-                .clickToContinue()
-                .waitForWarningCapchaMessage();
-
-        assertTrue("No captha message", taniaSignUPPage.CheckPageForCapthcaMessage());
-        assertTrue("No firstName empty warning", taniaSignUPPage.checkFirstNameErrorMessage());
-        assertTrue("No lastName empty warning", taniaSignUPPage.checkLastNameErrorMessage());
-        assertTrue("No emailEmptyField warning", taniaSignUPPage.checkEmailRequiredErrorMessage());
-        assertTrue("No ZipEmptyField warning", taniaSignUPPage.checkZipCodeEmptyMessage());
-       // assertTrue("No Zip Plus Invalid warning message", taniaSignUPPage.checkZipPlusMessage());
-    }
-    // @AfterClass(alwaysRun = true)
-    //  public void tearDown() {
-    //     this.driver.quit();
-    // }
+   // @AfterClass(alwaysRun = true)
+  //  public void tearDown() {
+   //     this.driver.quit();
+  // }
 }

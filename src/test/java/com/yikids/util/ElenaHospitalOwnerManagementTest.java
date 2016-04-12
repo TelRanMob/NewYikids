@@ -39,8 +39,9 @@ public class ElenaHospitalOwnerManagementTest {
         @Test
         public void LoginTest() {
 
-          //  System.out.println("Text element ="+ elenaHOMtPage.gettext());}
-elenaHOMtPage.CheckTextOfElementLogOut();}
+            System.out.println("Text element ="+ elenaHOMtPage.gettext());
+            elenaHOMtPage.CheckTextOfElementLogOut();
+        }
 
 
    @AfterClass(alwaysRun = true)
