@@ -1,13 +1,11 @@
 package com.yikids;
-
-
 import com.yikids.pages.TaniaLoginPage;
+import com.yikids.pages.TaniaMainPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.PageFactory;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
+
 
 import static org.testng.AssertJUnit.assertFalse;
 import static org.testng.AssertJUnit.assertTrue;
@@ -15,12 +13,12 @@ import static org.testng.AssertJUnit.assertTrue;
 //@org.testng.annotations.Listeners(FailTestScreenshotListener.class)
 public class TaniaLoginTest {
     // private static Logger Log = Logger.getLogger(LogLog4j.class.getName());
-    // public static String registered_username = "3339Doctor";
-    // public static String registered_password = "LinkCare!!11";
-    // static String driverPath = "C:\\Development\\browserDriver\\";
+        // static String driverPath = "C:\\Development\\browserDriver\\";
     public TaniaLoginPage taniaLoginPage;
+    public TaniaMainPage taniaMainPage;
     public WebDriver driver;
-
+    public static String  email = "admin@erdocfinder.com";
+    public static String  password = "Test123";
     @BeforeClass(alwaysRun = true)
     public void setup() {
         // System.setProperty("webdriver.chrome.driver", driverPath+"chromedriver.exe");
@@ -36,32 +34,30 @@ public class TaniaLoginTest {
     }
 
     @Test
-    public void loginNegativeTest() {
-        //  Log.info("TestLoginWithExtData was started....");
-        taniaLoginPage
-                .fillEmailField("email333@yuopmail.com")
-                .fillpasswordField("307607608")
-                .clickLogInLinkButton();
-
-
-     ;
-
-        // Log.info("negative test - email not exist- sign up...");
-        assertTrue("No warning about wrong login data appears", taniaLoginPage.CheckPageForNotLogIn());
-        assertTrue("WE are not on login page", taniaLoginPage.isOnLoginPage());
-
-    }
-
-    @Test
     public void loginPositiveTest() {
         //  Log.info("TestLoginWithExtData was started....");
         taniaLoginPage
-                .fillEmailField("admin@erdocfinder.com")
+                .fillEmailField(email)
+                .fillpasswordField(password)
+                .clickLogInLinkButton();
+
+        // Log.info("negative test - email not exist- sign up...");
+      //  assertTrue("No warning about wrong login data appears", taniaLoginPage.CheckPageForNotLogIn());
+       // assertTrue("WE are not on login page", taniaLoginPage.isOnLoginPage());
+        assertFalse("WE are still on login page", taniaLoginPage.isOnLoginPage());
+        assertTrue("WE are still on login page", taniaMainPage.isOnMainPage());
+    }
+
+    @Test
+    public void loginNegativeTest() {
+        //  Log.info("TestLoginWithExtData was started....");
+        taniaLoginPage
+                .fillEmailField("")
                 .fillpasswordField("Test123")
                 .clickLogInLinkButton();
-        assertTrue("WE are on overview page", taniaLoginPage.isOnOverviewPage());
+        assertFalse("WE are still on login page", taniaMainPage.isOnMainPage());
         // Log.info("negative test - email not exist- sign up...");
-      //  assertFalse("WE are still on login page", taniaLoginPage.isOnLoginPage());
+     //   assertFalse("WE are still on login page", taniaLoginPage.isOnLoginPage());
 
 
     }
@@ -77,10 +73,10 @@ public class TaniaLoginTest {
 
     @Test
     public void FillLogInFields() {
-        taniaLoginPage.FillLogInFields();
+        taniaLoginPage.FillWrongLogInFields();
         taniaLoginPage.clickLogInLinkButton();
         // Log.info("negative test - email not exist- sign up...");
-        assertTrue("First Name text not confirmed", taniaLoginPage.CheckPageForNotLogIn());
+        assertTrue("No Log in  confirmed", taniaLoginPage.CheckPageForNotLogIn());
     }
 
 
