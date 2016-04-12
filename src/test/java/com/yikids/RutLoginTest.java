@@ -78,7 +78,7 @@ public class RutLoginTest {
                 .fillPasswordField("1234567")
                 .clickLoginButton();
         assertTrue("We are not on the Log In page", rutLoginPage.isOnLoginPage());
-//        assertTrue("No Password error message", rutLoginPage.checkPasswordNotValidMessage());
+        assertTrue("No Password error message", rutLoginPage.checkPasswordNotValidMessage());
         assertTrue("No Forgot password button", rutLoginPage.checkForgotPasswordMessage());
         Thread.sleep(3000);
     }

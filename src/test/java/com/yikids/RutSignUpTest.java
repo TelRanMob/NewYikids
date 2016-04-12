@@ -86,6 +86,20 @@ public class RutSignUpTest {
         Thread.sleep(3000);
     }
     @Test
+    public void fillFieldsNegativeEmailNotValid() throws InterruptedException {
+        rutSignUPPage
+                .fillFirstnameField("firstname")
+                .fillLastNameField("lastname")
+                .fillEmailField("aaa")
+                .fillZipCode1Field("00501")
+                .fillZipCode2Field("11")
+                .fillCompanyField("company")
+                .clickToContinue()
+                .waitForEmailWarning();
+        assertTrue("No Email not valid warning", rutSignUPPage.checkEmailNotValidFieldMessage());
+        Thread.sleep(3000);
+    }
+    @Test
     public void fillFieldsNegativeZipCode1Empty() throws InterruptedException {
         rutSignUPPage
                 .fillFirstnameField("firstname")
@@ -97,6 +111,20 @@ public class RutSignUpTest {
                 .clickToContinue()
                 .waitForZipCodeWarning();
         assertTrue("No Zip code empty warning", rutSignUPPage.checkZipCodeEmptyFieldMessage());
+        Thread.sleep(3000);
+    }
+    @Test
+    public void fillFieldsNegativeZipCode1NotValid() throws InterruptedException {
+        rutSignUPPage
+                .fillFirstnameField("firstname")
+                .fillLastNameField("lastname")
+                .fillEmailField("email@yopmail.com")
+                .fillZipCode1Field("00000")
+                .fillZipCode2Field("11")
+                .fillCompanyField("company")
+                .clickToContinue()
+                .waitForZipCodeWarning();
+        assertTrue("No Zip code not valid warning", rutSignUPPage.checkZipCodeNotValidFieldMessage());
         Thread.sleep(3000);
     }
     @Test

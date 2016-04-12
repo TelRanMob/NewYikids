@@ -57,8 +57,8 @@ public class SignUpTest {
                 .fillZip1Field("4562")
                 .fillCompany1Field("Compani")
                 .fillZip21Field("111")
-                .clickToContinue()
-                .waitForFirstNameWarning();
+                .clickToContinue();
+     //           .waitForFirstNameWarning();
 
         assertTrue("No Firstname empty warning", signUPPage.checkfirstNameEmptyFieldMessage());
         Thread.sleep(3000);
