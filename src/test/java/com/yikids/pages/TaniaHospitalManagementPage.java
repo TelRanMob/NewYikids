@@ -78,11 +78,7 @@ public class TaniaHospitalManagementPage extends Page {
     @FindBy(xpath = "//*[@id='row10']/td[1]/input")
     WebElement checkbox11;
 
-    @FindBy(xpath = "//*[@id='row11']/td[1]/input")
-    WebElement checkbox12;
 
-    @FindBy(xpath = "//*[@id='row172']/td[1]/input")
-    WebElement checkbox173;
 
     @FindBy(xpath = "//*[@id='row180']/td[1]/input")
     WebElement checkbox181;
