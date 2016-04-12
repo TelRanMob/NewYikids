@@ -1,5 +1,4 @@
 package com.yikids.pages;
-
 /**
  * Created by Tania Pereminski on 4/01/2016.
  */
@@ -12,7 +11,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import java.util.Random;
-
 /**
  * Created by Tania Pereminski
  */
@@ -27,6 +25,8 @@ public class TaniaLoginPage extends Page {
     @FindBy(id = "password")
     WebElement passwordField;
 
+  //  @FindBy(xpath="//*[@class='err']")// WebElement ErrorEmailNotExist;
+
     //Link Buttons
     @FindBy(xpath = "//*[@id='login-form']/div/button")
     WebElement logInLinkButton;
@@ -38,10 +38,15 @@ public class TaniaLoginPage extends Page {
     WebElement forgotPasswordLinkButton;
 
     @FindBy(xpath = "//*[@id='login-form']/div[1]")
-    WebElement emailNotExist;
+    WebElement emailNotExistMessage;
 
+    @FindBy(xpath = "//div[@class='err'][contains(text(),'Your password is not correct. Please try again.')]")
+    WebElement errorPasswordMessage;
+
+/******//* On main page *//*********/
     @FindBy(xpath = "//*[@id='logout-container']/a")
     WebElement LogOutLinkButton;
+/*****/
 
     public TaniaLoginPage(WebDriver driver) {
         super(driver);
@@ -69,9 +74,14 @@ public class TaniaLoginPage extends Page {
         }
     }
     public boolean CheckPageForNotLogIn() {
-        return verifyTextBoolean(emailNotExist, "Please sign up because your email does not exist in our system.");
+        return verifyTextBoolean(emailNotExistMessage, "Please sign up because your email does not exist in our system.");
     }
 
+
+    public boolean checkWrongPassMessage() {
+
+        return exists(emailNotExistMessage);
+    }
     //Fill the fields
 
     public TaniaLoginPage openLoginPage() {
@@ -118,8 +128,14 @@ public class TaniaLoginPage extends Page {
         return this;
     }
 
+    public TaniaLoginPage goToForgotPasswordLink() {
+        //Log.info("Go to forgotPassword LinkButton");
+        driver.get("http://admin.yikids.com/forgot-password");
+        return this;
+    }
 
-    public TaniaLoginPage FillLogInFields() {
+
+    public TaniaLoginPage FillWrongLogInFields() {
         //Log.info("Filling all fields");
         openLoginPage();
         String email = generateEmail();
@@ -144,4 +160,38 @@ public class TaniaLoginPage extends Page {
         // Log.info("Doctor's Username generated is <" + username + ">");
         return username;
     }
+
+    public boolean passwordNotCorrect() {
+        return exists(errorPasswordMessage);
+    }
+    public boolean emailNotCorrect(){ return exists(emailNotExistMessage);}
+
+    //Implicity waits -methods on LogInPage
+
+    public void waitForloginButton()    {
+        waitUntilIsLoaded(logInLinkButton);
+    }
+    public void waitForlogOutButton()    {
+        waitUntilIsLoaded(LogOutLinkButton);
+    }
+   /* public void waitForcontinueButtonOnSignUp()    {
+        waitUntilIsLoaded(continueButton);
+    }
+    public void waitForResetPasswordButtom()    {
+        waitUntilIsLoaded(resetPasswordButtom);
+    }*/
+    public void waitForErrorPasswordMessage()    {
+        waitUntilIsLoaded(errorPasswordMessage);
+    }
+  /*  public void waitForPageSignUpTitle(){
+       waitUntilIsLoaded(pageSignUpTitle);
+    }
+    public void waitForResetPasswordTitle()    {
+        waitUntilIsLoaded(resetPasswordTitle);
+    }
+    public void waitForWarningLoginMessage(){
+        waitUntilIsLoaded(warningLoginMessage);
+    }*/
+
+
 }
