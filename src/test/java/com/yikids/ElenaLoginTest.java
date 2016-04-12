@@ -2,7 +2,7 @@ package com.yikids;
 
 import com.yikids.pages.ElenaLoginPage;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -21,9 +21,9 @@ public class ElenaLoginTest {
     @BeforeClass(alwaysRun = true)
     public void setup() {
       //System.setProperty("webdriver.chrome.driver", driverPath+"chromedriver.exe");
-        driver = new ChromeDriver();
+        //driver = new ChromeDriver();
 
-      // driver = new FirefoxDriver();
+        driver = new FirefoxDriver();
         elenaLoginPage = PageFactory.initElements(driver, ElenaLoginPage.class);
 
     }
@@ -50,18 +50,21 @@ public class ElenaLoginTest {
       assertTrue("Check : the element LogOut is present on the page",elenaLoginPage.CheckElementLogOu());
 
     }
-    @Test//negative test
-    public void NegstiveLoginTest() {
+
+    @Test(dataProviderClass = DataProviders.class, dataProvider = "loadInvalidLoginFromFile")
+    public void NegstiveLoginTest(String login, String pass) {
         //  Log.info("TestLoginWithExtData was started....");
         elenaLoginPage
-                .fillEmailField("Login@yoopmail.com")
-                .fillPasswordField("Asd1234")
+                .fillEmailField(login)
+                .fillPasswordField(pass)
                 .ClickLoginButton();
 
+        // String assertText = "elenaLoginPage."+method+";";
 
-        assertTrue( "The text error email is present on the page", elenaLoginPage.CheckTextErrorEmail());
 
-        assertTrue("Check : the element Login is present on the page",elenaLoginPage.CheckElementLogIn());
+        //assertTrue( "The text error email is present on the page", elenaLoginPage.CheckTextErrorEmail());
+
+        assertTrue("We are not in login page anymore", elenaLoginPage.CheckElementLogIn());
 
     }
 

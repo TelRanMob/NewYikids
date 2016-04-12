@@ -27,6 +27,7 @@ public class DataProviders {
         return userData.iterator();
     }
 
+
     @DataProvider
     public static Iterator<Object[]> loadInvalidLoginFromFile() throws IOException {
         BufferedReader in = new BufferedReader(new InputStreamReader(

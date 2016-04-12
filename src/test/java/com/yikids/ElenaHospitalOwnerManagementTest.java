@@ -42,6 +42,7 @@ public class ElenaHospitalOwnerManagementTest {
 
             System.out.println("Text element ="+ elenaHOMtPage.gettext());
             elenaHOMtPage.CheckTextOfElementLogOut();
+
         }
 
 
