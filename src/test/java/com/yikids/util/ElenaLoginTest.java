@@ -65,7 +65,7 @@ public class ElenaLoginTest {
 
     }
 
-    // test of clicking on Registration link are written in another class
+
 
 
 

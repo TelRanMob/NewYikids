@@ -12,9 +12,7 @@ import org.openqa.selenium.support.PageFactory;
 
 import java.util.Random;
 
-/**
- * Created by Iakov Volf
- */
+
 public class ElenaLoginPage extends Page {
     //private static Logger Log = Logger.getLogger(LogLog4j.class.getName());
     private static Random rnd = new Random();
@@ -57,6 +55,14 @@ public class ElenaLoginPage extends Page {
         setElementText(emailField, email);
         return this;
     }
+     public ElenaLoginPage Login() {
+
+         fillEmailField("admin@erdocfinder.com");
+         fillPasswordField("Test123");
+         ClickLoginButton();
+         return this;
+     }
+
 
     public ElenaLoginPage fillPasswordField(String password) {
         //Log.info("Filling username field");
