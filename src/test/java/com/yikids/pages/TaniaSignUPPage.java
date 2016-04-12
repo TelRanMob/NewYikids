@@ -208,7 +208,6 @@ public class TaniaSignUPPage extends Page {
         waitUntilIsLoaded(ErrorCaptcha);
     }
 
-
     public void waitForWarningZipCodeMessageEmpty() {
         waitUntilIsLoaded(zipCodeMessage);
     }
@@ -217,30 +216,21 @@ public class TaniaSignUPPage extends Page {
         waitUntilIsLoaded(zipPlusMessage);
     }
 
+
     /* check your field is valid */
-    public boolean checkFirstNameErrorMessage() {
-        return verifyTextBoolean(firstNameMessage, "The first name field is required.");
+    public boolean checkFirstNameErrorMessage() {return verifyTextBoolean(firstNameMessage, "The first name field is required.");
     }
-
-    public boolean checkLastNameErrorMessage() {
-        return verifyTextBoolean(lastNameMessage, "The last name field is required.");
+    public boolean checkLastNameErrorMessage() {return verifyTextBoolean(lastNameMessage, "The last name field is required.");
     }
-
-    public boolean checkEmailInvalidErrorMessage() {
-        return verifyTextBoolean(emailMessage, "The email format is invalid.");
+    public boolean checkEmailInvalidErrorMessage() {return verifyTextBoolean(emailMessage, "The email format is invalid.");
     }
-
-    public boolean checkEmailRequiredErrorMessage() {
-        return verifyTextBoolean(emailMessage, "The email field is required.");
+    public boolean checkEmailRequiredErrorMessage() {return verifyTextBoolean(emailMessage, "The email field is required.");
     }
 
 
     public boolean checkZipCodeInvalidMessage(){return verifyTextBoolean(zipCodeMessage, "Zipcode is invalid");}
     public boolean checkZipCodeEmptyMessage(){return verifyTextBoolean(zipCodeMessage, "The zipcode field is required.");}
-
     public boolean checkZipPlusMessage(){return verifyTextBoolean(zipPlusMessage, "The zipcode must be a number.");}
-
-
     public boolean CheckPageForCapthcaMessage() {
         return verifyTextBoolean(ErrorCaptcha,"Please check Captcha!");
     }
@@ -256,7 +246,7 @@ public class TaniaSignUPPage extends Page {
         return verifyTextBoolean(emailLabel, "Email*");
     }
     public boolean checkZipCodeLabel() {return verifyTextBoolean(zipCodeLabel, "Zip code*");}
-
+    public boolean checkCompanyLabel() {return verifyTextBoolean(companyLabel, "Company");}
 
 
     public TaniaSignUPPage checkelement(String error){
