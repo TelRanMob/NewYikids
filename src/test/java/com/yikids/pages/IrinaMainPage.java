@@ -6,7 +6,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import java.io.IOException;
-import java.util.Random;
 
 /**
  * Created by Irina Primak on 06-Apr-16.
@@ -15,11 +14,11 @@ public class IrinaMainPage extends Page {
 
 
     // /fields // TODO: find real locator
-    @FindBy(xpath="//li[@id='nav_benefits']/a)[10]")
+    @FindBy(xpath = "//li[@id='nav_benefits']/a][10]")
             // " http://admin.yikids.com/admin/hospital-overview")
     WebElement hospitalLink;
 
-    @FindBy(xpath="//li[@id='nav_benefits']/a)[13]")
+    @FindBy(xpath = "//li[@id='nav_benefits']/a][13]")
              // "http://admin.yikids.com/hospital/add")
     WebElement addHospitalLink;
 

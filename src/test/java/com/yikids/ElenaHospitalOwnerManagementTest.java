@@ -1,4 +1,4 @@
-package com.yikids.util;
+package com.yikids;
 
 import com.yikids.pages.ElenaHospitalOwnerManagementPage;
 import com.yikids.pages.ElenaLoginPage;
@@ -14,7 +14,7 @@ import org.testng.annotations.Test;
 public class ElenaHospitalOwnerManagementTest {
 
     public ElenaHospitalOwnerManagementPage elenaHOMtPage;
-    public ElenaLoginPage mainPage;
+    public ElenaLoginPage loginpage;
     public WebDriver driver;
     //public String email = "admin@erdocfinder.com";
     //public String password = "Test123";
@@ -23,21 +23,22 @@ public class ElenaHospitalOwnerManagementTest {
     public void setup() {
        // driver = new ChromeDriver();
         driver = new FirefoxDriver();
-        mainPage = PageFactory.initElements(driver, ElenaLoginPage.class);
-        mainPage.openLoginPage();
-        mainPage.Login();
+        loginpage = PageFactory.initElements(driver, ElenaLoginPage.class);
+        elenaHOMtPage = PageFactory.initElements(driver, ElenaHospitalOwnerManagementPage.class);
+        loginpage.openLoginPage();
+        loginpage.Login();
     }
 
     @BeforeMethod(alwaysRun = true)
     public void beforeMethodSetUp() {
 
-       // elenaHOMtPage.openAdminPage();
+        elenaHOMtPage.openAdminPage();
         driver.get("http://admin.yikids.com/admin/hospital_owner_management");
     }
 
 
         @Test
-        public void LoginTest() {
+        public void HospitalOwnTest() {
 
             System.out.println("Text element ="+ elenaHOMtPage.gettext());
             elenaHOMtPage.CheckTextOfElementLogOut();

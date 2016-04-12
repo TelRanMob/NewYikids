@@ -1,5 +1,6 @@
 package com.yikids.pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -43,6 +44,29 @@ public class ElenaHospitalOwnerManagementPage extends Page {
         return this;
     }
 
+    public void checkCheckbxes(int Chec) {
+        int rowNumber;
+
+        for (rowNumber = 0; rowNumber <= Chec; rowNumber++) {
+            String locator = "//*[@id='row" + rowNumber + "']/td[1]/input";
+            WebElement box = driver.findElement(By.xpath(locator));
+            box.click();
+        }
+    }
+
+    //Checking only checkboxes of rows with selected status
+    //Todo Create method
+    public void checkNotAllCheckbxes(int Chec, String status) {
+        int rowNumber = 0;
+        String locatorStatus = "//*[@id='row" + rowNumber + "']/td[9]";
+        WebElement statusCell = driver.findElement(By.xpath(locatorStatus));
+        String statusText = statusCell.getText();
+        for (rowNumber = 0; rowNumber <= Chec; rowNumber++) {
+            String locator = "//*[@id='row" + rowNumber + "']/td[1]/input";
+            WebElement box = driver.findElement(By.xpath(locator));
+            box.click();
+        }
+    }
 
     public String gettext() {
         return getTextElement(NotOwnedStatus);

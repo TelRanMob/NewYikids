@@ -4,8 +4,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import java.io.IOException;
-
 
 /**
  * Created by IrinaPrimak on 10-Apr-16.
@@ -23,14 +21,14 @@ public class IrinaHospOwnerManagPage extends Page {
     @FindBy(id = "show-all")
     WebElement showAllButton;
 
-    @FindBy(xpath = "//li[@id='nav_benefits']/a)[10]")
+    @FindBy(xpath = "//li[@id='nav_benefits']/a][10]")
     // " http://admin.yikids.com/admin/hospital-overview")
     WebElement hospitalLink;
 
     @FindBy(xpath = "//div[@class='text-center'][contains (text(), 'Hospital Owner Management Page')]")
     WebElement hospitalOwnerManagementPageTitle;
 
-    @FindBy(xpath = "/li[@id='nav_benefits']/a)[12")
+    @FindBy(xpath = "//li[@id='nav_benefits']/a][12]")
     WebElement hospitalOwnerManagementLink;
 
     @FindBy(xpath = "//*[@id='logout-container']/a")

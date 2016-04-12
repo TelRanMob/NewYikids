@@ -1,4 +1,4 @@
-package com.yikids.util;
+package com.yikids;
 
 import com.yikids.pages.ElenaLoginPage;
 import org.openqa.selenium.WebDriver;
