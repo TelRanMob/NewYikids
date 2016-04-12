@@ -12,9 +12,7 @@ import org.openqa.selenium.support.PageFactory;
 
 import java.util.Random;
 
-/**
- * Created by Iakov Volf
- */
+
 public class ElenaLoginPage extends Page {
     //private static Logger Log = Logger.getLogger(LogLog4j.class.getName());
     private static Random rnd = new Random();
@@ -28,6 +26,10 @@ public class ElenaLoginPage extends Page {
 
     @FindBy(xpath="//*[@class='err']")
     WebElement ErrorEmail;
+
+    @FindBy(xpath = "//div[@class='err'][contains(text(),'Your password is not correct. Please try again.')]")
+    WebElement errorPasswordMessage;
+
     //buttons
     @FindBy(xpath = "//*[@id='login-form']/div/button")
     WebElement LoginButton;
@@ -56,6 +58,14 @@ public class ElenaLoginPage extends Page {
         setElementText(emailField, email);
         return this;
     }
+     public ElenaLoginPage Login() {
+
+         fillEmailField("admin@erdocfinder.com");
+         fillPasswordField("Test123");
+         ClickLoginButton();
+         return this;
+     }
+
 
     public ElenaLoginPage fillPasswordField(String password) {
         //Log.info("Filling username field");
@@ -84,8 +94,14 @@ public class ElenaLoginPage extends Page {
     public boolean CheckTextErrorEmail() {
         return verifyTextBoolean(ErrorEmail, "Please sign up because your email does not exist in our system.");
     }
-        public boolean CheckElementLogIn(){return verifyElementIsPresent(LoginButton);
+
+    public boolean CheckElementLogIn() {
+        return exists(LoginButton);
         }
+
+    public boolean passwordNotCorrect() {
+        return exists(errorPasswordMessage);
+    }
     }
 
 

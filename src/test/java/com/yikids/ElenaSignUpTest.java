@@ -1,6 +1,7 @@
 package com.yikids;
 
 import com.yikids.pages.ElenaSignUPPage;
+import com.yikids.pages.LoginPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.PageFactory;
@@ -15,6 +16,7 @@ import static org.testng.AssertJUnit.assertTrue;
 public class ElenaSignUpTest {
     //static String driverPath = "D:\\Tel_Ran\\Java\\webDrivers\\";
     public ElenaSignUPPage elenaSignUPPage;
+    public LoginPage loginPage;
     public WebDriver driver;
 
     @BeforeClass(alwaysRun = true)
@@ -24,6 +26,7 @@ public class ElenaSignUpTest {
 
         //driver = new FirefoxDriver();
         elenaSignUPPage = PageFactory.initElements(driver, ElenaSignUPPage.class);
+        loginPage = PageFactory.initElements(driver, LoginPage.class);
 
     }
 

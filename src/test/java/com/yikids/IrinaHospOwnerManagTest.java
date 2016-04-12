@@ -44,8 +44,8 @@ public class IrinaHospOwnerManagTest {
         loginI.openLoginPage()
                 .waitForloginButton();
         loginI.fillLodInFieldsPozitive();
-        mainI.waitForMainPageLoad();
-        mainI.waitForLogoutSign();
+        //mainI.waitForMainPageLoad();
+        //mainI.waitForLogoutSign();
         hospManagI.goToHospitalOwnerManagment();
         hospManagI.waitForhospitalOwnerManagementPageTitle();
         assertTrue("Not on PageHospitalOwnerManagment",hospManagI.checkPageHospOwnerManagOpen());

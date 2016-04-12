@@ -154,10 +154,6 @@ public class SignUPPage extends Page {
         return exists(signupLabelTitle);
     }
 
-    public void waitForFirstNameWarning() {
-        waitUntilIsLoaded(firstNameEmptyFieldMessage);
-    }
-
     public boolean CheckPageForCapthcaMessage() {
         return verifyTextBoolean(ErrorCaptcha, "Please check Captcha!");
     }

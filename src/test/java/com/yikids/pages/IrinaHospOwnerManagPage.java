@@ -23,14 +23,13 @@ public class IrinaHospOwnerManagPage extends Page {
     @FindBy(id = "show-all")
     WebElement showAllButton;
 
-    @FindBy(xpath = "//li[@id='nav_benefits']/a)[10]")
-    // " http://admin.yikids.com/admin/hospital-overview")
+    @FindBy(xpath = "//*[@class='with-sub active']/a")
     WebElement hospitalLink;
 
     @FindBy(xpath = "//div[@class='text-center'][contains (text(), 'Hospital Owner Management Page')]")
     WebElement hospitalOwnerManagementPageTitle;
 
-    @FindBy(xpath = "/li[@id='nav_benefits']/a)[12")
+    @FindBy(xpath = "//*[@class='with-sub active']//*[contains(text(),'Hospital Owner Managemen')]")
     WebElement hospitalOwnerManagementLink;
 
     @FindBy(xpath = "//*[@id='logout-container']/a")
@@ -40,16 +39,16 @@ public class IrinaHospOwnerManagPage extends Page {
 
     public IrinaHospOwnerManagPage(WebDriver driver) {
         super(driver);
-        this.PAGE_URL = "http://admin.yikids.com/";
+        this.PAGE_URL = "http://admin.yikids.com/admin/hospital_owner_management";
         PageFactory.initElements(driver, this);
     }
 
     public IrinaHospOwnerManagPage goToHospitalOwnerManagment() {
         //Log.info("Clicking Add Hospital");
-        moveMouseOverElement(hospitalLink);
-        moveMouseOverElement(hospitalOwnerManagementLink);
-        clickElement(hospitalOwnerManagementLink);
-
+       // moveMouseOverElement(hospitalLink);
+        //moveMouseOverElement(hospitalOwnerManagementLink);
+        //clickElement(hospitalOwnerManagementLink);
+        driver.get((PAGE_URL));
         return this;
     }
     public IrinaHospOwnerManagPage showAll(){

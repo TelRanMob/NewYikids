@@ -51,14 +51,20 @@ public class RutSignUPPage extends Page {
     @FindBy(xpath = "//span[@class='error error-last_name']")
     WebElement lastNameEmptyFieldMessage;
 
-    @FindBy(xpath = "//span[@class='error error-email']")
-    WebElement emailEmptyFieldMessage;          //and not valid
+    @FindBy(xpath = "//*[contains(text(),'The email field is required.')]")
+    WebElement emailEmptyFieldMessage;
+
+    @FindBy(xpath = "//*[contains(text(),'The email format is invalid.')]")
+    WebElement emailNotValidFieldMessage;
 
 //    @FindBy(xpath = "//*[@id='hints[]']")
 //    WebElement emailNotBeSharredMessage;
 
-    @FindBy(xpath = "//span[@class='error error-zipcode']")
-    WebElement zipCodeEmptyFieldMessage;        //and not valid
+    @FindBy(xpath = "//*[contains(text(),'The zipcode field is required.')]")
+    WebElement zipCodeEmptyFieldMessage;
+
+    @FindBy(xpath = "//*[contains(text(),'Zipcode is invalid')]")
+    WebElement zipCodeNotValidFieldMessage;
 
     //Labels
     @FindBy(xpath = "//*[@id='section-account']/div[1]//label")
@@ -162,10 +168,16 @@ public class RutSignUPPage extends Page {
         return verifyTextBoolean(lastNameEmptyFieldMessage, "The last name field is required.");
     }
     public boolean checkEmailEmptyFieldMessage() {
-        return verifyTextBoolean(emailEmptyFieldMessage, "The email field is required.");
+        return exists(emailEmptyFieldMessage);
+    }
+    public boolean checkEmailNotValidFieldMessage() {
+        return exists(emailNotValidFieldMessage);
     }
     public boolean checkZipCodeEmptyFieldMessage() {
-        return verifyTextBoolean(zipCodeEmptyFieldMessage, "The zipcode field is required.");
+        return exists(zipCodeEmptyFieldMessage);
+    }
+    public boolean checkZipCodeNotValidFieldMessage() {
+        return exists(zipCodeNotValidFieldMessage);
     }
     public boolean checkPageForCaptchaMessage() {
         return verifyTextBoolean(captchaMessage, "Please check Captcha!");

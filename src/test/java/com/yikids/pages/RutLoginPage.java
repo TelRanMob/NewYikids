@@ -42,23 +42,24 @@ public class RutLoginPage extends Page {
 
     //labels
     @FindBy(xpath = "//body/div[2]/h1")
-    WebElement  titleForgotPasswordPageLabel;
+    WebElement titleForgotPasswordPageLabel;
 
     @FindBy(xpath = "//p[@class='title']")
-    WebElement  titleSignUpPageLabel;
+    WebElement titleSignUpPageLabel;
 
     //message
     @FindBy(xpath = "//div[@class='err']")
-    WebElement  emailNotValid;
+    WebElement emailNotValid;
 
-    @FindBy(xpath = "//*[@id='login-form']/div[1]")
-    WebElement  passwordNotValid;
+    @FindBy(xpath = "//div[@class='err'][contains(text(),'Your password is not correct. Please try again.')]")
+    WebElement passwordNotValid;
 
     public RutLoginPage(WebDriver driver) {
         super(driver);
         this.PAGE_URL = "http://admin.yikids.com/";
         PageFactory.initElements(driver, this);
     }
+
     public RutLoginPage openLoginPage() {
         //Log.info("Opening Login page");
         driver.get(PAGE_URL);
@@ -71,52 +72,67 @@ public class RutLoginPage extends Page {
         setElementText(emailField, email);
         return this;
     }
+
     public RutLoginPage fillPasswordField(String password) {
         //Log.info("Filling password field");
         setElementText(passwordField, password);
         return this;
     }
+
     //Click the buttons
     public RutLoginPage clickLoginButton() {
         //Log.info("Click login button");
         clickElement(logInLinkButton);
         return this;
     }
+
     public RutLoginPage clickSignUpButton() {
         //Log.info("Click signUp button");
         clickElement(signUpLinkButton);
         return this;
     }
+
     public RutLoginPage clickForgotPasswordButton() {
         //Log.info("Click forgotPassword button");
         clickElement(forgotPasswordLinkButton);
         return this;
     }
+
     //check is on page
     public boolean isOnLoginPage() {
         //Log.info("Click forgotPassword button");
         return exists(emailField);
     }
+
     public boolean isOnOverviewPage() {
         //Log.info("Click forgotPassword button");
         return exists(logOutLinkButton);
     }
+
     public boolean isOnSignUpPage() {
         //Log.info("Click forgotPassword button");
         return exists(titleSignUpPageLabel);
     }
+
     public boolean isOnForgotPasswordPage() {
         //Log.info("Click forgotPassword button");
         return exists(titleForgotPasswordPageLabel);
     }
+
     //check error message
     public boolean checkEmailNotValidMessage() {
         return verifyTextBoolean(emailNotValid, "Please sign up because your email does not exist in our system.");
     }
-    public boolean checkPasswordNotValidMessage() {
-        return verifyTextBoolean(passwordNotValid, "Your password is not correct. Please try again.");
-    }
+
     public boolean checkForgotPasswordMessage() {
         return verifyTextBoolean(forgotPasswordButton, "Forgot password?");
     }
+
+    public boolean checkPasswordNotValidMessage() {
+        return exists(passwordNotValid);
+    }
+
+    //    wait for warning
+//     waitUntilIsLoaded(firstNameEmptyFieldMessage);
+//    }
 }

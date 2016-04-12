@@ -14,11 +14,11 @@ import java.io.IOException;
 public class MainPage extends Page {
 
 
-    // /fields // TODO: find real locator
-    @FindBy(id = "hospital")
+    // /fields //
+    @FindBy(xpath = "//*[@class='with-sub active']/a")
     WebElement hospitalLink;
 
-    @FindBy(id = "hospital2")
+    @FindBy(xpath = "//*[@class='with-sub active']//*[contains(text(),'Add Hospital')]")
     WebElement addHospitalLink;
 
     // links

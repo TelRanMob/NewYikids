@@ -45,8 +45,13 @@ public class AlexSignUpTest {
                 .fillEmailField("TestMail@youpmail.com")
                 .fillZip1Field("12341")
                 .fillZip21Field("5646")
-                .fillCompany1Field("TestCompany")
-                .clickToContinue();
+                .fillCompany1Field("TestCompany");
+        try {
+            Thread.sleep(10000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        alexsignuppage.clickToContinue();
         assertTrue("First Name isn't confirmed", alexsignuppage.checkforFirstNameLabel());
         assertTrue("Last Name isn't confirmed", alexsignuppage.checkforLastNameLabel());
         assertTrue("Email isn't confirmed", alexsignuppage.checkforEmailLabel());
