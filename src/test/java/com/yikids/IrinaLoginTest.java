@@ -34,7 +34,8 @@ public class IrinaLoginTest {
 
     @BeforeMethod(alwaysRun = true)
     public void beforeMethodSetUp() {
-        loginI.openLoginPage();
+        loginI.openLoginPage()
+                .waitForloginButton();
         //verification
         //assertTrue("loginButtom not appeare",loginI.isOnLoginPage());
     }
