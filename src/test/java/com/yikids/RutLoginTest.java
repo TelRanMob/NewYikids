@@ -96,7 +96,19 @@ public class RutLoginTest {
         assertTrue("We are on the Log In page", rutLoginPage.isOnForgotPasswordPage());
         Thread.sleep(3000);
     }
+    //Todo create method
+    @Test (dataProviderClass = DataProviders.class, dataProvider = "")
+    public void logInNegative(String login, String pass) throws InterruptedException {
+        rutLoginPage
+                .fillEmailField("email@yopmail.com")
+                .fillPasswordField("Test123")
+                .clickLoginButton();
+//        String assertText = "rutLoginPage."+method+";";
 
+        assertTrue("We are not on the Log In page", rutLoginPage.isOnLoginPage());
+        assertTrue("No Email error message", rutLoginPage.checkEmailNotValidMessage());
+        Thread.sleep(3000);
+    }
 //    Assert.assertTrue(signUp);
 //    @AfterClass(alwaysRun = true)
 //    public void tearDown(){
