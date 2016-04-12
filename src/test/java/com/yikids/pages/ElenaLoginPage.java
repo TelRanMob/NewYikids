@@ -28,7 +28,6 @@ public class ElenaLoginPage extends Page {
 
     @FindBy(xpath="//*[@class='err']")
     WebElement ErrorEmail;
-
     //buttons
     @FindBy(xpath = "//*[@id='login-form']/div/button")
     WebElement LoginButton;

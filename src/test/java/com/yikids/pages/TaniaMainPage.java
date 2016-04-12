@@ -14,16 +14,25 @@ import java.io.IOException;
 public class TaniaMainPage extends Page {
 
 
-    // /fields // TODO: find real locator
-    @FindBy(id = "hospital")
-    WebElement hospitalLink;
+    // TODO: find real locator
+    //Find Links
 
-    @FindBy(id = "hospital2")
+    @FindBy(xpath ="//div[@id='logout-container']/a")
+    //"http://admin.yikids.com/logout")
+    WebElement logOutLink;
+
+    /* Hospital->Add Hospital */
+    @FindBy(xpath="//li[@id='nav_benefits']/a)[13]")
+    // "http://admin.yikids.com/hospital/add")
     WebElement addHospitalLink;
 
-    // links
-    @FindBy(id = "logout-container")
-    WebElement logOutLink;
+    /* Hospital */
+    @FindBy(xpath="//li[@id='nav_benefits']/a)[10]")
+    // " http://admin.yikids.com/admin/hospital-overview")
+    WebElement hospitalLink;
+
+
+
 
 
     public TaniaMainPage(WebDriver driver) {
@@ -69,6 +78,8 @@ public class TaniaMainPage extends Page {
         WaitForLogoutSign();
         return exists(logOutLink);
     }
+
+
 
 
 }

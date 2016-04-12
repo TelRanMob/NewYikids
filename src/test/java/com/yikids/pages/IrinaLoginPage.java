@@ -135,7 +135,7 @@ public class IrinaLoginPage extends Page {
     //filling all fields
     public IrinaLoginPage fillLodInFieldsPozitive() {
         fillEmailField("admin@erdocfinder.com");
-        fillPasswordField("Test123");
+        fillPasswordField("admin@erdocfinder.com");
         clickToLoginButton();
         return this;
     }
