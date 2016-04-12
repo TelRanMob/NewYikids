@@ -1,5 +1,6 @@
 package com.yikids;
 
+import com.yikids.pages.IrinaHospOwnerManagPage;
 import com.yikids.pages.IrinaLoginPage;
 import com.yikids.pages.IrinaMainPage;
 import org.openqa.selenium.WebDriver;
@@ -17,10 +18,11 @@ import static org.testng.AssertJUnit.assertTrue;
 /**
  * Created by Irina Primak on 29-Mar-16.
  */
-public class IrinaMainTest {
+public class IrinaHospOwnerManagTest {
   //  static String driverPath = "Z:\\Tel-RAN\\aQA\\BrowserDrivers";
     public IrinaMainPage mainI;
     public IrinaLoginPage loginI;
+    public IrinaHospOwnerManagPage hospManagI;
     public WebDriver driver;
     //public String email = "admin@erdocfinder.com";
     //public String password = "Test123";
@@ -32,6 +34,7 @@ public class IrinaMainTest {
         //System.setProperty("webdriver.ie.driver", driverPath+"IEDriverServer.exe");
         //driver = new InternetExplorerDriver();
         driver = new FirefoxDriver();
+        hospManagI = PageFactory.initElements(driver, IrinaHospOwnerManagPage.class);
         mainI = PageFactory.initElements(driver, IrinaMainPage.class);
         loginI = PageFactory.initElements(driver, IrinaLoginPage.class);
     }
@@ -39,21 +42,19 @@ public class IrinaMainTest {
     @BeforeMethod(alwaysRun = true)
     public void beforeMethodSetUp() throws IOException, InterruptedException {
         loginI.openLoginPage()
-              .waitForloginButton();
+                .waitForloginButton();
         loginI.fillLodInFieldsPozitive();
         mainI.waitForMainPageLoad();
         mainI.waitForLogoutSign();
-
-        //verification
-
+        hospManagI.goToHospitalOwnerManagment();
+        hospManagI.waitForhospitalOwnerManagementPageTitle();
+        assertTrue("Not on PageHospitalOwnerManagment",hospManagI.checkPageHospOwnerManagOpen());
     }
 
-        @Test
-    public void goToAddHospitalPositiv() throws IOException, InterruptedException {
-       mainI.goToAddHospital()
-               .waitForMainPageLoad();
-              assertTrue("Main Page not open",mainI.isOnMainPage());
-            }
+    @Test
+    public void openRecrutersList(){
+        hospManagI.showAll();
+    }
 
     // test of clicking on Registration link are written in another class
 
