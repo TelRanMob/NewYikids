@@ -1,6 +1,7 @@
 package com.yikids.pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -25,7 +26,7 @@ public class ElenaHospitalOwnerManagementPage extends Page {
 
     //Status
     @FindBy(xpath ="//*[@id='row0']/td[9]")
-    WebElement OwnedStatus;
+    WebElement Status;
     @FindBy(xpath ="//*[@id='row0']/td[9]")
     WebElement NotOwnedStatus;
 
@@ -89,4 +90,23 @@ public class ElenaHospitalOwnerManagementPage extends Page {
         }
     }
 
+    public void checkCheckbxesStatus(int Chec, String status ) {
+
+        int rowNumber = 0;
+        for (rowNumber = 0; rowNumber <= Chec; rowNumber++) {
+            String locatorStatus = "//*[@id='row" + rowNumber + "']/td[9]";
+
+            WebElement statusCell = driver.findElement(By.xpath(locatorStatus));
+            String statusText = statusCell.getText();
+            if (statusText.equals(status)) {
+
+                String locator = "//*[@id='row" + rowNumber + "']/td[1]/input";
+                WebElement box = driver.findElement(By.xpath(locator));
+                box.click();
+            }
+
+        }
+    }
+    public void EnterButtonClick(){
+        driver.findElement(By.id("")).sendKeys(Keys.ENTER);   }
 }
