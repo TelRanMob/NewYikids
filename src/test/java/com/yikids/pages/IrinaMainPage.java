@@ -20,6 +20,7 @@ public class IrinaMainPage extends Page {
 
     @FindBy(xpath = "//*[@class='with-sub active']//*[contains(text(),'Add Hospital')]")
     WebElement addHospitalLink;
+    //http://admin.yikids.com/hospital/add
 
     // links
     @FindBy(xpath ="//div[@id='logout-container']/a")
@@ -39,14 +40,20 @@ public class IrinaMainPage extends Page {
         return this;
     }
 
-    public IrinaMainPage goToAddHospital() {
+   /* public IrinaMainPage goToAddHospital() {
         //Log.info("Clicking Add Hospital");
         moveMouseOverElement(hospitalLink);
         moveMouseOverElement(addHospitalLink);
         clickElement(addHospitalLink);
 
         return this;
-    }
+        }
+    */
+   /*public IrinaMainPage goToAddHospital() {
+            //Log.info("Add Hospitallpage");
+           driver.get(PAGE_URL);
+           return this;
+    */
 
     public void waitForMainPageLoad() throws IOException, InterruptedException {
         waitUntilElementIsLoaded(hospitalLink);

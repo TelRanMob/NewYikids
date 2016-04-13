@@ -49,12 +49,12 @@ public class IrinaMainTest {
     }
 
         @Test
-    public void goToAddHospitalPositiv() throws IOException, InterruptedException {
-       mainI.goToAddHospital()
-               .waitForMainPageLoad();
-              assertTrue("Main Page not open",mainI.isOnMainPage());
-            }
-
+  //  public void goToAddHospitalPositiv() throws IOException, InterruptedException {
+     //  mainI.goToAddHospital()
+    //           .waitForMainPageLoad();
+       //       assertTrue("Main Page not open",mainI.isOnMainPage());
+            //}
+//
     // test of clicking on Registration link are written in another class
 
    @AfterClass(alwaysRun = true)
