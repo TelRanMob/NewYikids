@@ -4,6 +4,8 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.io.IOException;
+
 
 /**
  * Created by Tania Pereminski on 12-Apr-2016.
@@ -52,7 +54,7 @@ public class TaniaHospitalOwnerManagementPage extends Page {
     WebElement checkbox181;
 
     //Find Status
-    @FindBy(xpath ="//*[@id='row0']/td[9]")
+    @FindBy(xpath = "//*[@id='row0']/td[9]")
     WebElement notOwnedStatus;
 
     //constructor
@@ -82,6 +84,7 @@ public class TaniaHospitalOwnerManagementPage extends Page {
     public boolean checkPageHospOwnerManagementOpen() {
         return verifyTextBoolean(hospitalOwnerManagementTitle,"Hospital Owner Management Page");
     }
+/**********************************************************************************************************************/
 
     public void checkCheckboxes(int Chec) {
         int rowNumber;
@@ -93,20 +96,69 @@ public class TaniaHospitalOwnerManagementPage extends Page {
         }
     }
 
+    //Checking if all selected  checkboxes are checked in order
+    public boolean isCheckedCheckboxes(int Chec) {
+        int rowNumber, count = 0;
+        boolean checked = false;
+        for (rowNumber = 0; rowNumber <= Chec; rowNumber++) {
+            String locator = "//*[@id='row" + rowNumber + "']/td[1]/input";
+            WebElement box = driver.findElement(By.xpath(locator));
+            if (box.isSelected()) {
+                checked = true;
+                count++;
+            } else {
+                checked = false;
+                count--;
+            }
+        }
+        if (count == Chec && checked == true) {
+            checked= true;
+        }
+        return checked;
+    }
+
+/**********************************************************************************************************************/
     //Checking only checkboxes of rows with selected status
     //Todo Create method
     public void checkNotAllCheckboxes(int Chec,String status) {
         int rowNumber = 0;
-        String locatorStatus = "//*[@id='row" + rowNumber + "']/td[9]";
-        WebElement statusCell = driver.findElement(By.xpath(locatorStatus));
-        String statusText = statusCell.getText();
         for (rowNumber = 0; rowNumber <= Chec; rowNumber++) {
+            String locatorStatus = "//*[@id='row" + rowNumber + "']/td[9]";
+            WebElement statusCell = driver.findElement(By.xpath(locatorStatus));
+            String statusText = statusCell.getText();
             String locator = "//*[@id='row" + rowNumber + "']/td[1]/input";
             WebElement box = driver.findElement(By.xpath(locator));
-            if (statusText==status)
-                 box.click();
+            if (statusText.equalsIgnoreCase( status)) {
+                box.click();
+            }
         }
     }
+
+
+    //Checking only checkboxes of rows with selected status
+    //Todo Create method
+    public boolean isCheckedNotAllCheckboxes(int Chec,String status) {
+        int rowNumber = 0;
+        boolean flag=false;
+        for (rowNumber = 0; rowNumber <= Chec; rowNumber++) {
+            String locatorStatus = "//*[@id='row" + rowNumber + "']/td[9]";
+            WebElement statusCell = driver.findElement(By.xpath(locatorStatus));
+            String statusText = statusCell.getText();
+            String locator = "//*[@id='row" + rowNumber + "']/td[1]/input";
+            WebElement box = driver.findElement(By.xpath(locator));
+            if (status.equalsIgnoreCase(statusText))
+            {
+                if (box.isSelected()) {
+                    flag = true;
+                }
+                else
+                    flag = false;
+            }
+        }
+        return flag;
+    }
+/**********************************************************************************************************************/
+
 
 
     public String gettext() {
@@ -116,33 +168,15 @@ public class TaniaHospitalOwnerManagementPage extends Page {
     public boolean checkTextOfElementLogOut() {
         return verifyTextBoolean(deattachLinkButton," Deattach");
     }
+
+
+    public void waitForFirstNameWarning() {
+        try {
+            waitUntilElementIsLoaded(deattachLinkButton);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
 }
-
-/*******
-
-
-
-
- }
-
-
-
-
-
- public boolean CheckTextOfElementLogOut() {
- return verifyTextBoolean(DeattachButton, " Deattach");
- }
- public boolean CheckElementButton() {
- return verifyElementIsPresent(DeattachButton);
- }
-
- public void waitForFirstNameWarning() {
- try {
- waitUntilElementIsLoaded(DeattachButton);
- } catch (IOException e) {
- e.printStackTrace();
- } catch (InterruptedException e) {
- e.printStackTrace();
- }
- }
-*********/
