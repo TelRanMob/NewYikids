@@ -1,11 +1,10 @@
 package com.yikids;
 
 import com.yikids.pages.ElenaSignUPPage;
-import com.yikids.pages.LoginPage;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
-import org.testng.annotations.AfterMethod;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -16,26 +15,23 @@ import static org.testng.AssertJUnit.assertTrue;
 public class ElenaSignUpTest {
     //static String driverPath = "D:\\Tel_Ran\\Java\\webDrivers\\";
     public ElenaSignUPPage elenaSignUPPage;
-    public LoginPage loginPage;
     public WebDriver driver;
 
     @BeforeClass(alwaysRun = true)
     public void setup() {
         //System.setProperty("webdriver.chrome.driver", driverPath+"chromedriver.exe");
-        driver = new ChromeDriver();
-
-        //driver = new FirefoxDriver();
+       // driver = new ChromeDriver();
+       driver = new FirefoxDriver();
         elenaSignUPPage = PageFactory.initElements(driver, ElenaSignUPPage.class);
-        loginPage = PageFactory.initElements(driver, LoginPage.class);
+
 
     }
 
     @BeforeMethod(alwaysRun = true)
-    public void beforeMethodSetUp(){
-        elenaSignUPPage.openElenaSignUPPage();
+    public void beforeMethodSetUp(){elenaSignUPPage.openElenaSignUPPage();
     }
 
-    @Test
+   @Test
     public void CheckingLabelOnLoginPage(){
         //elenaSignUPPage.waitForFirstNameWarning();
 
@@ -48,7 +44,7 @@ public class ElenaSignUpTest {
         assertTrue( "Zip Code text is confirmed", elenaSignUPPage.CheckZipCodeLabel());
         assertTrue( "Company  text is confirmed", elenaSignUPPage.CheckCompanyNameLabel());
         assertTrue("Check kapcha",elenaSignUPPage.CheckPageForCapthcaMessage());
-       /* try {
+        /* try {
             Thread.sleep(3000);
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -56,7 +52,7 @@ public class ElenaSignUpTest {
     }
 
 
-    @Test
+   @Test
     public void fillSignUPFiledsPositive() throws InterruptedException {
         //  Log.info("TestLoginWithExtData was started....");
         elenaSignUPPage
@@ -166,13 +162,13 @@ public class ElenaSignUpTest {
 
     // test of clicking on Registration link are writtenw in another class
 
-    @AfterMethod(alwaysRun = true)
-    public void tearDown() {
-        this.driver.quit();
-    }
-
-   /* @AfterClass(alwaysRun = true)
+    /* @AfterMethod(alwaysRun = true)
     public void tearDown() {
         this.driver.quit();
     }*/
+
+   @AfterClass(alwaysRun = true)
+    public void tearDown() {
+        this.driver.quit();
+    }
 }
