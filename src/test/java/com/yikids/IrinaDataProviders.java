@@ -31,7 +31,7 @@ public class IrinaDataProviders {
     @DataProvider
     public static Iterator<Object[]> loadInvalidLoginFromFile() throws IOException {
         BufferedReader in = new BufferedReader(new InputStreamReader(
-                IrinaDataProviders.class.getResourceAsStream("/invalidLogin.data")));
+                IrinaDataProviders.class.getResourceAsStream("/IrinaNegativLogin.data")));
 
         List<Object[]> userData = new ArrayList<Object[]>();
         String line = in.readLine();
@@ -44,6 +44,23 @@ public class IrinaDataProviders {
 
         return userData.iterator();
     }
+    @DataProvider
+    public static Iterator<Object[]> singUpNegativFromFile() throws IOException {
+        BufferedReader in = new BufferedReader(new InputStreamReader(
+                IrinaDataProviders.class.getResourceAsStream("/IrinaNegativSingUp.data")));
+
+        List<Object[]> userData = new ArrayList<Object[]>();
+        String line = in.readLine();
+        while (line != null) {
+            userData.add(line.split(";"));
+            line = in.readLine();
+        }
+
+        in.close();
+
+        return userData.iterator();
+    }
+
 
     @DataProvider
     public static Iterator<Object[]> SignUpAddress() throws IOException {

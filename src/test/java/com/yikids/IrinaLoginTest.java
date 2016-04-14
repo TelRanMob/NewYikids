@@ -59,13 +59,14 @@ public class IrinaLoginTest {
        assertTrue("No login Buttom",loginI.isOnLoginPage());
 
    }
-    @Test
-    public void negativEmptyPasswordLogin(){
-        loginI.fillEmailField(email)
-                .fillPasswordField(" ")
+    @Test(dataProviderClass = DataProviders.class, dataProvider = "loadInvalidLoginFromFile")
+    public void negativEmptyPasswordLogin(String login, String password){
+        loginI.fillEmailField(login)
+                .fillPasswordField(password)
                 .clickToLoginButton()
                 .waitForloginButton();
-        //verufication
+                //verufication
+
         assertTrue("No login Buttom",loginI.isOnLoginPage());
 
     }

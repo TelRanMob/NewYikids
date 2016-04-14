@@ -94,7 +94,7 @@ public class IrinaHospOwnerManagPage extends Page {
                 if (box.isSelected()) selectedBoxes++;
             }
            rowNumber++;
-        } while ((selectedBoxes<=check)||(rowNumber<=rowCounter));
+        } while ((selectedBoxes<=check)&&(rowNumber<=rowCounter));
     }
     //Checking only checkboxes of rows with selected status
       public void checkNotAllCheckbxes(int chec, String status) {

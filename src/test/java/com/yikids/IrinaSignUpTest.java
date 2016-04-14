@@ -46,6 +46,25 @@ public class IrinaSignUpTest {
 
     }
 
+    @Test(dataProviderClass = DataProviders.class, dataProvider = "singUpNegativFromFile")
+    public void negativSingUp(String firstName,String lastname, String email,String cod,
+                              String cod2, String company)
+                                 {
+        signUPPageI
+                .fillFirstnameField(firstName)
+                .fillLastNameField(lastname)
+                .fillemailField(email)
+                .fillzipCodeField(cod)
+                .fillcompanyField(company)
+                .fillzipCod2Field(cod2)
+                .clickElemToContinue()
+                //Explicite wait
+                //Thread.sleep(3000);
+                //Implicity wait -method on SignUpPage
+                .waitForWarningFirstNameEmpty();
+        assertTrue("Not on SingUp Page", signUPPageI.isOnSignUpPage());
+    }
+
     @Test
     public void fillFildesNegativFirstNameEmpty() {
         signUPPageI
@@ -62,7 +81,6 @@ public class IrinaSignUpTest {
                 .waitForWarningFirstNameEmpty();
         assertTrue("No firstName empty warning", signUPPageI.checkFirstNameEmptyFieldMessage());
     }
-
     @Test
     public void fillFildesNegativLastNameEmpty() {
         signUPPageI
