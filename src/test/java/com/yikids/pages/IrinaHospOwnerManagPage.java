@@ -77,8 +77,6 @@ public class IrinaHospOwnerManagPage extends Page {
              }while ((rowNumber + 1)==rowsCounter);
         System.out.print(rowsCounter);
         return rowsCounter;
-
-
     }
     //Checking only checkboxes of rows with selected status from all
     //Todo  verifications of method
