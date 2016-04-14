@@ -51,10 +51,17 @@ public class IrinaHospOwnerManagTest {
         assertTrue("Not on PageHospitalOwnerManagment",hospManagI.checkPageHospOwnerManagOpen());
     }
 
+   // @Test
+   // public void openRecrutersList(){
+    //    hospManagI.showAll();
+   // }
+
     @Test
-    public void openRecrutersList(){
-        hospManagI.showAll();
-    }
+    public void checkBoxesStatus() throws IOException, InterruptedException {
+        hospManagI.waitForTableLoad();
+        hospManagI.checkNumCheckbxesWithStususFromAll(20,"Owned");
+        //hospManagI.checkNotAllCheckbxes(10,"Oned");
+                   }
 
     // test of clicking on Registration link are written in another class
 
@@ -62,6 +69,7 @@ public class IrinaHospOwnerManagTest {
    public void tearDown() {
         this.driver.quit();
     }
+
 }
 
 

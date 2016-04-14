@@ -31,13 +31,13 @@ public class IrinaHospOwnerManagPage extends Page {
     WebElement hospitalLink;
 
     //title
-    @FindBy(xpath = "//div[@class='text-center'][contains (text(),'Hospital Owner Management Page')]")
+    @FindBy(xpath = "//*[contains (text(),'Hospital Owner Management Page')]")
     WebElement hospitalOwnerManagementPageTitle;
 
 
     // Action
     @FindBy(xpath ="//*[@id='row0']/td[1]/input")
-    WebElement Checkbox;
+    WebElement firstCheckbox;
 
 
 
@@ -52,21 +52,53 @@ public class IrinaHospOwnerManagPage extends Page {
        // moveMouseOverElement(hospitalLink);
         //moveMouseOverElement(hospitalOwnerManagementLink);
         //clickElement(hospitalOwnerManagementLink);
-        driver.get((PAGE_URL));
+        driver.get(PAGE_URL);
         return this;
     }
+    //checking checkboxes
     public void checkCheckbxes(int chec) {
         int rowNumber;
-
         for (rowNumber = 0; rowNumber <= chec; rowNumber++) {
             String locator = "//*[@id='row" + rowNumber + "']/td[1]/input";
             WebElement box = driver.findElement(By.xpath(locator));
             box.click();
         }
     }
+    //method get number of all rows in the list
+    public int numberOfChekbobxesInTheList() {
+        int rowNumber=0;
+         int rowsCounter = 0;
+        do {
+            String locator = "//*[@id='row" + rowNumber + "']/td[1]/input";
+            rowNumber++;
+            //WebElement box = driver.findElement(By.xpath(locator));
+            if (verifyElementIsPresent(driver.findElement(By.xpath(locator))))
+             rowsCounter++;
+             }while ((rowNumber + 1)==rowsCounter);
+        System.out.print(rowsCounter);
+        return rowsCounter;
+
+
+    }
+    //Checking only checkboxes of rows with selected status from all
+    //Todo  verifications of method
+    public void checkNumCheckbxesWithStususFromAll(int check, String status) {
+        int rowNumber = 0;
+        int rowCounter = numberOfChekbobxesInTheList();
+        do {
+            String locatorStatus = "//*[@id='row" + rowNumber + "']/td[9]";
+            WebElement statusCell = driver.findElement(By.xpath(locatorStatus));
+            String statusText = statusCell.getText();
+            if (statusText.equalsIgnoreCase(status)){
+                String locator = "//*[@id='row" + rowNumber + "']/td[1]/input";
+                WebElement box = driver.findElement(By.xpath(locator));
+                box.click();
+                 }
+            rowNumber++;
+        } while (((rowNumber+1)==check)||((rowNumber+1)==rowCounter));
+    }
     //Checking only checkboxes of rows with selected status
-    //Todo Create method
-    public void checkNotAllCheckbxes(int chec, String status) {
+      public void checkNotAllCheckbxes(int chec, String status) {
         int rowNumber = 0;
         do {
             String locatorStatus = "//*[@id='row" + rowNumber + "']/td[9]";
@@ -80,15 +112,16 @@ public class IrinaHospOwnerManagPage extends Page {
                 }
         } while (rowNumber==chec);
     }
+
+    //method get the hole list of  Owner Management
     public IrinaHospOwnerManagPage showAll(){
         //log/
         clickElement(showAllButton);
         return this;
     }
-    /*public void waitForMainPageLoad() throws IOException, InterruptedException {
-        waitUntilElementIsLoaded(hospitalLink);
-
-    }*/
+    public void waitForTableLoad() throws IOException, InterruptedException {
+        waitUntilElementIsLoaded(firstCheckbox);
+    }
     public void waitForhospitalOwnerManagementPageTitle()   {
         waitUntilIsLoaded(hospitalOwnerManagementPageTitle);
     }
