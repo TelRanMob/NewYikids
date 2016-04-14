@@ -14,6 +14,7 @@ import org.testng.annotations.Test;
 import java.io.IOException;
 
 import static org.testng.AssertJUnit.assertTrue;
+import static org.testng.internal.junit.ArrayAsserts.assertArrayEquals;
 
 /**
  * Created by Irina Primak on 29-Mar-16.
@@ -58,10 +59,11 @@ public class IrinaHospOwnerManagTest {
 
     @Test
     public void checkBoxesStatus() throws IOException, InterruptedException {
+        //hospManagI.showAll();
         hospManagI.waitForTableLoad();
         hospManagI.checkNumCheckbxesWithStususFromAll(20,"Owned");
-        //hospManagI.checkNotAllCheckbxes(10,"Oned");
-                   }
+        //hospManagI.checkNotAllCheckbxes(10,"Owned");
+                           }
 
     // test of clicking on Registration link are written in another class
 

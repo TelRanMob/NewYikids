@@ -74,14 +74,14 @@ public class IrinaHospOwnerManagPage extends Page {
             //WebElement box = driver.findElement(By.xpath(locator));
             if (verifyElementIsPresent(driver.findElement(By.xpath(locator))))
              rowsCounter++;
-             }while ((rowNumber + 1)==rowsCounter);
-        System.out.print(rowsCounter);
-        return rowsCounter;
+             }while (rowNumber!=rowsCounter);
+           return rowsCounter;
     }
     //Checking only checkboxes of rows with selected status from all
     //Todo  verifications of method
     public void checkNumCheckbxesWithStususFromAll(int check, String status) {
         int rowNumber = 0;
+        int selectedBoxes =0;
         int rowCounter = numberOfChekbobxesInTheList();
         do {
             String locatorStatus = "//*[@id='row" + rowNumber + "']/td[9]";
@@ -91,14 +91,16 @@ public class IrinaHospOwnerManagPage extends Page {
                 String locator = "//*[@id='row" + rowNumber + "']/td[1]/input";
                 WebElement box = driver.findElement(By.xpath(locator));
                 box.click();
-                 }
-            rowNumber++;
-        } while (((rowNumber+1)==check)||((rowNumber+1)==rowCounter));
+                if (box.isSelected()) selectedBoxes++;
+            }
+           rowNumber++;
+        } while ((selectedBoxes<=check)||(rowNumber<=rowCounter));
     }
     //Checking only checkboxes of rows with selected status
       public void checkNotAllCheckbxes(int chec, String status) {
         int rowNumber = 0;
-        do {
+        int selectedBoxes = 0;
+          do {
             String locatorStatus = "//*[@id='row" + rowNumber + "']/td[9]";
             WebElement statusCell = driver.findElement(By.xpath(locatorStatus));
             String statusText = statusCell.getText();
@@ -107,8 +109,10 @@ public class IrinaHospOwnerManagPage extends Page {
                     String locator = "//*[@id='row" + rowNumber + "']/td[1]/input";
                     WebElement box = driver.findElement(By.xpath(locator));
                     box.click();
-                }
-        } while (rowNumber==chec);
+                    if (box.isSelected())
+                        selectedBoxes ++;
+                   }
+           } while (selectedBoxes<=chec);
     }
 
     //method get the hole list of  Owner Management
@@ -120,9 +124,14 @@ public class IrinaHospOwnerManagPage extends Page {
     public void waitForTableLoad() throws IOException, InterruptedException {
         waitUntilElementIsLoaded(firstCheckbox);
     }
+    public boolean verifyElemClicked(WebElement elem){
+        elem.isSelected();
+        return true;
+    }
     public void waitForhospitalOwnerManagementPageTitle()   {
         waitUntilIsLoaded(hospitalOwnerManagementPageTitle);
     }
+
 
     public boolean checkPageHospOwnerManagOpen() {
         return verifyTextBoolean(hospitalOwnerManagementPageTitle,
