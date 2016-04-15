@@ -31,17 +31,18 @@ public class IrinaSignUpTest {
     }
 
     @BeforeMethod(alwaysRun = true)
-    public void beforeMethodSetUp() {
+    public void beforeMethodSetUp() throws InterruptedException {
         signUPPageI.openSignUpPage();
         //signUPPageI.isOnSignUpPage();
+        Thread.sleep(3000);
     }
 
 
     @Test
-    public void fillFilldesPositiv() {
+    public void fillFilldesPositiv() throws InterruptedException {
         signUPPageI.fillSignUp()
-                .clickElemToContinue()
-                .waitForCaptcha();
+                .clickElemToContinue();
+                Thread.sleep(3000);
         assertTrue("No captha message", signUPPageI.checkPageForCaptchaMessage());
 
     }
