@@ -16,7 +16,7 @@ public class ElenaHospitalOwnerManagementTest {
     public ElenaLoginPage loginpage;
     public WebDriver driver;
     //public String email = "admin@erdocfinder.com";
-    //public String password = "Test123";
+    //public String passwordField = "Test123";
 
     @BeforeClass(alwaysRun = true)
     public void setup() {
@@ -32,7 +32,7 @@ public class ElenaHospitalOwnerManagementTest {
     public void beforeMethodSetUp() {
 
         elenaHOMtPage.openAdminPage();
-        driver.get("http://admin.yikids.com/admin/hospital_owner_management");
+        //  driver.get("http://admin.yikids.com/admin/hospital_owner_management");
     }
 
 

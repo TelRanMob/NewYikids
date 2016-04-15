@@ -4,7 +4,6 @@ import com.yikids.pages.IrinaSignUPPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
-import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
@@ -47,7 +46,7 @@ public class IrinaSignUpTest {
 
     }
 
-    @Test(dataProviderClass = DataProviders.class, dataProvider = "singUpNegativFromFile")
+    @Test(dataProviderClass = IrinaDataProviders.class, dataProvider = "singUpNegativFromFile")
     public void negativSingUp(String firstName,String lastname, String email,String cod,
                               String cod2, String company)
                                  {

@@ -20,7 +20,7 @@ public class IrinaLoginPage extends Page {
     @FindBy(id = "email")
     WebElement emailField;
 
-    @FindBy(id = "password")
+    @FindBy(id = "passwordField")
     WebElement passwordField;
 
     //buttons
@@ -49,7 +49,7 @@ public class IrinaLoginPage extends Page {
     /*@FindBy(xpath = "/*//*[@id='login-form']/div[1]")
     WebElement errorPasswordMessage;*/
 
-    @FindBy(xpath = "//div[@class='err'][contains(text(),'Your password is not correct. Please try again.')]")
+    @FindBy(xpath = "//div[@class='err'][contains(text(),'Your passwordField is not correct. Please try again.')]")
     WebElement errorPasswordMessage;
 
 
@@ -103,7 +103,7 @@ public class IrinaLoginPage extends Page {
     }
 
     public IrinaLoginPage fillPasswordField(String password) {
-        //Log.info("Filling password field");
+        //Log.info("Filling passwordField field");
         setElementText(passwordField, password);
         return this;
     }

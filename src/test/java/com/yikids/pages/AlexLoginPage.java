@@ -24,7 +24,7 @@ public class AlexLoginPage extends Page {
     @FindBy(id = "email")
     WebElement emailField;
 
-    @FindBy(id = "password")
+    @FindBy(id = "passwordField")
     WebElement passwordField;
 
     @FindBy(xpath = "//*[@class='container']/form[@action='reset']/input[@id='email']")
@@ -141,7 +141,7 @@ public class AlexLoginPage extends Page {
 
     public boolean checkforWrongPassword() {
         return verifyTextBoolean(titleEmailPasswordWarningMessage,
-                "Your password is not correct. Please try again. Forgot password?");
+                "Your passwordField is not correct. Please try again. Forgot passwordField?");
     }
 
     public boolean checkforForgotPasswordEmailLabel() {

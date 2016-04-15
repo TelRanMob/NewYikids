@@ -22,7 +22,7 @@ public class TaniaLoginPage extends Page {
     @FindBy(id = "email")
     WebElement emailField;
 
-    @FindBy(id = "password")
+    @FindBy(id = "passwordField")
     WebElement passwordField;
 
   //  @FindBy(xpath="//*[@class='err']")// WebElement ErrorEmailNotExist;
@@ -40,7 +40,7 @@ public class TaniaLoginPage extends Page {
     @FindBy(xpath = "//*[@id='login-form']/div[1]")
     WebElement emailNotExistMessage;
 
-    @FindBy(xpath = "//div[@class='err'][contains(text(),'Your password is not correct. Please try again.')]")
+    @FindBy(xpath = "//div[@class='err'][contains(text(),'Your passwordField is not correct. Please try again.')]")
     WebElement errorPasswordMessage;
 
 /******//* On main page *//*********/
@@ -130,7 +130,7 @@ public class TaniaLoginPage extends Page {
 
     public TaniaLoginPage goToForgotPasswordLink() {
         //Log.info("Go to forgotPassword LinkButton");
-        driver.get("http://admin.yikids.com/forgot-password");
+        driver.get("http://admin.yikids.com/forgot-passwordField");
         return this;
     }
 

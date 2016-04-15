@@ -12,8 +12,6 @@ import org.testng.annotations.Test;
 
 import java.io.IOException;
 
-import static org.testng.AssertJUnit.assertTrue;
-
 /**
  * Created by Irina Primak on 29-Mar-16.
  */
@@ -23,7 +21,7 @@ public class IrinaMainTest {
     public IrinaLoginPage loginI;
     public WebDriver driver;
     //public String email = "admin@erdocfinder.com";
-    //public String password = "Test123";
+    //public String passwordField = "Test123";
 
     @BeforeClass(alwaysRun = true)
     public void setup() {

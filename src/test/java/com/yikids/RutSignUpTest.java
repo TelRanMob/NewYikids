@@ -1,6 +1,6 @@
 package com.yikids;
 
-import com.sun.org.apache.xpath.internal.operations.String;
+
 import com.yikids.pages.RutSignUPPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -8,6 +8,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+
 import static org.testng.AssertJUnit.assertTrue;
 
 /**
@@ -45,9 +46,9 @@ public class RutSignUpTest {
 //        rutSignUPPage.clickToContinue();
     }
     @Test(dataProviderClass = RutDataProviders.class, dataProvider = "loadInvalidSignInFromFile")
-    public void fillFieldsNegative(java.lang.String firstName, java.lang.String lastName, java.lang.String email, java.lang.String zipCode1, java.lang.String zipCode2, java.lang.String company) throws InterruptedException {
+    public void fillFieldsNegative(String fn, String lastName, java.lang.String email, java.lang.String zipCode1, java.lang.String zipCode2, java.lang.String company) throws InterruptedException {
         rutSignUPPage
-                .fillFirstnameField(firstName)
+                .fillFirstnameField(fn)
                 .fillLastNameField(lastName)
                 .fillEmailField(email)
                 .fillZipCode1Field(zipCode1)

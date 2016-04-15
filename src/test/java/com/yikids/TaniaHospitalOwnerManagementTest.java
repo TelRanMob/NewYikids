@@ -1,11 +1,10 @@
-package com.yikids.util;
+package com.yikids;
 
 import com.yikids.pages.TaniaHospitalOwnerManagementPage;
 import com.yikids.pages.TaniaLoginPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -16,7 +15,7 @@ import static org.testng.AssertJUnit.assertTrue;
  * Created by Tania Pereminski on 4/13/2016.
  */
 //public String email = "admin@erdocfinder.com";
-//public String password = "Test123";
+//public String passwordField = "Test123";
 
 public class TaniaHospitalOwnerManagementTest {
 

@@ -12,8 +12,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import java.util.Random;
-
 public class RutLoginPage extends Page {
     //private static Logger Log = Logger.getLogger(LogLog4j.class.getName());
 
@@ -21,7 +19,7 @@ public class RutLoginPage extends Page {
     @FindBy(id = "email")
     WebElement emailField;
 
-    @FindBy(id = "password")
+    @FindBy(id = "passwordField")
     WebElement passwordField;
 
     //buttons
@@ -51,7 +49,7 @@ public class RutLoginPage extends Page {
     @FindBy(xpath = "//div[@class='err']")
     WebElement emailNotValid;
 
-    @FindBy(xpath = "//div[@class='err'][contains(text(),'Your password is not correct. Please try again.')]")
+    @FindBy(xpath = "//div[@class='err'][contains(text(),'Your passwordField is not correct. Please try again.')]")
     WebElement passwordNotValid;
 
     public RutLoginPage(WebDriver driver) {
@@ -74,7 +72,7 @@ public class RutLoginPage extends Page {
     }
 
     public RutLoginPage fillPasswordField(String password) {
-        //Log.info("Filling password field");
+        //Log.info("Filling passwordField field");
         setElementText(passwordField, password);
         return this;
     }
@@ -125,7 +123,7 @@ public class RutLoginPage extends Page {
     }
 
     public boolean checkForgotPasswordMessage() {
-        return verifyTextBoolean(forgotPasswordButton, "Forgot password?");
+        return verifyTextBoolean(forgotPasswordButton, "Forgot passwordField?");
     }
 
     public boolean checkPasswordNotValidMessage() {
