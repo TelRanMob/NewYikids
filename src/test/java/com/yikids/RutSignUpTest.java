@@ -44,7 +44,7 @@ public class RutSignUpTest {
                 .fillCompanyField("company");
 //        rutSignUPPage.clickToContinue();
     }
-    @Test(dataProviderClass = RutDataProviders.class, dataProvider = "rutInvalidSignin.data")
+    @Test(dataProviderClass = RutDataProviders.class, dataProvider = "loadInvalidSignInFromFile")
     public void fillFieldsNegative(java.lang.String firstName, java.lang.String lastName, java.lang.String email, java.lang.String zipCode1, java.lang.String zipCode2, java.lang.String company) throws InterruptedException {
         rutSignUPPage
                 .fillFirstnameField(firstName)
