@@ -34,7 +34,7 @@ public class IrinaSignUpTest {
     public void beforeMethodSetUp() throws InterruptedException {
         signUPPageI.openSignUpPage();
         //signUPPageI.isOnSignUpPage();
-        Thread.sleep(3000);
+        //Thread.sleep(3000);
     }
 
 
@@ -47,9 +47,9 @@ public class IrinaSignUpTest {
 
     }
 
-    @Test(dataProviderClass = DataProviders.class, dataProvider = "singUpNegativFromFile")
-    public void negativSingUp(String firstName,String lastname, String email,String cod,
-                              String cod2, String company)
+    @Test(dataProviderClass = IrinaDataProviders.class, dataProvider = "singUpNegativFromFile")
+    public void negativSingUp(String firstName,String lastname,String email,String cod,
+                              String cod2,String company,String message)
                                  {
         signUPPageI
                 .fillFirstnameField(firstName)

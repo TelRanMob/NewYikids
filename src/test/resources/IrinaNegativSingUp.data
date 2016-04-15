@@ -1,20 +1,20 @@
-"a";"b";"ghj@gov.c";"04456";"11;"company"
-"";"b";"ghj@gov.c";"04456";"11;"company"
-"a";"";"ghj@gov.c";"04456";"11;"company"
-"a";"b";"ghjgov.c";"04456";"11;"company"
-"a";"b";"ghj@govc";"04456";"11;"company"
-"a";"b";"ghj@gov";"04456";"11;"company"
-"a";"b";"@gov.v";"04456";"11;"company"
-"a";"b";"ghj@";"04456";"11;"company"
-"a";"b";"ghj@.v";"04456";"11;"company"
-"a";"b";"";"04456";"11;"company"
-"a";"b";"ghj@gov.com";"";"11;"company"
-"a";"b";"ghj@gov.com";"hhh";"11;"company"
-"a";"b";"ghj@gov.com";"3333333333333";"11;"company"
-"a";"b";"ghj@gov.com";"1";"11;"company"
-"a";"b";"ghj@gov.com";"3333333333333";"11;"company"
-"a";"b";"ghj@gov.com";"04456";"11";"company"
-"";"";"";"";"";""
+a;b;ghj@gov.c;04456;11;company
+;b;ghj@gov.c;04456;11;company
+a;;ghj@gov.c;04456;11;company
+a;b;ghjgov.c;04456;11;company
+a;b;ghj@govc;04456;11;company
+a;b;ghj@gov;04456;11;company
+a;b;@gov.v;04456;11;company
+a;b;ghj@;04456;11;company
+a;b;ghj@.v;04456;11;company
+a;b;;04456;11;company
+a;b;ghj@gov.com;;11;company
+a;b;ghj@gov.com;hhh;11;company
+a;b;ghj@gov.com;3333333333333;11;company
+a;b;ghj@gov.com;1;11;company
+a;b;ghj@gov.com;;11;company
+;;;;;;company
+
 
 
 
