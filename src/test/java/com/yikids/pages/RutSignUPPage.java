@@ -94,32 +94,32 @@ public class RutSignUPPage extends Page {
     }
 
     //Fill the fields
-    public RutSignUPPage fillFirstnameField(String firstname) {
+    public RutSignUPPage fillFirstnameField(java.lang.String firstname) {
         //Log.info("Filling firstname field");
         setElementText(firstNameField, firstname);
         return this;
     }
-    public RutSignUPPage fillLastNameField(String lastname) {
+    public RutSignUPPage fillLastNameField(java.lang.String lastname) {
         //Log.info("Filling lastname field");
         setElementText(lastNameField, lastname);
         return this;
     }
-    public RutSignUPPage fillEmailField(String email) {
+    public RutSignUPPage fillEmailField(java.lang.String email) {
         //Log.info("Filling email field");
         setElementText(emailField, email);
         return this;
     }
-    public RutSignUPPage fillZipCode1Field(String zipcode1) {
+    public RutSignUPPage fillZipCode1Field(java.lang.String zipcode1) {
         //Log.info("Filling zipcode field");
         setElementText(zipCode1Field, zipcode1);
         return this;
     }
-    public RutSignUPPage fillZipCode2Field(String zipcode2) {
+    public RutSignUPPage fillZipCode2Field(java.lang.String zipcode2) {
         //Log.info("Filling zipplus field");
         setElementText(zipCode2Field, zipcode2);
         return this;
     }
-    public RutSignUPPage fillCompanyField(String company) {
+    public RutSignUPPage fillCompanyField(java.lang.String company) {
         //Log.info("Filling company field");
         setElementText(companyField, company);
         return this;
@@ -136,24 +136,24 @@ public class RutSignUPPage extends Page {
         openSignUpPage();
         fillFirstnameField("firstname");
         fillLastNameField("lastname");
-        String email = generateEmail();
+        java.lang.String email = generateEmail();
         fillEmailField(email);
         fillZipCode1Field("00501");
         fillZipCode2Field("11");
         fillCompanyField("company");
         return this;
     }
-    private static String getRandomString(final int length) {
-        String chars = "abcdefghijklmnopqrstuvwxyz";
+    private static java.lang.String getRandomString(final int length) {
+        java.lang.String chars = "abcdefghijklmnopqrstuvwxyz";
         StringBuilder buf = new StringBuilder();
         for (int i = 0; i < length; i++) {
             buf.append(chars.charAt(rnd.nextInt(chars.length())));
         }
         return buf.toString();
     }
-    public String generateEmail() {
-        String rand = getRandomString(5);
-        String username = rand + "@yopmail.com";
+    public java.lang.String generateEmail() {
+        java.lang.String rand = getRandomString(5);
+        java.lang.String username = rand + "@yopmail.com";
         // Log.info("User's Email generated is <" + username + ">");
         return username;
     }
@@ -198,5 +198,6 @@ public class RutSignUPPage extends Page {
     public void waitForCapchaWarning() {
         waitUntilIsLoaded(captchaMessage);
     }
+
 
 }

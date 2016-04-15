@@ -1,5 +1,6 @@
 package com.yikids;
 
+import com.sun.org.apache.xpath.internal.operations.String;
 import com.yikids.pages.RutSignUPPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -13,7 +14,7 @@ import static org.testng.AssertJUnit.assertTrue;
  * Created by rutga on 29.03.2016.
  */
 public class RutSignUpTest {
-    static String driverPath = "C:\\Telran\\browserDriver\\";
+    static java.lang.String driverPath = "C:\\Telran\\browserDriver\\";
     public RutSignUPPage rutSignUPPage;
     public WebDriver driver;
 
@@ -42,6 +43,26 @@ public class RutSignUpTest {
                 .fillZipCode2Field("222")
                 .fillCompanyField("company");
 //        rutSignUPPage.clickToContinue();
+    }
+    @Test(dataProviderClass = RutDataProviders.class, dataProvider = "rutInvalidSignin.data")
+    public void fillFieldsNegative(java.lang.String firstName, java.lang.String lastName, java.lang.String email, java.lang.String zipCode1, java.lang.String zipCode2, java.lang.String company) throws InterruptedException {
+        rutSignUPPage
+                .fillFirstnameField(firstName)
+                .fillLastNameField(lastName)
+                .fillEmailField(email)
+                .fillZipCode1Field(zipCode1)
+                .fillZipCode2Field(zipCode2)
+                .fillCompanyField(company)
+                .clickToContinue();
+//                .waitForFirstNameWarning();
+//        assertTrue("No First name empty warning", rutSignUPPage.checkFirstNameEmptyFieldMessage());
+//        assertTrue("No Lastname empty warning", rutSignUPPage.checkLastNameEmptyFieldMessage());
+//        assertTrue("No Email empty warning", rutSignUPPage.checkEmailEmptyFieldMessage());
+//        assertTrue("No Email not valid warning", rutSignUPPage.checkEmailNotValidFieldMessage());
+//        assertTrue("No Zip code empty warning", rutSignUPPage.checkZipCodeEmptyFieldMessage());
+//        assertTrue("No Zip code not valid warning", rutSignUPPage.checkZipCodeNotValidFieldMessage());
+//        assertTrue("No Capcha message warning", rutSignUPPage.checkPageForCaptchaMessage());
+        Thread.sleep(3000);
     }
     @Test
     public void fillFieldsNegativeFirstNameEmpty() throws InterruptedException {

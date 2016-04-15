@@ -101,7 +101,7 @@ public class RutLoginPage extends Page {
     //check is on page
     public boolean isOnLoginPage() {
         //Log.info("Click forgotPassword button");
-        return exists(emailField);
+        return exists(logInLinkButton);
     }
 
     public boolean isOnOverviewPage() {

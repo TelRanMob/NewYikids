@@ -5,6 +5,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.io.IOException;
+
 /**
  * Created by rutga on 08.04.2016.
  */
@@ -17,8 +19,10 @@ public class RutMainPage extends Page{
     @FindBy(xpath = "//*[contains(text(),'Add Hospital')]")
     WebElement addHospitalButton;
 
-    //*[contains(text(),'Your password is not correct. Please try again.')]
-    //div[@class='err'][contains(text),'Your password is not correct. Please try again.']
+    //links
+    @FindBy(id = "logout-container")
+    WebElement logOutLink;
+
     public RutMainPage(WebDriver driver) {
         super(driver);
         this.PAGE_URL = "http://admin.yikids.com/admin/overview";
@@ -29,7 +33,11 @@ public class RutMainPage extends Page{
         driver.get(PAGE_URL);
         return this;
     }
-
+    public RutMainPage openHospitalAddPage() {
+        //Log.info("Opening Login page");
+        driver.get("http://admin.yikids.com/hospital/add");
+        return this;
+    }
     public RutMainPage clickHospitalButton() {
         //Log.info("Click signUp button");
         clickElement(hospitalButton);
@@ -40,5 +48,18 @@ public class RutMainPage extends Page{
         clickElement(addHospitalButton);
         return this;
     }
+    public void waitForMainPageLoad() throws IOException, InterruptedException {
+        waitUntilElementIsLoaded(hospitalButton);
+    }
+    public void waitForLogOutSign() throws IOException, InterruptedException {
+        waitUntilElementIsLoaded(logOutLink);
+    }
+    //Todo create method
+    public boolean isOnMainPage(){
+        return true;
+    }
+
+//    http://admin.yikids.com/hospital/add
+//    http://admin.yikids.com/admin/hospital_owner_management
 
 }

@@ -43,43 +43,19 @@ public class RutLoginTest {
         assertTrue("We are on Log In page", rutLoginPage.isOnOverviewPage());
         Thread.sleep(3000);
     }
-    @Test
-    public void logInNegativeEmailEmpty() throws InterruptedException {
+    @Test (dataProviderClass = RutDataProviders.class, dataProvider = "loadInvalidLogInFromFile")
+    public void logInNegative(String login, String pass) throws InterruptedException {
         rutLoginPage
-                .fillEmailField("")
-                .fillPasswordField("Test123")
+                .fillEmailField(login)
+                .fillPasswordField(pass)
                 .clickLoginButton();
+//        String assertText = "rutLoginPage."+method+";";
+
         assertTrue("We are not on the Log In page", rutLoginPage.isOnLoginPage());
-        Thread.sleep(3000);
-    }
-    @Test
-    public void logInNegativeEmailNotValid() throws InterruptedException {
-        rutLoginPage
-                .fillEmailField("email@yopmail.com")
-                .fillPasswordField("Test123")
-                .clickLoginButton();
-        assertTrue("We are not on the Log In page", rutLoginPage.isOnLoginPage());
-        assertTrue("No Email error message", rutLoginPage.checkEmailNotValidMessage());
-        Thread.sleep(3000);
-    }
-    @Test
-    public void logInNegativePasswordEmpty() throws InterruptedException {
-        rutLoginPage
-                .fillEmailField("admin@erdocfinder.com")
-                .fillPasswordField("")
-                .clickLoginButton();
-        assertTrue("We are not on the Log In page", rutLoginPage.isOnLoginPage());
-        Thread.sleep(3000);
-    }
-    @Test
-    public void logInNegativePasswordNotValid() throws InterruptedException {
-        rutLoginPage
-                .fillEmailField("admin@erdocfinder.com")
-                .fillPasswordField("1234567")
-                .clickLoginButton();
-        assertTrue("We are not on the Log In page", rutLoginPage.isOnLoginPage());
-        assertTrue("No Password error message", rutLoginPage.checkPasswordNotValidMessage());
-        assertTrue("No Forgot password button", rutLoginPage.checkForgotPasswordMessage());
+//        assertTrue("No Email error message", rutLoginPage.checkEmailNotValidMessage());
+//        assertTrue("No Email error message", rutLoginPage.checkEmailNotValidMessage());
+//        assertTrue("No Password error message", rutLoginPage.checkPasswordNotValidMessage());
+//        assertTrue("No Forgot password button", rutLoginPage.checkForgotPasswordMessage());
         Thread.sleep(3000);
     }
     @Test
@@ -90,28 +66,10 @@ public class RutLoginTest {
         Thread.sleep(3000);
     }
     @Test
-    public void goToForgotpPasswordPage() throws InterruptedException {
+    public void goToForgotPasswordPage() throws InterruptedException {
         rutLoginPage
                 .clickForgotPasswordButton();
         assertTrue("We are on the Log In page", rutLoginPage.isOnForgotPasswordPage());
         Thread.sleep(3000);
     }
-    //Todo create method
-    @Test (dataProviderClass = DataProviders.class, dataProvider = "")
-    public void logInNegative(String login, String pass) throws InterruptedException {
-        rutLoginPage
-                .fillEmailField("email@yopmail.com")
-                .fillPasswordField("Test123")
-                .clickLoginButton();
-//        String assertText = "rutLoginPage."+method+";";
-
-        assertTrue("We are not on the Log In page", rutLoginPage.isOnLoginPage());
-        assertTrue("No Email error message", rutLoginPage.checkEmailNotValidMessage());
-        Thread.sleep(3000);
-    }
-//    Assert.assertTrue(signUp);
-//    @AfterClass(alwaysRun = true)
-//    public void tearDown(){
-//        this.driver.quit();
-//    }
 }
