@@ -24,7 +24,7 @@ public class LoginPage extends Page {
     @FindBy(id = "email")
     WebElement emailField;
 
-    @FindBy(id = "password")
+    @FindBy(id = "passwordField")
     WebElement passwordField;
 
     @FindBy(xpath = "//*[@id='login-form']/div/button")
@@ -55,7 +55,7 @@ public class LoginPage extends Page {
     @FindBy(xpath = "//*[@id='login-form']/div[1]")
     WebElement emailNotExist;
 
-    @FindBy(xpath = "//div[@class='err'][contains(text(),'Your password is not correct. Please try again.')]")
+    @FindBy(xpath = "//div[@class='err'][contains(text(),'Your passwordField is not correct. Please try again.')]")
     WebElement wrongPassErrMessage;
 
 
@@ -121,7 +121,7 @@ public class LoginPage extends Page {
 
     public LoginPage goToForgotPasswordLink() {
         //Log.info("Go to forgotPassword LinkButton");
-        driver.get("http://admin.yikids.com/forgot-password");
+        driver.get("http://admin.yikids.com/forgot-passwordField");
         return this;
     }
 

@@ -1,6 +1,7 @@
 package com.yikids.pages;
 
 import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.Color;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
@@ -215,6 +216,11 @@ public abstract class Page {
         text_elemen = element.getText();
 
         return text_elemen;
+    }
+
+    public void pressEnter() {
+        Actions builder = new Actions(driver);
+        builder.keyDown(Keys.RETURN).keyUp(Keys.RETURN).build().perform();
     }
 
 

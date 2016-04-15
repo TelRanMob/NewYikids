@@ -17,7 +17,7 @@ public class RutDataProviders {
     @DataProvider
     public static Iterator<Object[]> loadInvalidLogInFromFile() throws IOException {
         BufferedReader in = new BufferedReader(new InputStreamReader(
-                DataProviders.class.getResourceAsStream("/rutInvalidLogin.data")));
+                DataProviders.class.getResourceAsStream("/invalidLogin.data")));
 
         List<Object[]> userData = new ArrayList<Object[]>();
         String line = in.readLine();

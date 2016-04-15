@@ -58,16 +58,16 @@ public class AlexLoginTest {
                 .fillPasswordField("wrong")
                 .clickLoginButton()
                 .waitforPasswordWarningMessage();
-        assertTrue("Wrong password accepted", alexloginpage.isOnLoginPage());
-        assertTrue("No wrong password warning", alexloginpage.checkforWrongPassword());
+        assertTrue("Wrong passwordField accepted", alexloginpage.isOnLoginPage());
+        assertTrue("No wrong passwordField warning", alexloginpage.checkforWrongPassword());
         alexloginpage.clickForgotPasswordAfterPasswordWarning()
                 .waitforResetButton();
-        assertTrue("Forgot password link after wrong password didn't work",
+        assertTrue("Forgot passwordField link after wrong passwordField didn't work",
                 alexloginpage.checkforForgotPasswordEmailLabel());
         alexloginpage.OpenLoginPage();
         alexloginpage.clickForgotPasswordLink()
                 .waitforResetButton();
-        assertTrue("Forgot password link on login page didn't work",
+        assertTrue("Forgot passwordField link on login page didn't work",
                 alexloginpage.checkforForgotPasswordEmailLabel());
     }
 
@@ -102,7 +102,7 @@ public class AlexLoginTest {
                 .fillPasswordField("wrong")
                 .clickLoginButton()
                 .waitforPasswordWarningMessage();
-        assertTrue("No wrong password warning", alexloginpage.checkforWrongPassword());
+        assertTrue("No wrong passwordField warning", alexloginpage.checkforWrongPassword());
     }
 
     @Test
@@ -110,7 +110,7 @@ public class AlexLoginTest {
         alexloginpage.fillEmailField(adminLogin)
                 .fillPasswordField(" ")
                 .waitforPasswordWarningMessage();
-        assertTrue("Empty password accepted", alexloginpage.isOnLoginPage());
+        assertTrue("Empty passwordField accepted", alexloginpage.isOnLoginPage());
     }
 
     @Test

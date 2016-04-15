@@ -1,15 +1,13 @@
 package com.yikids;
 
 import com.yikids.pages.RutLoginPage;
-import com.yikids.pages.RutSignUPPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.support.PageFactory;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+
 import static org.testng.AssertJUnit.assertTrue;
 
 /**
@@ -55,7 +53,7 @@ public class RutLoginTest {
 //        assertTrue("No Email error message", rutLoginPage.checkEmailNotValidMessage());
 //        assertTrue("No Email error message", rutLoginPage.checkEmailNotValidMessage());
 //        assertTrue("No Password error message", rutLoginPage.checkPasswordNotValidMessage());
-//        assertTrue("No Forgot password button", rutLoginPage.checkForgotPasswordMessage());
+//        assertTrue("No Forgot passwordField button", rutLoginPage.checkForgotPasswordMessage());
         Thread.sleep(3000);
     }
     @Test

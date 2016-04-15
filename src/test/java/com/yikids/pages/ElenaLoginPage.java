@@ -5,8 +5,6 @@ package com.yikids.pages;
  */
 
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -23,13 +21,13 @@ public class ElenaLoginPage extends Page {
     @FindBy(id = "email")
     WebElement emailField;
 
-    @FindBy(id="password")
+    @FindBy(id = "passwordField")
     WebElement psswordField;
 
     @FindBy(xpath="//*[@class='err']")
     WebElement ErrorEmail;
 
-    @FindBy(xpath = "//div[@class='err'][contains(text(),'Your password is not correct. Please try again.')]")
+    @FindBy(xpath = "//div[@class='err'][contains(text(),'Your passwordField is not correct. Please try again.')]")
     WebElement errorPasswordMessage;
 
     //buttons

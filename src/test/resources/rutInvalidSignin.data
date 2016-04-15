@@ -1,6 +1,6 @@
-"";"lastname";"email@yopmail.com";"00501";"11";"company"
-"firstname";"";"email@yopmail.com";"00501";"11";"company"
-"firstname";"lastname";"";"00501";"11";"company"
-"firstname";"lastname";"email.com";"00501";"11";"company"
-"firstname";"lastname";"email@yopmail.com";"";"11";"company"
-"firstname";"lastname";"email@yopmail.com";"111111";"11";"company"
+;lastname;email@yopmail.com;00501;11;company
+firstname;;email@yopmail.com;00501;11;company
+firstname;lastname;;00501;11;company
+firstname;lastname;email.com;00501;11;company
+firstname;lastname;email@yopmail.com;;11;"company
+firstname;lastname;email@yopmail.com;111111;11;company

@@ -4,6 +4,7 @@ package com.yikids.pages;
 //import com.telran.LogLog4j;
 //import org.apache.log4j.Logger;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -89,12 +90,6 @@ public class ElenaSignUPPage extends Page {
         PageFactory.initElements(driver, this);
     }
 
-    public ElenaSignUPPage openElenaSignUPPage() {
-        //Log.info("Opening ElenaSignUPPage page");
-        driver.get(PAGE_URL);
-        return this;
-    }
-
     private static String getRandomString(final int length) {
         String chars = "abcdefghijklmnopqrstuvwxyz";
         StringBuilder buf = new StringBuilder();
@@ -103,8 +98,13 @@ public class ElenaSignUPPage extends Page {
         }
         return buf.toString();
     }
-    //Fill the fields
 
+    public ElenaSignUPPage openElenaSignUPPage() {
+        //Log.info("Opening ElenaSignUPPage page");
+        driver.get(PAGE_URL);
+        return this;
+    }
+    //Fill the fields
 
     public ElenaSignUPPage fillFirstnameField(String username) {
         //Log.info("Filling username field");
@@ -157,7 +157,7 @@ public class ElenaSignUPPage extends Page {
     }
 
 
-    public ElenaSignUPPage FillsignUPFields() {
+    public ElenaSignUPPage FillsignUPFields() throws InterruptedException {
         //Log.info("Filling all fields");
         openElenaSignUPPage();
         fillFirstnameField("username");
@@ -167,6 +167,8 @@ public class ElenaSignUPPage extends Page {
         fillzipcodeField("00801");
         fillzipCode2Field("0080");
         fillcompanyField("company");
+        Thread.sleep(15000);
+        buttoncontinueButton();
         return this;
     }
 
@@ -464,5 +466,12 @@ public class ElenaSignUPPage extends Page {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    public String waitAndGetTextofSelectedMessage(String number) throws IOException, InterruptedException {
+        String locator = "//*[@id='section-account']/div[" + number + "]//div[2]/span[1]";
+        WebElement m = driver.findElement(By.xpath(locator));
+        waitUntilElementIsLoaded(m);
+        return m.getText();
     }
 }

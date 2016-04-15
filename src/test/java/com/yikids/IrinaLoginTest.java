@@ -1,7 +1,6 @@
 package com.yikids;
 
 import com.yikids.pages.IrinaLoginPage;
-import com.yikids.pages.IrinaSignUPPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
@@ -73,7 +72,7 @@ public class IrinaLoginTest {
     @Test
     public void negativNotCorrectPasswordLogin(){
         loginI.fillEmailField(email)
-                .fillPasswordField("password")
+                .fillPasswordField("passwordField")
                 .clickToLoginButton()
                 .waitForErrorPasswordMessage();
         //verufication
@@ -84,7 +83,7 @@ public class IrinaLoginTest {
     @Test
     public void positivForFprgotPasswordPage(){
         loginI.fillEmailField(email)
-                .fillPasswordField("password")
+                .fillPasswordField("passwordField")
                 .clickToLoginButton()
                 .clickNotCorrectPasswordForgotPasswordButton()
                 .waitForResetPasswordButtom();
@@ -106,35 +105,35 @@ public class IrinaLoginTest {
     @Test
     public void negativ5TimesNotCorrectPasswordLogin(){
         loginI.fillEmailField(email)
-                .fillPasswordField("password")
+                .fillPasswordField("passwordField")
                 .clickToLoginButton()
                 .waitForErrorPasswordMessage();
         //verufication
         assertTrue("No No Error PasswordMessage1 ", loginI.passwordNotCorrect());
         assertTrue("No login Buttom",loginI.isOnLoginPage());
         loginI.fillEmailField(email)
-                .fillPasswordField("password")
+                .fillPasswordField("passwordField")
                 .clickToLoginButton()
                 .waitForErrorPasswordMessage();
         //verufication
         assertTrue("No No Error PasswordMessage2 ", loginI.passwordNotCorrect());
         assertTrue("No login Buttom",loginI.isOnLoginPage());
         loginI.fillEmailField(email)
-                .fillPasswordField("password")
+                .fillPasswordField("passwordField")
                 .clickToLoginButton()
                 .waitForErrorPasswordMessage();
         //verufication
         assertTrue("No No Error PasswordMessage3 ", loginI.passwordNotCorrect());
         assertTrue("No login Buttom",loginI.isOnLoginPage());
         loginI.fillEmailField(email)
-                .fillPasswordField("password")
+                .fillPasswordField("passwordField")
                 .clickToLoginButton()
                 .waitForErrorPasswordMessage();
         //verufication
         assertTrue("No Error PasswordMessage4 ", loginI.passwordNotCorrect());
         assertTrue("No login Buttom",loginI.isOnLoginPage());
         loginI.fillEmailField(email)
-                .fillPasswordField("password")
+                .fillPasswordField("passwordField")
                 .clickToLoginButton();
 
         loginI.waitForWarningLoginMessage();
@@ -146,7 +145,7 @@ public class IrinaLoginTest {
         Integer i;
         for (i = 1; i < 4; i++) {
             loginI.fillEmailField(email)
-                    .fillPasswordField("password")
+                    .fillPasswordField("passwordField")
                     .clickToLoginButton()
                     .waitForErrorPasswordMessage();
             //verufication
@@ -154,7 +153,7 @@ public class IrinaLoginTest {
             assertTrue("No login Buttom", loginI.isOnLoginPage());
         }
         loginI.fillEmailField(email)
-                .fillPasswordField("password")
+                .fillPasswordField("passwordField")
                 .clickToLoginButton();
         loginI.waitForWarningLoginMessage();
         assertTrue("No Warning LoginMessage", loginI.checkWarningLoginMessage());

@@ -87,6 +87,16 @@ public class RutSignUPPage extends Page {
         this.PAGE_URL = "http://physician.yikids.com/recruiter/signup/";
         PageFactory.initElements(driver, this);
     }
+
+    private static java.lang.String getRandomString(final int length) {
+        java.lang.String chars = "abcdefghijklmnopqrstuvwxyz";
+        StringBuilder buf = new StringBuilder();
+        for (int i = 0; i < length; i++) {
+            buf.append(chars.charAt(rnd.nextInt(chars.length())));
+        }
+        return buf.toString();
+    }
+
     public RutSignUPPage openSignUpPage() {
         //Log.info("Opening SignUp page");
         driver.get(PAGE_URL);
@@ -94,31 +104,36 @@ public class RutSignUPPage extends Page {
     }
 
     //Fill the fields
-    public RutSignUPPage fillFirstnameField(java.lang.String firstname) {
+    public RutSignUPPage fillFirstnameField(String firstname) {
         //Log.info("Filling firstname field");
         setElementText(firstNameField, firstname);
         return this;
     }
+
     public RutSignUPPage fillLastNameField(java.lang.String lastname) {
         //Log.info("Filling lastname field");
         setElementText(lastNameField, lastname);
         return this;
     }
+
     public RutSignUPPage fillEmailField(java.lang.String email) {
         //Log.info("Filling email field");
         setElementText(emailField, email);
         return this;
     }
+
     public RutSignUPPage fillZipCode1Field(java.lang.String zipcode1) {
         //Log.info("Filling zipcode field");
         setElementText(zipCode1Field, zipcode1);
         return this;
     }
+
     public RutSignUPPage fillZipCode2Field(java.lang.String zipcode2) {
         //Log.info("Filling zipplus field");
         setElementText(zipCode2Field, zipcode2);
         return this;
     }
+
     public RutSignUPPage fillCompanyField(java.lang.String company) {
         //Log.info("Filling company field");
         setElementText(companyField, company);
@@ -131,6 +146,7 @@ public class RutSignUPPage extends Page {
         clickElement(continueButton);
         return this;
     }
+
     public RutSignUPPage fillSignUPFields() {
         //Log.info("Filling all fields");
         openSignUpPage();
@@ -143,14 +159,7 @@ public class RutSignUPPage extends Page {
         fillCompanyField("company");
         return this;
     }
-    private static java.lang.String getRandomString(final int length) {
-        java.lang.String chars = "abcdefghijklmnopqrstuvwxyz";
-        StringBuilder buf = new StringBuilder();
-        for (int i = 0; i < length; i++) {
-            buf.append(chars.charAt(rnd.nextInt(chars.length())));
-        }
-        return buf.toString();
-    }
+
     public java.lang.String generateEmail() {
         java.lang.String rand = getRandomString(5);
         java.lang.String username = rand + "@yopmail.com";

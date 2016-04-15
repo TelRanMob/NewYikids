@@ -1,13 +1,17 @@
-package com.yikids.util;
+package com.yikids;
 
 import com.yikids.pages.ElenaSignUPPage;
+import com.yikids.util.ElenaDataProviders;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+
+import java.io.IOException;
 
 //@org.testng.annotations.Listeners(FailTestScreenshotListener.class)
 public class ElenaSignUpNegativeTest {
@@ -30,10 +34,8 @@ public class ElenaSignUpNegativeTest {
     }
 
 
-
-    @Test
-            (dataProviderClass = ElenaDataProviders.class, dataProvider = "loadInvalidSingUpFromFile")
-    public void SingUppNegativeTest(String Firstname,String lastname,String email,String Zip1,String Zip2){
+    @Test(dataProviderClass = ElenaDataProviders.class, dataProvider = "loadInvalidSingUpFromFile")
+    public void SingUppNegativeTest(String Firstname, String lastname, String email, String Zip1, String Zip2, String nubmer, String message) throws IOException, InterruptedException {
         elenaSignUPPage
         .fillFirstnameField(Firstname)
         .fillLastNameField(lastname)
@@ -43,7 +45,8 @@ public class ElenaSignUpNegativeTest {
                 .buttoncontinueButton();
 
        // System.out.println(elenaSignUPPage.gettext());
-       // assertTrue("Check warning message the first name feld is ampty ",elenaSignUPPage.CheckWarningMessageFirstName());
+        //assertTrue("Check warning message the first name feld is ampty ",elenaSignUPPage.CheckWarningMessageFirstName());
+        Assert.assertEquals(elenaSignUPPage.waitAndGetTextofSelectedMessage(nubmer), message, "Message is nor correct");
 
     }
 
