@@ -59,7 +59,6 @@ public class ElenaSignUPPage extends Page {
     @FindBy(xpath = "//*[@id='email-error']/*[text()='The email format is invalid.']")
     WebElement EmailWrongFieldMessage;
 
-
     @FindBy(xpath = "//div [@class='col-sm-6']/*[text()='The zipcode field is required.']")
     WebElement ZipCodEmptyFieldMessage;
     @FindBy(xpath = "//div [@class='col-sm-6']/*[text()='Zipcode is invalid']")

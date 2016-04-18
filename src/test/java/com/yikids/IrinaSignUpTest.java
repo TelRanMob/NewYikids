@@ -10,6 +10,8 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import java.io.IOException;
+
 import static org.testng.AssertJUnit.assertTrue;
 
 /**
@@ -49,20 +51,19 @@ public class IrinaSignUpTest {
 
     @Test(dataProviderClass = IrinaDataProviders.class, dataProvider = "singUpNegativFromFile")
     public void negativSingUp(String firstName,String lastname,String email,String cod,
-                              String cod2,String company,String message)
-                                 {
+                              String cod2,String number, String message) throws IOException, InterruptedException {
         signUPPageI
                 .fillFirstnameField(firstName)
                 .fillLastNameField(lastname)
                 .fillemailField(email)
                 .fillzipCodeField(cod)
-                .fillcompanyField(company)
+                .fillcompanyField("Company")
                 .fillzipCod2Field(cod2)
-                .clickElemToContinue()
+                .clickElemToContinue();
                 //Explicite wait
                 //Thread.sleep(3000);
                 //Implicity wait -method on SignUpPage
-                .waitForWarningFirstNameEmpty();
+        Assert.assertEquals(signUPPageI.waitAndGetTextofSelectedMessage(number), message, "Message is nor correct");
         assertTrue("Not on SingUp Page", signUPPageI.isOnSignUpPage());
     }
 

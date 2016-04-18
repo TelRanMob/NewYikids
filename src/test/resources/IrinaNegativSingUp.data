@@ -1,19 +1,20 @@
-a;b;ghj@gov.c;04456;11;company
-;b;ghj@gov.c;04456;11;company
-a;;ghj@gov.c;04456;11;company
-a;b;ghjgov.c;04456;11;company
-a;b;ghj@govc;04456;11;company
-a;b;ghj@gov;04456;11;company
-a;b;@gov.v;04456;11;company
-a;b;ghj@;04456;11;company
-a;b;ghj@.v;04456;11;company
-a;b;;04456;11;company
-a;b;ghj@gov.com;;11;company
-a;b;ghj@gov.com;hhh;11;company
-a;b;ghj@gov.com;3333333333333;11;company
-a;b;ghj@gov.com;1;11;company
-a;b;ghj@gov.com;;11;company
-;;;;;;company
+a;b;ghj@gov.c;04456;11;1;The first name must be at least 3 characters.
+;b;ghj@gov.c;04456;11;1;The first name field is required.
+$@#;b;ghj@gov.c;04456;11;1;The first name may only contain letters and numbers.
+a;;ghj@gov.c;04456;11;2;The last name field is required.
+a;@;ghj@gov.c;04456;11;2;The last name may only contain letters and numbers.
+a;b;ghjgov.c;04456;11;3;The email format is invalid.
+a;b;ghj@govc;04456;11;3;The email format is invalid.
+a;b;ghj@gov.;04456;11;3;The email format is invalid.
+a;b;@gov.v;04456;11;3;The email format is invalid.
+a;b;ghj@;04456;11;3;The email format is invalid.
+a;b;ghj@.v;04456;11;3;The email format is invalid.
+a;b;;04456;11;3;The email field is required.
+a;b;ghj@gov.com;;11;4;The zipcode field is required.
+a;b;ghj@gov.com;hhh;11;4;The zipcode must be a number.
+a;b;ghj@gov.com;3333333333333;11;4;Zipcode is invalid
+a;b;ghj@gov.com;1;11;4;Zipcode is invalid
+
 
 
 

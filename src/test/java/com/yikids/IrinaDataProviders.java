@@ -3,6 +3,7 @@ package com.yikids;
 import org.testng.annotations.DataProvider;
 
 import java.io.BufferedReader;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
@@ -250,6 +251,37 @@ public class IrinaDataProviders {
         return userData.iterator();
     }
 
+  /*  @DataProvider
+    public Object[][] getExcelData(String fileName, String sheetName) {
+        String[][] arrayExcelData = null;
+        try {
+            FileInputStream fs = new FileInputStream(fileName);
+            Workbook wb = Workbook.getWorkbook(fs);
+            Sheet sh = wb.getSheet(sheetName);
+
+            int totalNoOfCols = sh.getColumns();
+            int totalNoOfRows = sh.getRows();
+
+            arrayExcelData = new String[totalNoOfRows-1][totalNoOfCols];
+
+            for (int i= 1 ; i < totalNoOfRows; i++) {
+
+                for (int j=0; j < totalNoOfCols; j++) {
+                    arrayExcelData[i-1][j] = sh.getCell(j, i).getContents();
+                }
+
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+            e.printStackTrace();
+        } catch (BiffException e) {
+            e.printStackTrace();
+        }
+        return arrayExcelData;
+    }
+*/
 
     @DataProvider
     public Iterator<Object[]> users() {

@@ -1,10 +1,12 @@
 package com.yikids.pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.io.IOException;
 import java.util.Random;
 
 /**
@@ -38,28 +40,51 @@ public class IrinaSignUPPage extends Page {
     @FindBy(xpath = "//*[@id='section-account']/span")
     WebElement captchaMessage;
 
+    //The first name field is required.
     @FindBy(xpath = "//*[@id='section-account']/div[1]/div/div[2]/span")
     WebElement firstNameEmptyFieldMessage;
+   //The first name must be at least 3 characters.
+   @FindBy(xpath = "//*[@id='section-account']/div[1]/div/div[2]/span")
+   WebElement firstNameErrorFieldMessage;
+    //The first name may only contain letters and numbers.
+    @FindBy(xpath = "//*[@id='section-account']/div[1]/div/div[2]/span")
+    WebElement firstNameWrongFieldMessage;
 
+    //The last name field is required.
     @FindBy(xpath = "//*[@id='section-account']/div[2]/div/div[2]/span")
     WebElement lastNameEmptyFieldMessage;
+    //The last name may only contain letters and numbers.
+    @FindBy(xpath = "//*[@id='section-account']/div[2]/div/div[2]/span")
+    WebElement lastNameWrongFieldMessage;
 
+    //The email field is required.
     @FindBy(xpath = "//*[@id='email-error']/span[1]")
     WebElement emailEmptyFieldMessage;
-
-    @FindBy(xpath = "//*[@id='section-account']/div[4]/div/div[2]/span[1]")
-    WebElement zipCodeFieldMessage;
-
-
+    //The email format is invalid.
     @FindBy(xpath = "//*[@id='email-error']/span[1]")
     WebElement invalidEmaildMessage;
 
+    //The zipcode field is required.
+    @FindBy(xpath = "//*[@id='section-account']/div[4]/div/div[2]/span[1]")
+    WebElement zipCodeFieldMessage;
+    //Zipcode is invalid.
     @FindBy(xpath = "//*[@id='section-account']/div[4]/div/div[2]/span[1]")
     WebElement invalidZipdMessage;
+    //The zipcode must be a number.
+    @FindBy(xpath = "//*[@id='section-account']/div[4]/div/div[2]/span[1]")
+    WebElement ZipCodWrongFieldLattersMessage;
+
+
+
 
     //buttons
     @FindBy(id = "create-account")
     WebElement continueButton;
+
+    @FindBy(xpath = "//*[@id='topMenuNavigation']/ul/li/a")
+    WebElement LogOutButton;
+
+
 
 
     public IrinaSignUPPage(WebDriver driver) {
@@ -178,6 +203,12 @@ public class IrinaSignUPPage extends Page {
         return verifyTextBoolean(captchaMessage, "Please check Captcha!");
     }
 
+    public String waitAndGetTextofSelectedMessage(String number) throws IOException, InterruptedException {
+        String locator = "//*[@id='section-account']/div[" + number + "]//div[2]/span";
+        WebElement m = driver.findElement(By.xpath(locator));
+        waitUntilElementIsLoaded(m);
+        return m.getText();
+    }
     //Implicity waits -method on SignUpPage
 
     public void waitForWarningFirstNameEmpty() {
