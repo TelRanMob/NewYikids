@@ -1,0 +1,6 @@
+  ;lastname;use@yopmail.com;00801;0080;1;The first name field is required.
+  1;lastname;use1@yopmail.com;00801;0080;1;The first name must be at least 3 characters.
+  s;lastname;use1@yopmail.com;00801;0080;1;The first name must be at least 3 characters.
+  wewr-324;lastname;use2@yopmail.com;00801;0080;1;The first name may only contain letters and numbers.
+  username; ;use3@yopmail.com;00801;0080;2;The last name field is required.
+  username;ertr@hh;use4@yopmail.com;00801;0080;2;The last name may only contain letters and numbers.

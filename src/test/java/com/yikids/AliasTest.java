@@ -77,7 +77,7 @@ public class AliasTest {
                 .buttoncontinueButton()
                 .waitForFirstNameWarning();
         System.out.println(elenaSignUPPage.gettext());
-        assertTrue("Check warning message the first name feld is ampty ", elenaSignUPPage.CheckWarningMessageFirstName());
+        assertTrue("Check warning message the first name feld is empty ", elenaSignUPPage.CheckWarningMessageFirstName());
 
     }
 
@@ -169,8 +169,8 @@ public class AliasTest {
         this.driver.quit();
     }*/
 
-    @AfterClass(alwaysRun = true)
+  /*  @AfterClass(alwaysRun = true)
     public void tearDown() {
         this.driver.quit();
-    }
+    }*/
 }

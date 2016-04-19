@@ -4,6 +4,7 @@ package com.yikids.pages;
  * Created by Tania Pereminski on 3/22/2016.
  */
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -15,12 +16,21 @@ import org.openqa.selenium.support.PageFactory;
 
 //import com.telran.LogLog4j;
 //import org.apache.log4j.Logger;
+import java.io.IOException;
 import java.util.Random;
 
 
 public class TaniaSignUPPage extends Page {
     //private static Logger Log = Logger.getLogger(LogLog4j.class.getName());
     private static Random rnd = new Random();
+
+    //System messages
+    @FindBy(xpath = "//div [@class='col-sm-6']/*[text()='The first name field is required.']")
+    WebElement firstNameEmptyFieldMessage;
+    @FindBy(xpath = "//div [@class='col-sm-6']/*[text()='The first name may only contain letters and numbers.']")
+    WebElement firstNameWrongFieldMessage;
+    @FindBy(xpath = "//div [@class='col-sm-6']/*[text()='The first name must be at least 3 characters.']")
+    WebElement firstNameOneNumbFieldMessage;
 
     /* fields */
     @FindBy(id = "firstname")
@@ -188,6 +198,46 @@ public class TaniaSignUPPage extends Page {
         fillzipcodeField("0011");
         fillzipPlusField("12");
         fillcompanyField("company");
+
+        return this;
+    }
+
+    public TaniaSignUPPage NoFillUsernameFields() {
+        //Log.info("Filling all fields");
+        openTaniaSignUPPage();
+        fillFirstnameField("");
+        fillLastNameField("lastname");
+        String email = generateEmail();
+        fillemailField(email);
+        fillzipcodeField("00801");
+        fillzipPlusField("0080");
+        fillcompanyField("company");
+        return this;
+    }
+
+    public TaniaSignUPPage WrongFillUsernameFields() {
+        //Log.info("Filling all fields");
+        openTaniaSignUPPage();
+        fillFirstnameField("wewr-324");
+        fillLastNameField("lastname");
+        String email = generateEmail();
+        fillemailField(email);
+        fillzipcodeField("00801");
+        fillzipPlusField("0080");
+        fillcompanyField("company");
+        return this;
+    }
+
+    public TaniaSignUPPage NoFillLastnameFields() {
+        //Log.info("Filling all fields");
+        openTaniaSignUPPage();
+        fillFirstnameField("username");
+        fillLastNameField("");
+        String email = generateEmail();
+        fillemailField(email);
+        fillzipcodeField("00801");
+        fillzipPlusField("0080");
+        fillcompanyField("company");
         return this;
     }
 
@@ -218,6 +268,26 @@ public class TaniaSignUPPage extends Page {
 
 
     /* check your field is valid */
+
+    public String gettext() {
+        return getTextElement(firstNameMessage);
+    }
+
+
+    public boolean CheckWarningMessageFirstName() {
+        return verifyTextBoolean(firstNameEmptyFieldMessage,"The first name field is required.");
+    }
+
+    public boolean CheckWarningMessageFirstNameisSimbols() {
+        return verifyTextBoolean(firstNameWrongFieldMessage,"The first name may only contain letters and numbers.");
+    }
+
+    public boolean CheckWarningMessageFirstNameisOneNumber() {
+        return verifyTextBoolean(firstNameOneNumbFieldMessage, "The first name must be at least 3 characters.");
+    }
+
+
+
     public boolean checkFirstNameErrorMessage() {return verifyTextBoolean(firstNameMessage, "The first name field is required.");
     }
     public boolean checkLastNameErrorMessage() {return verifyTextBoolean(lastNameMessage, "The last name field is required.");
@@ -252,5 +322,12 @@ public class TaniaSignUPPage extends Page {
     public TaniaSignUPPage checkelement(String error){
         verifyText(ErrorCaptcha, error);
         return this;
+    }
+
+    public String waitAndGetTextofSelectedMessage(String number) throws IOException, InterruptedException {
+        String locator = "//*[@id='section-account']/div[" + number + "]//div[2]/span[1]";
+        WebElement m = driver.findElement(By.xpath(locator));
+        waitUntilElementIsLoaded(m);
+        return m.getText();
     }
 }

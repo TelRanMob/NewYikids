@@ -30,7 +30,8 @@ public class ElenaSignUpNegativeTest {
     }
 
     @BeforeMethod(alwaysRun = true)
-    public void beforeMethodSetUp(){elenaSignUPPage.openElenaSignUPPage();
+    public void beforeMethodSetUp(){
+        elenaSignUPPage.openElenaSignUPPage();
     }
 
 
@@ -44,8 +45,8 @@ public class ElenaSignUpNegativeTest {
         .fillzipCode2Field(Zip2)
                 .buttoncontinueButton();
 
-       // System.out.println(elenaSignUPPage.gettext());
-        //assertTrue("Check warning message the first name feld is ampty ",elenaSignUPPage.CheckWarningMessageFirstName());
+       // System.out.println(taniaSignUPPage.gettext());
+        //assertTrue("Check warning message the first name feld is ampty ",taniaSignUPPage.CheckWarningMessageFirstName());
         Assert.assertEquals(elenaSignUPPage.waitAndGetTextofSelectedMessage(nubmer), message, "Message is nor correct");
 
     }

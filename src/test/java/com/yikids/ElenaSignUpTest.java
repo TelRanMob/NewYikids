@@ -33,10 +33,10 @@ public class ElenaSignUpTest {
 
    @Test
     public void CheckingLabelOnLoginPage(){
-        //elenaSignUPPage.waitForFirstNameWarning();
+        //taniaSignUPPage.waitForFirstNameWarning();
 
         System.out.println("Page title is: " + driver.getTitle());
-       // System.out.println("Text element ="+elenaSignUPPage.gettext());
+       // System.out.println("Text element ="+taniaSignUPPage.gettext());
 
         assertTrue( "First Name text is confirmed", elenaSignUPPage.CheckFirstNameLabel());
         assertTrue( "Last Name text is confirmed", elenaSignUPPage.CheckLastNameLabel());

@@ -21,12 +21,13 @@ public class Alias1Page extends Page {
     public Map<String, String> data;
     public WebDriver driver;
     public int timeout = 15;
+
     @FindBy(css = "#footerNavigation1 ul.nav.navbar-nav li:nth-of-type(1) a")
-
     public WebElement aboutUs;
-    @FindBy(id = "username")
 
+    @FindBy(id = "username")
     public WebElement aliasField;
+
     @FindBy(css = "#footerNavigation1 ul.nav.navbar-nav li:nth-of-type(2) a")
 
     public WebElement benefits;
@@ -39,25 +40,22 @@ public class Alias1Page extends Page {
     @FindBy(css = "#footerNavigation1 ul.nav.navbar-nav li:nth-of-type(4) a")
 
     public WebElement faq;
-    @FindBy(id = "showPassword")
 
+    @FindBy(id = "showPassword")
     public WebElement showPasswordCheckBox;
     @FindBy(name = "agree")
-
     public WebElement iAgreeCheckBox;
-    @FindBy(css = "a.LogoutText")
 
+    @FindBy(css = "a.LogoutText")
     public WebElement logIn;
     @FindBy(css = "#footerNavigation2 ul.nav.navbar-nav li:nth-of-type(4) a")
 
     public WebElement partners;
 
     @FindBy(id = "passwordField")
-
     public WebElement passwordField;
 
     @FindBy(css = "#footerNavigation2 ul.nav.navbar-nav li:nth-of-type(3) a")
-
     public WebElement press;
 
     @FindBy(css = "#footerNavigation1 ul.nav.navbar-nav li:nth-of-type(3) a")
@@ -69,7 +67,6 @@ public class Alias1Page extends Page {
     public WebElement privacyPolicy;
 
     @FindBy(id = "password_confirmation")
-
     public WebElement retypePasswordField;
 
     @FindBy(id = "term")
