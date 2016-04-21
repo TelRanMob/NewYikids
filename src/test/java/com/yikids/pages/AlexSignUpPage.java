@@ -4,11 +4,13 @@ package com.yikids.pages;
  * Created by Alexandr on 03.04.2016.
  */
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.io.IOException;
 import java.util.Random;
 
 /***
@@ -63,6 +65,15 @@ public class AlexSignUpPage extends Page {
 
     @FindBy(xpath = "//*[@id='section-account']/span")
     WebElement captchaErrorMessage;
+
+    //Wrong - for DataDriven tests
+    @FindBy(xpath = "//*[@id='section-account']/div[1]//div[2]/span[1]") WebElement firstnameWrongMessage;
+
+    @FindBy(xpath = "//*[@id='section-account']/div[2]//div[2]/span[1]") WebElement lastnameWrongMessage;
+
+    @FindBy(xpath = "//*[@id='section-account']/div[3]//div[2]/span[1]") WebElement emailWrongMessage;
+
+    @FindBy(xpath = "//*[@id='section-account']/div[4]//div[2]/span[1]") WebElement zipcodeWrongMessage;
 
     /* Field labels */
 
@@ -162,6 +173,13 @@ public class AlexSignUpPage extends Page {
         fillZip21Field("5646");
         fillCompany1Field("testcompany");
         return this;
+    }
+
+    public String waitforWrongDataMessages(String number) throws IOException, InterruptedException {
+        String locator = "//*[@id='section-account']/div["+number+"]//div[2]/span[1]";
+        WebElement element = driver.findElement(By.xpath(locator));
+        waitUntilElementIsLoaded(element);
+        return element.getText();
     }
 
     /* Checks */

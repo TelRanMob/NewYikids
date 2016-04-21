@@ -45,5 +45,4 @@
     <orderEntry type="library" scope="TEST" name="Maven: org.seleniumhq.selenium:selenium-firefox-driver:2.53.0" level="project" />
     <orderEntry type="library" name="Maven: commons-io:commons-io:2.4" level="project" />
   </component>
-  <component name="POM File Configuration" pomFile="" />
 </module>
