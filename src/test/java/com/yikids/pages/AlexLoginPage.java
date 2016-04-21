@@ -26,9 +26,9 @@ public class AlexLoginPage extends Page {
     /* Fields */
     @FindBy(xpath = "//*[@class='container']/form[@action='reset']/input[@id='email']")
     WebElement forgotpasswordEmailField;
-    @FindBy(xpath = "html/body/div[2]/form/label")
+    @FindBy(xpath = "//*[@id='login-form']/a[2]")
     WebElement forgotpasswordEmailLabel;
-    @FindBy(xpath = "//*[@id='login-form']/div/button")
+    @FindBy(xpath = "//*[@id='login-form']/button")
     WebElement loginButton;
     @FindBy(xpath = "//*[@id='login-form']/div/a[1]")
     WebElement signUpLink;
@@ -149,7 +149,7 @@ public class AlexLoginPage extends Page {
 
     // Going on relation pages.
     public boolean isOnLoginPage() {
-        exists(forgotPasswordLink);
+        exists(loginButton);
         return true;
     }
 

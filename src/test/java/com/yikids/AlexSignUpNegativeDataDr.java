@@ -36,7 +36,12 @@ public class AlexSignUpNegativeDataDr {
 
     /* Tests */
 
-    @Test(dataProviderClass = DataProviders.class, dataProvider = "loadProfileDataFromFile")
+    @Test(dataProviderClass = DataProvider.class, dataProvider = "")
+    public void loginNeganiveTest(){
+
+    }
+
+    @Test(dataProviderClass = DataProviders.class, dataProvider = "AlexloadProfileDataFromFile")
     public void signUpNegativeTest(String name, String surname, String email, String zip1, String zip2, String number, String message) throws IOException, InterruptedException {
         alexsignuppage.fillFirstnameField(name)
                 .fillLastNameField(surname)
@@ -44,10 +49,11 @@ public class AlexSignUpNegativeDataDr {
                 .fillZip1Field(zip1)
                 .fillZip21Field(zip2)
                 .clickToContinue();
+
         Assert.assertEquals(alexsignuppage.waitforWrongDataMessages(number), message, "Wrong message is not displayed");
     }
 
-    @AfterClass(alwaysRun = true)
+    //@AfterClass(alwaysRun = true)
     public void tearDown() {
         driver.quit();
     }
