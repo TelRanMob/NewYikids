@@ -59,7 +59,6 @@ public class AlexLoginTest {
                 .clickLoginButton()
                 .waitforPasswordWarningMessage();
         assertTrue("Wrong passwordField accepted", alexloginpage.isOnLoginPage());
-        assertTrue("No wrong passwordField warning", alexloginpage.checkforWrongPassword());
         alexloginpage.clickForgotPasswordAfterPasswordWarning()
                 .waitforResetButton();
         assertTrue("Forgot passwordField link after wrong passwordField didn't work",
@@ -102,7 +101,6 @@ public class AlexLoginTest {
                 .fillPasswordField("wrong")
                 .clickLoginButton()
                 .waitforPasswordWarningMessage();
-        assertTrue("No wrong passwordField warning", alexloginpage.checkforWrongPassword());
     }
 
     @Test

@@ -18,52 +18,42 @@ import java.util.Random;
 public class AlexLoginPage extends Page {
 
     private static Random rnd = new Random();
-
-    /* Fields */
-
     @FindBy(id = "email")
     WebElement emailField;
-
-    @FindBy(id = "passwordField")
+    @FindBy(id = "password")
     WebElement passwordField;
 
+    /* Fields */
     @FindBy(xpath = "//*[@class='container']/form[@action='reset']/input[@id='email']")
     WebElement forgotpasswordEmailField;
-
     @FindBy(xpath = "html/body/div[2]/form/label")
     WebElement forgotpasswordEmailLabel;
-
-    /* Buttons and links */
-
     @FindBy(xpath = "//*[@id='login-form']/div/button")
     WebElement loginButton;
-
     @FindBy(xpath = "//*[@id='login-form']/div/a[1]")
     WebElement signUpLink;
 
+    /* Buttons and links */
     @FindBy(xpath = "//*[@id='login-form']/div/a[2]")
     WebElement forgotPasswordLink;
-
     @FindBy(xpath = "//*[@id='login-form']/div[1]/a")
     WebElement wrongPasswordForgotPasswordLink;
-
     @FindBy(xpath = "//*[@id='logout-container']/a")
     WebElement mainpageLogOutLink;
-
     @FindBy(xpath = "//*[@id='zipcode']")
     WebElement signuppageZipCodeField;
-
     @FindBy(xpath = "html/body/div[2]/form/button")
     WebElement forgotpasswordpageResetButton;
-
-    /* System messages */
-
     @FindBy(xpath = "//*[@id='login-form']/div[1]")
     WebElement titleEmailPasswordWarningMessage;
+    private String login = "admin@erdocfinder.com";
+
+    /* System messages */
+    private String pass = "Test123";
 
     /* Methods */
 
-    // Construct and OpenPage.
+    // Constructor and OpenPage.
     public AlexLoginPage(WebDriver driver) {
         super(driver);
         this.PAGE_URL = "http://admin.yikids.com/";
@@ -128,6 +118,13 @@ public class AlexLoginPage extends Page {
         String rndEmail = generateEmail();
         fillEmailField(rndEmail);
         fillPasswordField("TestPassword");
+        return this;
+    }
+
+    public AlexLoginPage positiveLogIn() {
+        OpenLoginPage();
+        fillEmailField(login);
+        fillPasswordField(pass);
         return this;
     }
 

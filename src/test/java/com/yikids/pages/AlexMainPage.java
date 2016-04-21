@@ -15,10 +15,17 @@ import org.openqa.selenium.support.PageFactory;
 
 public class AlexMainPage extends Page {
 
-    /* Links */
+    /* Verify tags */
 
     @FindBy(xpath = "//*[@id='logout-container']/a")
     WebElement logoutLink;
+
+    @FindBy(xpath = "html/body/div[2]//div[1]/h4")
+    WebElement PhysicianOverviewColumn;
+    @FindBy(xpath = "html/body/div[2]//div[2]/h4")
+    WebElement RecruiterOverviewColumn;
+    @FindBy(xpath = "html/body/div[2]//div[3]/h4")
+    WebElement RecruiterOverviewColumnTwo;
 
     /* Methods */
 
@@ -174,6 +181,12 @@ public class AlexMainPage extends Page {
     public boolean isOnMainPage() {
         waitforLogOutLink();
         return exists(logoutLink);
+    }
+
+    public void checkforOverviewPage() {
+        verifyElementIsPresent(PhysicianOverviewColumn);
+        verifyElementIsPresent(RecruiterOverviewColumn);
+        verifyElementIsPresent(RecruiterOverviewColumnTwo);
     }
 
     // Waiting.
