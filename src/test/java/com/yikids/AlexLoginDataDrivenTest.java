@@ -8,6 +8,7 @@ import com.yikids.pages.AlexLoginPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 import org.testng.annotations.*;
 import static org.testng.Assert.assertTrue;
 
@@ -27,15 +28,28 @@ public class AlexLoginDataDrivenTest {
         alexloginpage.OpenLoginPage();
     }
 
+    @DataProvider(name="NegativeLogin")
+    public Object[][] LoginDP(){
+        return new Object[][]{
+                {"admin@erdocfinder.com","Tst123","You are not a physician."},
+                {"admin@erdocfinr.com","tt","Please sign up because your email does not exist in our system."}
+        };
+    }
+
     /* Tests */
+
+    @Test(dataProvider = "NegativeLogin")
+    public void loginNeganiveTest(String login, String pass, String message){
+        alexloginpage.fillPasswordField(pass)
+                .fillEmailField(login)
+                .clickLoginButton();
+    }
 
     @Test(dataProviderClass = DataProviders.class, dataProvider = "loadInvalidLoginFromFile")
     public void loginNeganiveTest(String login, String pass) {
         alexloginpage.fillEmailField(login)
                 .fillPasswordField(pass)
                 .clickLoginButton();
-
-        assertTrue(alexloginpage.checkforForgotPasswordEmailLabel(), "Negative login failed");
     }
 
     @AfterClass(alwaysRun = true)
