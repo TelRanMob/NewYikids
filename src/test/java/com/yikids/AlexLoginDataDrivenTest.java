@@ -10,6 +10,8 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.annotations.*;
+import org.testng.log4testng.Logger;
+
 import static org.testng.Assert.assertTrue;
 
 public class AlexLoginDataDrivenTest {
