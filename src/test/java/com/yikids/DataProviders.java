@@ -133,7 +133,7 @@ public class DataProviders {
     @DataProvider //Testing dataprovider.
     public static Iterator<Object[]> AlexloadProfileDataFromFile() throws IOException {
         BufferedReader in = new BufferedReader(new InputStreamReader(
-                DataProviders.class.getResourceAsStream("AlexSignUpNegative.data")));
+                DataProviders.class.getResourceAsStream("/AlexSignUpNegative.data")));
 
         List<Object[]> userData = new ArrayList<Object[]>();
         String line = in.readLine();

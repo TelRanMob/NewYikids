@@ -8,9 +8,7 @@ import com.yikids.pages.AlexLoginPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
-import org.testng.Assert;
 import org.testng.annotations.*;
-import org.testng.log4testng.Logger;
 
 import static org.testng.Assert.assertTrue;
 
@@ -45,6 +43,8 @@ public class AlexLoginDataDrivenTest {
         alexloginpage.fillPasswordField(pass)
                 .fillEmailField(login)
                 .clickLoginButton();
+        assertTrue(alexloginpage.isOnLoginPage());
+        System.out.println(message);
     }
 
     @Test(dataProviderClass = DataProviders.class, dataProvider = "loadInvalidLoginFromFile")
@@ -52,6 +52,7 @@ public class AlexLoginDataDrivenTest {
         alexloginpage.fillEmailField(login)
                 .fillPasswordField(pass)
                 .clickLoginButton();
+        assertTrue(alexloginpage.isOnLoginPage());
     }
 
     @AfterClass(alwaysRun = true)

@@ -10,6 +10,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.annotations.*;
+
 import java.io.IOException;
 
 /***
@@ -53,7 +54,7 @@ public class AlexSignUpNegativeDataDr {
         Assert.assertEquals(alexsignuppage.waitforWrongDataMessages(number), message, "Wrong message is not displayed");
     }
 
-    //@AfterClass(alwaysRun = true)
+    @AfterClass(alwaysRun = true)
     public void tearDown() {
         driver.quit();
     }
