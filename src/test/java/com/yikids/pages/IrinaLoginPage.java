@@ -4,6 +4,8 @@ package com.yikids.pages;
  * Created by Irina Primak on 4/01/2016.
  */
 
+import com.yikids.LogLog4j;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -12,7 +14,7 @@ import org.openqa.selenium.support.PageFactory;
 import java.util.Random;
 
 public class IrinaLoginPage extends Page {
-    //private static Logger Log = Logger.getLogger(LogLog4j.class.getName());
+    private static Logger Log = Logger.getLogger(LogLog4j.class.getName());
     private static Random rnd = new Random();
     public String PAGE_URL;
 
@@ -84,32 +86,32 @@ public class IrinaLoginPage extends Page {
     public String generateEmail() {
         String rand = getRandomString(5);
         String username = rand + "@yopmail.com";
-        // Log.info("Doctor's Username generated is <" + username + ">");
+        Log.info("Doctor's Username generated is <" + username + ">");
         return username;
     }
 
     //Open Page
     public IrinaLoginPage openLoginPage() {
-        //Log.info("Opening Login page");
+        Log.info("Opening Login page");
         driver.get(PAGE_URL);
         return this;
     }
     //Fill the fields
 
     public IrinaLoginPage fillEmailField(String email) {
-        //Log.info("Filling email field");
+        Log.info("Filling email field " + email);
         setElementText(emailField, email);
         return this;
     }
 
     public IrinaLoginPage fillPasswordField(String password) {
-        //Log.info("Filling passwordField field");
+        Log.info("Filling passwordField field");
         setElementText(passwordField, password);
         return this;
     }
 
     public IrinaLoginPage clickToLoginButton() {
-        //Log.info("LogIn");
+        Log.info("LogIn");
         clickElement(loginButton);
         return this;
     }

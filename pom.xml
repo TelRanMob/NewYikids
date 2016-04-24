@@ -201,10 +201,10 @@
     </profile>
     <!-- environments -->
     <profile>
-      <id>local</id>
+      <id>recruter</id>
       <properties>
         <env>local</env>
-        <site.url>http://localhost/</site.url>
+        <site.url>http://physician.yikids.com/</site.url>
       </properties>
       <activation>
         <activeByDefault>true</activeByDefault>
@@ -214,7 +214,7 @@
       <id>dev</id>
       <properties>
         <env>dev</env>
-        <site.url>http://devhost/</site.url>
+        <site.url>http://admin.yikids.com/</site.url>
       </properties>
     </profile>
     <profile>

@@ -1,10 +1,7 @@
 package com.yikids;
 
 import com.yikids.pages.ElenaLoginPage;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -12,25 +9,26 @@ import org.testng.annotations.Test;
 import static org.testng.AssertJUnit.assertTrue;
 
 //@org.testng.annotations.Listeners(FailTestScreenshotListener.class)
-public class ElenaLoginTest {
+public class ElenaLoginTest extends TestNgTestBase {
 
   //static String driverPath = "D:\\Tel_Ran\\Java\\webDrivers\\";
     public ElenaLoginPage elenaLoginPage;
-    public WebDriver driver;
+    // public WebDriver driver;
 
     @BeforeClass(alwaysRun = true)
     public void setup() {
       //System.setProperty("webdriver.chrome.driver", driverPath+"chromedriver.exe");
         //driver = new ChromeDriver();
 
-        driver = new FirefoxDriver();
+        // driver = new FirefoxDriver();
         elenaLoginPage = PageFactory.initElements(driver, ElenaLoginPage.class);
 
     }
 
     @BeforeMethod(alwaysRun = true)
     public void beforeMethodSetUp(){
-        elenaLoginPage.openLoginPage();
+        // elenaLoginPage.openLoginPage();
+        driver.get("http://admin.yikids.com/");
     }
 
     @Test//positive test
@@ -72,8 +70,8 @@ public class ElenaLoginTest {
 
 
 
-  @AfterClass(alwaysRun = true)
+ /* @AfterClass(alwaysRun = true)
     public void tearDown() {
         this.driver.quit();
-    }
+    }*/
 }

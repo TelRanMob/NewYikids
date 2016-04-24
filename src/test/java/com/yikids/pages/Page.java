@@ -1,5 +1,7 @@
 package com.yikids.pages;
 
+import com.yikids.LogLog4j;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.Color;
@@ -15,7 +17,7 @@ import java.io.IOException;
  */
 public abstract class Page {
 
-
+    private static Logger Log = Logger.getLogger(LogLog4j.class.getName());
 
   /*
    * Constructor injecting the WebDriver interface
