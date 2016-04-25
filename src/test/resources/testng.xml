@@ -4,6 +4,7 @@
   <test name="Test1">
     <classes>
       <class name="com.yikids.ElenaLoginTest"/>
+      <class name="com.yikids.AlexLoginDataDrivenTest"/>
     </classes>
   </test>  
 </suite>

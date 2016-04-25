@@ -5,17 +5,18 @@ package com.yikids;
  */
 
 import com.yikids.pages.AlexLoginPage;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
-import org.testng.annotations.*;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertTrue;
 
-public class AlexLoginDataDrivenTest {
+public class AlexLoginDataDrivenTest extends TestNgTestBase {
 
     public AlexLoginPage alexloginpage;
-    public WebDriver driver;
 
     @BeforeClass(alwaysRun = true)
     public void setup() {
@@ -25,7 +26,7 @@ public class AlexLoginDataDrivenTest {
 
     @BeforeMethod(alwaysRun = true)
     public void beforeMethodSetup() {
-        alexloginpage.OpenLoginPage();
+        driver.get("http://admin.yikids.com/");
     }
 
     @DataProvider(name="NegativeLogin")
@@ -44,7 +45,6 @@ public class AlexLoginDataDrivenTest {
                 .fillEmailField(login)
                 .clickLoginButton();
         assertTrue(alexloginpage.isOnLoginPage());
-        System.out.println(message);
     }
 
     @Test(dataProviderClass = DataProviders.class, dataProvider = "loadInvalidLoginFromFile")
@@ -55,9 +55,7 @@ public class AlexLoginDataDrivenTest {
         assertTrue(alexloginpage.isOnLoginPage());
     }
 
-    @AfterClass(alwaysRun = true)
-    public void tearDown() {
-        driver.quit();
-    }
+    //@AfterClass(alwaysRun = true)
+    //public void tearDown() { driver.quit(); }
 
 }

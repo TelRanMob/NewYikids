@@ -4,11 +4,14 @@ package com.yikids.pages;
  * Created by Alexandr on 03.04.2016.
  */
 
+import com.yikids.LogLog4j;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.log4testng.Logger;
 
+import java.io.IOException;
 import java.util.Random;
 
 /***
@@ -18,6 +21,8 @@ import java.util.Random;
 public class AlexLoginPage extends Page {
 
     private static Random rnd = new Random();
+    private static Logger Log = Logger.getLogger(LogLog4j.class.getClass());
+
     @FindBy(id = "email")
     WebElement emailField;
     @FindBy(id = "password")
@@ -26,7 +31,7 @@ public class AlexLoginPage extends Page {
     /* Fields */
     @FindBy(xpath = "//*[@class='container']/form[@action='reset']/input[@id='email']")
     WebElement forgotpasswordEmailField;
-    @FindBy(xpath = "//*[@id='login-form']/a[2]")
+    @FindBy(xpath = "html/body/div[2]/form/label")
     WebElement forgotpasswordEmailLabel;
     @FindBy(xpath = "//*[@id='login-form']//button")
     WebElement loginButton;
@@ -84,16 +89,19 @@ public class AlexLoginPage extends Page {
     /* Fill the fields */
 
     public AlexLoginPage fillEmailField(String email) {
+        Log.info("Filling login-email: " + email);
         setElementText(emailField, email);
         return this;
     }
 
     public AlexLoginPage fillPasswordField(String password) {
+        Log.info("Filling password-email: " + password);
         setElementText(passwordField, password);
         return this;
     }
 
     public AlexLoginPage clickLoginButton() {
+        Log.info("Log-In");
         clickElement(loginButton);
         return this;
     }
@@ -109,6 +117,13 @@ public class AlexLoginPage extends Page {
     }
 
     public AlexLoginPage clickForgotPasswordAfterPasswordWarning() {
+        try {
+            waitUntilElementIsLoaded(wrongPasswordForgotPasswordLink);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         clickElement(wrongPasswordForgotPasswordLink);
         return this;
     }

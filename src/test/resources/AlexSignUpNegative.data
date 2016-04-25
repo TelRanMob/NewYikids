@@ -1,1 +1,4 @@
- ;surname;email@mail.com;00801;0080;1;The first name field is required.
+;surname;email@mail.com;00801;0080;1;The first name field is required.
+name;;email@mail.com;00801;0080;2;The last name field is required.
+name;surname;;00801;0080;3;The email field is required.
+name;surname;email@mail.com;;0080;4;The zipcode field is required.
