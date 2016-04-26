@@ -105,30 +105,30 @@ public class IrinaLoginPage extends Page {
     }
 
     public IrinaLoginPage fillPasswordField(String password) {
-        Log.info("Filling passwordField field");
+        Log.info("Filling passwordField field"+ password);
         setElementText(passwordField, password);
         return this;
     }
 
     public IrinaLoginPage clickToLoginButton() {
-        Log.info("LogIn");
+        Log.info("LogInButton clicking");
         clickElement(loginButton);
         return this;
     }
 
     public IrinaLoginPage clickToSignUpButton() {
-        //Log.info("SignUp");
+        Log.info("SignUpButton clicking");
         clickElement(signUpButton);
         return this;
     }
 
     public IrinaLoginPage clickToForgotPasswordButton() {
-        //Log.info("ForgotPassword");
+        Log.info("ForgotPassword clicking");
         clickElement(forgotPasswordButton);
         return this;
     }
     public IrinaLoginPage clickNotCorrectPasswordForgotPasswordButton() {
-        //Log.info("ForgotPassword");
+        Log.info("NotCorrectPasswordForgotPasswordButton clicking");
         clickElement(NotCorrectPasswordForgotPasswordButton);
         return this;
     }
@@ -136,6 +136,7 @@ public class IrinaLoginPage extends Page {
 
     //filling all fields
     public IrinaLoginPage fillLodInFieldsPozitive() {
+        Log.info("pozitive test");
         fillEmailField("admin@erdocfinder.com");
         fillPasswordField("Test123");
         clickToLoginButton();
@@ -144,19 +145,19 @@ public class IrinaLoginPage extends Page {
 
        //verification methods
     public boolean isOnLoginPage() {
-        // Log.info(");
+        Log.info("loginButton exist");
         return exists(loginButton);
     }
     public boolean isOnMainPage() {
-        // Log.info(");
+        Log.info("logOutButton exist");
         return exists(logOutButton);
     }
     public boolean isOnSingUpPage() {
-        // Log.info(");
+        Log.info("continueButton exist");
         return exists(continueButton);
     }
     public boolean isOnResetPasswordPage() {
-        // Log.info(");
+        Log.info("resetPasswordButtom exist");
         return exists(resetPasswordButtom);
     }
 
@@ -165,42 +166,53 @@ public class IrinaLoginPage extends Page {
     }
 
     public boolean checkPageSignUpOpen() {
+        Log.info("pageSignUpTitle verification");
         return verifyTextBoolean(pageSignUpTitle,
                 "Step one of finding your physicians");
     }
     public boolean checkPageResetPassword() {
+        Log.info("resetPasswordTitle verification");
         return verifyTextBoolean(resetPasswordTitle, "Reset Password");
 
     }
     public boolean checkWarningLoginMessage() {
+        Log.info("warningLoginMessage verification");
         return verifyTextBoolean(warningLoginMessage,
                 "You have been suspended from trying to login into account \"admin@erdocfinder.com\" for 15 minutes.");
 
     }
      //Implicity waits -methods on LogInPage
 
-    public void waitForloginButton()    {
+    public void waitForloginButton()
+    {
         waitUntilIsLoaded(loginButton);
     }
-    public void waitForlogOutButton()    {
+    public void waitForlogOutButton(){
+    Log.info("waiting for logOutButton");
         waitUntilIsLoaded(logOutButton);
     }
-    public void waitForcontinueButtonOnSignUp()    {
+    public void waitForcontinueButtonOnSignUp(){
+    Log.info("waiting for continueButton");
         waitUntilIsLoaded(continueButton);
     }
     public void waitForResetPasswordButtom()    {
+        Log.info("waiting for resetPasswordButtom");
         waitUntilIsLoaded(resetPasswordButtom);
     }
     public void waitForErrorPasswordMessage()    {
+        Log.info("waiting for errorPasswordMessage");
         waitUntilIsLoaded(errorPasswordMessage);
     }
     public void waitForPageSignUpTitle(){
+        Log.info("waiting for pageSignUpTitle");
         waitUntilIsLoaded(pageSignUpTitle);
     }
-    public void waitForResetPasswordTitle()    {
+    public void waitForResetPasswordTitle(){
+    Log.info("waiting for resetPasswordTitle");
         waitUntilIsLoaded(resetPasswordTitle);
     }
     public void waitForWarningLoginMessage(){
+    Log.info("waiting for warningLoginMessage");
         waitUntilIsLoaded(warningLoginMessage);
     }
 

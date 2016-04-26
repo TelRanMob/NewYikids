@@ -1,4 +1,6 @@
 package com.yikids.pages;
+import com.yikids.LogLog4j;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -12,6 +14,7 @@ import java.io.IOException;
  * Created by IrinaPrimak on 10-Apr-16.
  */
 public class IrinaHospOwnerManagPage extends Page {
+    private static Logger Log = Logger.getLogger(LogLog4j.class.getName());
     public String PAGE_URL;
 
     //buttons
@@ -48,7 +51,7 @@ public class IrinaHospOwnerManagPage extends Page {
     }
 
     public IrinaHospOwnerManagPage goToHospitalOwnerManagment() {
-        //Log.info(
+        Log.info("Opening HospitalOwnerManagment page");
        // moveMouseOverElement(hospitalLink);
         //moveMouseOverElement(hospitalOwnerManagementLink);
         //clickElement(hospitalOwnerManagementLink);
@@ -57,6 +60,7 @@ public class IrinaHospOwnerManagPage extends Page {
     }
     //checking checkboxes
     public void checkCheckbxes(int chec) {
+        Log.info("Checking"+chec+"checkBoxes");
         int rowNumber;
         for (rowNumber = 0; rowNumber <= chec; rowNumber++) {
             String locator = "//*[@id='row" + rowNumber + "']/td[1]/input";
@@ -75,11 +79,13 @@ public class IrinaHospOwnerManagPage extends Page {
             if (verifyElementIsPresent(driver.findElement(By.xpath(locator))))
              rowsCounter++;
              }while (rowNumber!=rowsCounter);
+        Log.info("Checking number of rows in the list"+"="+rowsCounter);
            return rowsCounter;
     }
     //Checking only checkboxes of rows with selected status from all
     //Todo  verifications of method
     public void checkNumCheckbxesWithStususFromAll(int check, String status) {
+        Log.info("Checking"+check+"checkboxes whith stutus"+status);
         int rowNumber = 0;
         int selectedBoxes =0;
         int rowCounter = numberOfChekbobxesInTheList();
@@ -98,6 +104,7 @@ public class IrinaHospOwnerManagPage extends Page {
     }
     //Checking only checkboxes of rows with selected status
       public void checkNotAllCheckbxes(int chec, String status) {
+          Log.info("Checking"+chec+"checkboxes whith stutus"+status);
         int rowNumber = 0;
         int selectedBoxes = 0;
           do {
@@ -117,7 +124,7 @@ public class IrinaHospOwnerManagPage extends Page {
 
     //method get the hole list of  Owner Management
     public IrinaHospOwnerManagPage showAll(){
-        //log/
+        Log.info("Opening list of All");
         clickElement(showAllButton);
         return this;
     }

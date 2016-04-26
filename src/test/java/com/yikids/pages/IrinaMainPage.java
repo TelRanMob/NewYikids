@@ -1,5 +1,7 @@
 package com.yikids.pages;
 
+import com.yikids.LogLog4j;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -12,6 +14,7 @@ import java.util.Random;
  * Created by Irina Primak on 06-Apr-16.
  */
 public class IrinaMainPage extends Page {
+    private static Logger Log = Logger.getLogger(LogLog4j.class.getName());
 
 
     // /fields // TODO: find real locator
