@@ -38,13 +38,13 @@ public class IrinaMainPage extends Page {
     }
 
     public IrinaMainPage openAdminMainPage() {
-        //Log.info("Opening SignUp page");
+        Log.info("Opening SignUp page");
         driver.get(PAGE_URL);
         return this;
     }
 
    /* public IrinaMainPage goToAddHospital() {
-        //Log.info("Clicking Add Hospital");
+        Log.info("Clicking Add Hospital");
         moveMouseOverElement(hospitalLink);
         moveMouseOverElement(addHospitalLink);
         clickElement(addHospitalLink);
@@ -53,7 +53,7 @@ public class IrinaMainPage extends Page {
         }
     */
    /*public IrinaMainPage goToAddHospital() {
-            //Log.info("Add Hospitallpage");
+           Log.info("Add Hospitallpage");
            driver.get(PAGE_URL);
            return this;
     */

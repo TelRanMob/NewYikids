@@ -1,6 +1,7 @@
 package com.yikids;
 
 import com.yikids.pages.IrinaLoginPage;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
@@ -15,7 +16,8 @@ import static org.testng.AssertJUnit.assertTrue;
  * Created by Irina Primak on 29-Mar-16.
  */
 public class IrinaLoginTest {
-  //  static String driverPath = "Z:\\Tel-RAN\\aQA\\BrowserDrivers";
+    private static Logger Log = Logger.getLogger(LogLog4j.class.getName());
+    //  static String driverPath = "Z:\\Tel-RAN\\aQA\\BrowserDrivers";
     public IrinaLoginPage loginI;
     public WebDriver driver;
     public String email = "admin@erdocfinder.com";
@@ -33,6 +35,7 @@ public class IrinaLoginTest {
 
     @BeforeMethod(alwaysRun = true)
     public void beforeMethodSetUp() {
+        Log.info("Opening login page");
         loginI.openLoginPage()
                 .waitForloginButton();
         //verification
@@ -41,6 +44,7 @@ public class IrinaLoginTest {
 
         @Test
     public void negativEmptyEmailLoginEmptyPassword(){
+        Log.info("Negativ test");
         loginI.clickToLoginButton()
               .waitForloginButton();
         //verufication
@@ -50,6 +54,7 @@ public class IrinaLoginTest {
 
        @Test
     public void negativEmptyEmail(){
+           Log.info("negativ test");
        loginI.fillEmailField(" ")
                .fillPasswordField(password)
                .clickToLoginButton()
@@ -60,6 +65,7 @@ public class IrinaLoginTest {
    }
     @Test(dataProviderClass = DataProviders.class, dataProvider = "loadInvalidLoginFromFile")
     public void negativEmptyPasswordLogin(String login, String password){
+        Log.info("Negativ test with data provider");
         loginI.fillEmailField(login)
                 .fillPasswordField(password)
                 .clickToLoginButton()
@@ -81,7 +87,7 @@ public class IrinaLoginTest {
 
     }
     @Test
-    public void positivForFprgotPasswordPage(){
+    public void positivForForgotPasswordPage(){
         loginI.fillEmailField(email)
                 .fillPasswordField("passwordField")
                 .clickToLoginButton()
@@ -96,6 +102,7 @@ public class IrinaLoginTest {
 
     @Test
     public void positivLogin() {
+        Log.info("Pozitive test ");
         loginI.fillLodInFieldsPozitive()
                 .clickToLoginButton()
                 .waitForlogOutButton();
@@ -164,6 +171,7 @@ public class IrinaLoginTest {
 
     @Test
     public void signUp(){
+        Log.info("Go to SingUp Page");
         loginI.clickToSignUpButton()
                 .waitForcontinueButtonOnSignUp();
         //verufication
@@ -173,6 +181,7 @@ public class IrinaLoginTest {
     }
     @Test
     public void forgotPassword(){
+        Log.info("Go to forgot Password");
         loginI.clickToForgotPasswordButton()
                 .waitForResetPasswordButtom();
         //verufication

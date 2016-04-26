@@ -89,6 +89,7 @@ public class IrinaSignUPPage extends Page {
         PageFactory.initElements(driver, this);
     }
     private static String getRandomString(Integer length) {
+        Log.info("Random String generation");
         String chars = "abcdefghijklmnopqrstuvwxyz";
         StringBuilder buf = new StringBuilder();
         for (int i = 0; i < length; i++) {
@@ -100,7 +101,7 @@ public class IrinaSignUPPage extends Page {
     //Fill the fields
 
     public IrinaSignUPPage openSignUpPage() {
-        Log.info("Opening Login page http://physician.yikids.com/recruiter/signup");
+       Log.info("Opening Login page http://physician.yikids.com/recruiter/signup");
         driver.get(PAGE_URL);
         return this;
     }
@@ -163,7 +164,7 @@ public class IrinaSignUPPage extends Page {
     public String generateEmail() {
         String rand = getRandomString(5);
         String randEmail = rand + "@yopmail.com";
-        Log.info("Email generation"+randEmail);
+        Log.info("Email"+ randEmail +"generation");
         return randEmail;
     }
 
