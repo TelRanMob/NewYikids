@@ -5,6 +5,10 @@
     <classes>
       <class name="com.yikids.ElenaLoginTest"/>
       <class name="com.yikids.AlexLoginDataDrivenTest"/>
+      <class name="com.yikids.AlexLoginTest"/>
+      <class name="com.yikids.AlexSignUpNegativeDataDr"/>
+      <class name="com.yikids.AlexHospOwnerMangmntPageTest"/>
+      <class name="com.yikids.AlexSignUpTest"/>
     </classes>
   </test>  
 </suite>

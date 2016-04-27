@@ -5,11 +5,12 @@ package com.yikids;
  */
 
 import com.yikids.pages.AlexSignUpPage;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
-import org.testng.annotations.*;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
 
 import java.io.IOException;
 
@@ -17,22 +18,20 @@ import java.io.IOException;
  * CLASS STARTS
  ***/
 
-public class AlexSignUpNegativeDataDr {
+public class AlexSignUpNegativeDataDr extends TestNgTestBase {
 
     /* Building */
 
     public AlexSignUpPage alexsignuppage;
-    public WebDriver driver;
 
     @BeforeClass(alwaysRun = true)
     public void setup() {
-        driver = new FirefoxDriver();
         alexsignuppage = PageFactory.initElements(driver, AlexSignUpPage.class);
     }
 
     @BeforeMethod(alwaysRun = true)
     public void beforeMethodSetup() {
-        alexsignuppage.openSignUpPage();
+        driver.get("http://physician.yikids.com/recruiter/signup");
     }
 
     /* Tests */
@@ -52,11 +51,6 @@ public class AlexSignUpNegativeDataDr {
                 .clickToContinue();
 
         Assert.assertEquals(alexsignuppage.waitforWrongDataMessages(number), message, "Wrong message is not displayed");
-    }
-
-    @AfterClass(alwaysRun = true)
-    public void tearDown() {
-        driver.quit();
     }
 
     /*** CLASS ENDS ***/

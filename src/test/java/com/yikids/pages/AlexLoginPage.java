@@ -35,7 +35,7 @@ public class AlexLoginPage extends Page {
     WebElement forgotpasswordEmailLabel;
     @FindBy(xpath = "//*[@id='login-form']//button")
     WebElement loginButton;
-    @FindBy(xpath = "//*[@id='login-form']/div/a[1]")
+    @FindBy(xpath = "//*[@id='login-form']//a[1]")
     WebElement signUpLink;
 
     /* Buttons and links */

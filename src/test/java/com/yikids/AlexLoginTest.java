@@ -5,10 +5,7 @@ package com.yikids;
  */
 
 import com.yikids.pages.AlexLoginPage;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -19,23 +16,20 @@ import static org.testng.AssertJUnit.assertTrue;
  * CLASS STARTS
  ***/
 
-public class AlexLoginTest {
+public class AlexLoginTest extends TestNgTestBase {
 
     public AlexLoginPage alexloginpage;
-    public WebDriver driver;
     public String adminLogin = "admin@erdocfinder.com";
     public String adminPassword = "Test123";
-    public String url = "http://admin.yikids.com/";
 
     @BeforeClass(alwaysRun = true)
     public void setup() {
-        driver = new FirefoxDriver();
         alexloginpage = PageFactory.initElements(driver, AlexLoginPage.class);
     }
 
     @BeforeMethod(alwaysRun = true)
     public void beforeMethodSetUp() {
-        alexloginpage.OpenLoginPage();
+        driver.get("http://admin.yikids.com/");
     }
 
     /* Positive tests */
@@ -72,8 +66,7 @@ public class AlexLoginTest {
 
     @Test
     public void loginPositiveSignUpLink() {
-        alexloginpage.clickSignUpLink()
-                .waitforZipCodeField();
+        alexloginpage.clickSignUpLink();
         assertTrue("Going to Sign Up page failed", alexloginpage.isOnSignUpPage());
     }
 
@@ -82,8 +75,7 @@ public class AlexLoginTest {
     @Test
     public void loginNegativeWrongLoginTest() {
         alexloginpage.fillEmailField("asdasd@youpmail.com")
-                .fillPasswordField(adminPassword)
-                .checkforWrongEmail();
+                .fillPasswordField(adminPassword);
         assertTrue("Wrong login accepted", alexloginpage.isOnLoginPage());
     }
 
@@ -99,28 +91,24 @@ public class AlexLoginTest {
     public void loginNegativeWrongPasswordTest() {
         alexloginpage.fillEmailField(adminLogin)
                 .fillPasswordField("wrong")
-                .clickLoginButton()
-                .waitforPasswordWarningMessage();
+                .clickLoginButton();
+        assertTrue("Wrong passwordField accepted", alexloginpage.isOnLoginPage());
     }
 
     @Test
     public void loginNegativeEmptyPasswordTest() {
         alexloginpage.fillEmailField(adminLogin)
-                .fillPasswordField(" ")
-                .waitforPasswordWarningMessage();
+                .fillPasswordField("")
+                .clickLoginButton();
         assertTrue("Empty passwordField accepted", alexloginpage.isOnLoginPage());
     }
 
     @Test
     public void loginNegativeEmptyFieldsTest() {
-        alexloginpage.fillEmailField(" ")
-                .fillPasswordField(" ");
+        alexloginpage.fillEmailField("")
+                .fillPasswordField("")
+                .clickLoginButton();
         assertTrue("Empty fields accepted", alexloginpage.isOnLoginPage());
-    }
-
-    @AfterClass(alwaysRun = true)
-    public void tearDown() {
-        this.driver.quit();
     }
 
     /*** CLASS ENDS ***/

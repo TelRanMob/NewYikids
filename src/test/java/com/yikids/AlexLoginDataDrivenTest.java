@@ -5,7 +5,6 @@ package com.yikids;
  */
 
 import com.yikids.pages.AlexLoginPage;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
@@ -20,7 +19,6 @@ public class AlexLoginDataDrivenTest extends TestNgTestBase {
 
     @BeforeClass(alwaysRun = true)
     public void setup() {
-        driver = new FirefoxDriver();
         alexloginpage = PageFactory.initElements(driver, AlexLoginPage.class);
     }
 
@@ -54,8 +52,5 @@ public class AlexLoginDataDrivenTest extends TestNgTestBase {
                 .clickLoginButton();
         assertTrue(alexloginpage.isOnLoginPage());
     }
-
-    //@AfterClass(alwaysRun = true)
-    //public void tearDown() { driver.quit(); }
 
 }
