@@ -4,6 +4,8 @@ package com.yikids.pages;
  * Created by Alexandr on 03.04.2016.
  */
 
+import com.yikids.LogLog4j;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -18,6 +20,7 @@ import java.util.Random;
  ***/
 
 public class AlexSignUpPage extends Page {
+    private static Logger Log = Logger.getLogger(LogLog4j.class.getName());
 
     private static Random rnd = new Random();
 
@@ -122,27 +125,32 @@ public class AlexSignUpPage extends Page {
     private String generateEmail() {
         String rand = getRandomString(5);
         String mail = rand + "@yopmail.com";
+        Log.info("Generated Email is " + mail);
         return mail;
     }
 
     /* Fill the fields */
 
     public AlexSignUpPage fillFirstnameField(String firstname) {
+        Log.info("Filling firstnamefield with " + firstname);
         setElementText(firstNameField, firstname);
         return this;
     }
 
     public AlexSignUpPage fillLastNameField(String lastname) {
+        Log.info("Filling lasttnamefield with " + lastname);
         setElementText(lastNameField, lastname);
         return this;
     }
 
     public AlexSignUpPage fillEmailField(String email) {
+        Log.info("Filling emailfield with " + email);
         setElementText(emailField, email);
         return this;
     }
 
     public AlexSignUpPage fillZip1Field(String Zipone) {
+        Log.info("Filling zip1efield with " + Zipone);
         setElementText(zipCodeField, Zipone);
         return this;
     }
@@ -158,6 +166,7 @@ public class AlexSignUpPage extends Page {
     }
 
     public AlexSignUpPage clickToContinue() {
+        Log.info("CLickToContinue");
         clickElement(continueButton);
         return this;
     }

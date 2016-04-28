@@ -4,6 +4,8 @@ package com.yikids.pages;
  * Created by Alexandr on 19.04.2016.
  */
 
+import com.yikids.LogLog4j;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -15,6 +17,7 @@ import org.openqa.selenium.support.PageFactory;
  ***/
 
 public class AlexHospOwnerMangmntPage extends Page {
+    private static Logger Log = Logger.getLogger(LogLog4j.class.getName());
 
     /* Fields and buttons */
 
@@ -36,6 +39,7 @@ public class AlexHospOwnerMangmntPage extends Page {
     }
 
     public AlexHospOwnerMangmntPage OpenPage() {
+        Log.info("Opening Page");
         driver.get(PAGE_URL);
         return this;
     }
@@ -44,6 +48,7 @@ public class AlexHospOwnerMangmntPage extends Page {
     public void checkCheckBoxes(int check) {
         int rowNumber;
         for (rowNumber = 0; rowNumber == check; rowNumber++) {
+
             String locator = "//*[@id='row" + rowNumber + "']/td[1]/input";
             WebElement box = driver.findElement(By.xpath(locator));
             box.click();
@@ -57,6 +62,7 @@ public class AlexHospOwnerMangmntPage extends Page {
             String locator = "//*[@id='row" + rowNumber + "']/td[1]/input";
             if (statusText.equalsIgnoreCase(status)) {
                 WebElement box = driver.findElement(By.xpath(locator));
+                Log.info("Checking box with status " + status + ". Box number " + rowNumber);
                 box.click();
             }
         }

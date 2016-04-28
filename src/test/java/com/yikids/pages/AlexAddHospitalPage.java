@@ -4,6 +4,8 @@ package com.yikids.pages;
  * Created by Alexandr on 11.04.2016.
  */
 
+import com.yikids.LogLog4j;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -14,7 +16,7 @@ import org.openqa.selenium.support.PageFactory;
  ***/
 
 public class AlexAddHospitalPage extends Page {
-
+    private static Logger Log = Logger.getLogger(LogLog4j.class.getName());
     /* Elements */
 
     // Fields
