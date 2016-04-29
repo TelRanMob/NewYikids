@@ -20,11 +20,12 @@ import java.util.Random;
  ***/
 
 public class AlexSignUpPage extends Page {
-    private static Logger Log = Logger.getLogger(LogLog4j.class.getName());
 
     private static Random rnd = new Random();
+    private static Logger Log = Logger.getLogger(LogLog4j.class.getName());
 
     /* Fields */
+    //TODO:
 
     @FindBy(id = "firstname")
     WebElement firstNameField;

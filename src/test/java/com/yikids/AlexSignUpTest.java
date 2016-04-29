@@ -26,7 +26,7 @@ public class AlexSignUpTest extends TestNgTestBase {
     }
 
     @BeforeMethod(alwaysRun = true)
-    public void beforeMethodSetUp() {
+    public void openSetUp() {
         driver.get("http://physician.yikids.com/recruiter/signup");
     }
 

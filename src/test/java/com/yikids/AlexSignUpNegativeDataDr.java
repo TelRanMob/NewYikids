@@ -30,7 +30,7 @@ public class AlexSignUpNegativeDataDr extends TestNgTestBase {
     }
 
     @BeforeMethod(alwaysRun = true)
-    public void beforeMethodSetup() {
+    public void openSetUp() {
         driver.get("http://physician.yikids.com/recruiter/signup");
     }
 

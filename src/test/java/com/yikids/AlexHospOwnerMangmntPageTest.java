@@ -31,7 +31,7 @@ public class AlexHospOwnerMangmntPageTest extends TestNgTestBase {
 
     @BeforeMethod(alwaysRun = true)
     public void openSetUp() {
-        alexhospownermangmntpage.OpenPage();
+        driver.get("http://admin.yikids.com/admin/hospital_owner_management");
     }
 
 

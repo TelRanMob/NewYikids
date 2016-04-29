@@ -23,7 +23,7 @@ public class AlexLoginDataDrivenTest extends TestNgTestBase {
     }
 
     @BeforeMethod(alwaysRun = true)
-    public void beforeMethodSetup() {
+    public void openSetUp() {
         driver.get("http://admin.yikids.com/");
     }
 

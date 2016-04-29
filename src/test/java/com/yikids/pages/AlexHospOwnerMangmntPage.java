@@ -17,6 +17,7 @@ import org.openqa.selenium.support.PageFactory;
  ***/
 
 public class AlexHospOwnerMangmntPage extends Page {
+
     private static Logger Log = Logger.getLogger(LogLog4j.class.getName());
 
     /* Fields and buttons */

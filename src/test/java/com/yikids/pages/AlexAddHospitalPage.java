@@ -11,12 +11,14 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-/***
+/**
  * CLASS STARTS
- ***/
+ **/
 
 public class AlexAddHospitalPage extends Page {
+
     private static Logger Log = Logger.getLogger(LogLog4j.class.getName());
+
     /* Elements */
 
     // Fields

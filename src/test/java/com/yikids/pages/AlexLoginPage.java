@@ -21,7 +21,7 @@ import java.util.Random;
 public class AlexLoginPage extends Page {
 
     private static Random rnd = new Random();
-    private static Logger Log = Logger.getLogger(LogLog4j.class.getClass());
+    private static Logger Log = Logger.getLogger(LogLog4j.class.getName());
 
     @FindBy(id = "email")
     WebElement emailField;
@@ -101,17 +101,19 @@ public class AlexLoginPage extends Page {
     }
 
     public AlexLoginPage clickLoginButton() {
-        Log.info("Log-In");
+        Log.info("Click Log-In");
         clickElement(loginButton);
         return this;
     }
 
     public AlexLoginPage clickSignUpLink() {
+        Log.info("Click Sign-Up");
         clickElement(signUpLink);
         return this;
     }
 
     public AlexLoginPage clickForgotPasswordLink() {
+        Log.info("Click Forgot password");
         clickElement(forgotPasswordLink);
         return this;
     }
@@ -124,6 +126,7 @@ public class AlexLoginPage extends Page {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+        Log.info("Click Forgot password after password warning message");
         clickElement(wrongPasswordForgotPasswordLink);
         return this;
     }
