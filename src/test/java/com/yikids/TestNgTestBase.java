@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeTest;
+import ru.stqa.selenium.factory.WebDriverFactory;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
@@ -27,7 +28,7 @@ public class TestNgTestBase {
 
     Capabilities capabilities = PropertyLoader.loadCapabilities();
 
-    //driver = WebDriverFactory.getDriver(capabilities);
+    driver = WebDriverFactory.getDriver(capabilities);
     driver = new FirefoxDriver();
     driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
   }

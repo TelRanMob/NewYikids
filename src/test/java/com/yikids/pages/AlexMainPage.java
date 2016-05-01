@@ -177,6 +177,7 @@ public class AlexMainPage extends Page {
 
     public AlexMainPage gotoJobFilter() {
         driver.get("http://admin.yikids.com/job/jobfilter");
+
         return this;
     }
 
