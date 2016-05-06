@@ -34,7 +34,7 @@ public class AlexLoginTest extends TestNgTestBase {
 
     /* Positive tests */
 
-    @Test
+    @Test(groups = {"automatic", "positive", "Alex"})
     public void loginPositiveTest() {
 
         alexloginpage

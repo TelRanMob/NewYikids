@@ -37,7 +37,7 @@ public class TaniaAliasTest {
         Thread.sleep(3000);
     }
 
-    @Test(dataProviderClass = DataProviders.class, dataProvider = "aliasNegativeTests")
+    @Test(groups = {"automatic", "negative", "Tania"}, dataProviderClass = DataProviders.class, dataProvider = "aliasNegativeTests")
     public void aliasNegativeTest(String aliasText, String passwordText, String retypePasswordText) {
         taniaAlias1Page.fillAlias(aliasText, passwordText, retypePasswordText);
 
@@ -50,7 +50,7 @@ public class TaniaAliasTest {
     }
 
 
-    @Test
+    @Test(groups = {"manual", "negative", "Tania"})
     public void fillSignUPFiledsPositive() throws InterruptedException {
         //  Log.info("TestLoginWithExtData was started....");
         taniaSignUPPage

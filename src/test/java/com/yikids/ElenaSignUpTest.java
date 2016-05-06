@@ -52,7 +52,7 @@ public class ElenaSignUpTest {
     }
 
 
-   @Test
+    @Test(groups = {"manual", "positive", "Elena"})
     public void fillSignUPFiledsPositive() throws InterruptedException {
         //  Log.info("TestLoginWithExtData was started....");
         elenaSignUPPage
@@ -73,7 +73,7 @@ public class ElenaSignUpTest {
 
     }
 
-    @Test //negative
+    @Test(groups = {"automatic", "negative", "Elena"})
     public void WorningNoFillFirstName(){
         elenaSignUPPage
                 .NoFillUsernameFields()

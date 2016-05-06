@@ -42,7 +42,7 @@ public class IrinaLoginTest {
         //assertTrue("loginButtom not appeare",loginI.isOnLoginPage());
     }
 
-        @Test
+    @Test(groups = {"automatic", "negative", "Irina"})
     public void negativEmptyEmailLoginEmptyPassword(){
         Log.info("Negativ test");
         loginI.clickToLoginButton()
@@ -63,7 +63,8 @@ public class IrinaLoginTest {
        assertTrue("No login Buttom",loginI.isOnLoginPage());
 
    }
-    @Test(dataProviderClass = DataProviders.class, dataProvider = "loadInvalidLoginFromFile")
+
+    @Test(groups = {"automatic", "negative", "Irina"}, dataProviderClass = DataProviders.class, dataProvider = "loadInvalidLoginFromFile")
     public void negativEmptyPasswordLogin(String login, String password){
         Log.info("Negativ test with data provider");
         loginI.fillEmailField(login)
