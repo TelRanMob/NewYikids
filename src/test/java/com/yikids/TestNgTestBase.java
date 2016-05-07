@@ -3,7 +3,6 @@ package com.yikids;
 import com.yikids.util.PropertyLoader;
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeTest;
 import ru.stqa.selenium.factory.WebDriverFactory;
@@ -29,15 +28,15 @@ public class TestNgTestBase {
     Capabilities capabilities = PropertyLoader.loadCapabilities();
 
     driver = WebDriverFactory.getDriver(capabilities);
-    driver = new FirefoxDriver();
+    //driver = new FirefoxDriver();
     driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
   }
 
   @AfterSuite(alwaysRun = true)
   public void tearDown() {
     if (driver != null) {
-      // WebDriverFactory.dismissDriver(driver);
-      driver.quit();
+      WebDriverFactory.dismissDriver(driver);
+      // driver.quit();
     }
   }
 }
