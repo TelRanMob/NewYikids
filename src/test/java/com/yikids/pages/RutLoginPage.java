@@ -19,12 +19,12 @@ public class RutLoginPage extends Page {
     @FindBy(id = "email")
     WebElement emailField;
 
-    @FindBy(id = "passwordField")
+    @FindBy(id = "password")
     WebElement passwordField;
 
     //buttons
     @FindBy(xpath = "//button[@class='btn btn-link']")
-    WebElement logInLinkButton;
+    WebElement loginLinkButton;
 
     @FindBy(xpath = "//*[@id='login-form']/div/a[1]")
     WebElement signUpLinkButton;
@@ -80,7 +80,7 @@ public class RutLoginPage extends Page {
     //Click the buttons
     public RutLoginPage clickLoginButton() {
         //Log.info("Click login button");
-        clickElement(logInLinkButton);
+        clickElement(loginLinkButton);
         return this;
     }
 
@@ -99,7 +99,7 @@ public class RutLoginPage extends Page {
     //check is on page
     public boolean isOnLoginPage() {
         //Log.info("Click forgotPassword button");
-        return exists(logInLinkButton);
+        return exists(loginLinkButton);
     }
 
     public boolean isOnOverviewPage() {
@@ -117,6 +117,11 @@ public class RutLoginPage extends Page {
         return exists(titleForgotPasswordPageLabel);
     }
 
+    //wait
+    public void waitForLogOutLinkButton(){
+        waitUntilIsLoaded(logOutLinkButton);
+    }
+
     //check error message
     public boolean checkEmailNotValidMessage() {
         return verifyTextBoolean(emailNotValid, "Please sign up because your email does not exist in our system.");
@@ -130,6 +135,13 @@ public class RutLoginPage extends Page {
         return exists(passwordNotValid);
     }
 
+    public RutLoginPage login(){
+        fillEmailField("admin@erdocfinder.com");
+        fillPasswordField("Test123");
+        clickLoginButton();
+        waitForLogOutLinkButton();
+        return this;
+    }
     //    wait for warning
 //     waitUntilIsLoaded(firstNameEmptyFieldMessage);
 //    }

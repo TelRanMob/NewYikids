@@ -25,16 +25,23 @@ public class RutMainPage extends Page{
 
     public RutMainPage(WebDriver driver) {
         super(driver);
-        this.PAGE_URL = "http://admin.yikids.com/admin/overview";
+        this.PAGE_URL = "http://admin.yikids.com/";
         PageFactory.initElements(driver, this);
     }
-    public RutMainPage openLoginPage() {
-        //Log.info("Opening Login page");
+    public RutMainPage openAdminAddHospitalPage() {
+        //Log.info("Opening SignUp page");
         driver.get(PAGE_URL);
         return this;
     }
-    public RutMainPage openHospitalAddPage() {
-        //Log.info("Opening Login page");
+    public RutMainPage goToAddHospital() {
+        //Log.info("Clicking Add Hospital");
+        moveMouseOverElement(hospitalButton);
+        moveMouseOverElement(addHospitalButton);
+        clickElement(addHospitalButton);
+        return this;
+    }
+    public RutMainPage goToAddHospitalLink() {
+        //Log.info("Clicking Add Hospital");
         driver.get("http://admin.yikids.com/hospital/add");
         return this;
     }
@@ -56,8 +63,17 @@ public class RutMainPage extends Page{
     }
     //Todo create method
     public boolean isOnMainPage(){
-        return true;
+        return exists(logOutLink);
     }
+
+    public RutMainPage goToAddHospitalPage(){
+        moveMouseOverElement(hospitalButton);
+        clickHospitalButton();
+        moveMouseOverElement(addHospitalButton);
+        clickAddHospitalButton();
+        return this;
+    }
+
 
 //    http://admin.yikids.com/hospital/add
 //    http://admin.yikids.com/admin/hospital_owner_management

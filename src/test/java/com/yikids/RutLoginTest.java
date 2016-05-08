@@ -33,16 +33,16 @@ public class RutLoginTest {
         rutLoginPage.openLoginPage();
     }
     @Test
-    public void logInPositive() throws InterruptedException {
+    public void loginPositive() throws InterruptedException {
         rutLoginPage
                 .fillEmailField("admin@erdocfinder.com")
                 .fillPasswordField("Test123")
-                .clickLoginButton();
+                .clickLoginButton()
+                .waitForLogOutLinkButton();
         assertTrue("We are on Log In page", rutLoginPage.isOnOverviewPage());
-        Thread.sleep(3000);
     }
     @Test (dataProviderClass = RutDataProviders.class, dataProvider = "loadInvalidLogInFromFile")
-    public void logInNegative(String login, String pass) throws InterruptedException {
+    public void loginNegative(String login, String pass) throws InterruptedException {
         rutLoginPage
                 .fillEmailField(login)
                 .fillPasswordField(pass)

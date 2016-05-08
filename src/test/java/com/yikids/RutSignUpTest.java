@@ -15,7 +15,7 @@ import static org.testng.AssertJUnit.assertTrue;
  * Created by rutga on 29.03.2016.
  */
 public class RutSignUpTest {
-    static java.lang.String driverPath = "C:\\Telran\\browserDriver\\";
+    static String driverPath = "C:\\Telran\\browserDriver\\";
     public RutSignUPPage rutSignUPPage;
     public WebDriver driver;
 

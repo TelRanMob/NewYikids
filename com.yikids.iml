@@ -45,5 +45,4 @@
     <orderEntry type="library" name="Maven: net.java.dev.jna:jna-platform:4.1.0" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.seleniumhq.selenium:selenium-support:2.53.0" level="project" />
   </component>
-  <component name="POM File Configuration" pomFile="" />
 </module>
