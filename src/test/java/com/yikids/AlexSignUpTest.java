@@ -5,7 +5,10 @@ package com.yikids;
  */
 
 import com.yikids.pages.AlexSignUpPage;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -16,9 +19,10 @@ import static org.testng.AssertJUnit.assertTrue;
  * CLASS STARTS
  ***/
 
-public class AlexSignUpTest extends TestNgTestBase {
+public class AlexSignUpTest {
 
     public AlexSignUpPage alexsignuppage;
+    public WebDriver driver = new FirefoxDriver();
 
     @BeforeClass(alwaysRun = true)
     public void setup() {
@@ -27,12 +31,12 @@ public class AlexSignUpTest extends TestNgTestBase {
 
     @BeforeMethod(alwaysRun = true)
     public void openSetUp() {
-        driver.get("http://physician.yikids.com/recruiter/signup");
+        alexsignuppage.openSignUpPage();
     }
 
     /* Positive tests */
 
-    @Test
+    @Test(groups = {"Alex"})
     public void signUpPositiveTest() {
         alexsignuppage
                 .fillFirstnameField("TestName")
@@ -56,7 +60,7 @@ public class AlexSignUpTest extends TestNgTestBase {
 
     /* Negative tests */
 
-    @Test
+    @Test(groups = {"Alex"})
     public void signUpNegativeFIrstNameTest() throws InterruptedException {
         alexsignuppage
                 .fillFirstnameField(" ")
@@ -70,7 +74,7 @@ public class AlexSignUpTest extends TestNgTestBase {
         assertTrue("No first name empty warning", alexsignuppage.checkforFirstNameEmptyFieldMessage());
     }
 
-    @Test
+    @Test(groups = {"Alex"})
     public void signUpNegativeLastNameTest() {
         alexsignuppage
                 .fillFirstnameField("TestName")
@@ -84,7 +88,7 @@ public class AlexSignUpTest extends TestNgTestBase {
         assertTrue("No last name empty warning", alexsignuppage.checkforLastNameEmptyFieldMessage());
     }
 
-    @Test
+    @Test(groups = {"Alex"})
     public void signUpNegativeEmailEmptyTest() {
         alexsignuppage
                 .fillFirstnameField("TestName")
@@ -98,7 +102,7 @@ public class AlexSignUpTest extends TestNgTestBase {
         assertTrue("No email empty warning", alexsignuppage.checkforEmailEmptyFieldMessage());
     }
 
-    @Test
+    @Test(groups = {"Alex"})
     public void signUpNegativeEmailWrongFormatTest() {
         alexsignuppage
                 .fillFirstnameField("TestName")
@@ -112,7 +116,7 @@ public class AlexSignUpTest extends TestNgTestBase {
         assertTrue("No email wrong format warning", alexsignuppage.checkforEmailWrongFormatMessage());
     }
 
-    @Test
+    @Test(groups = {"Alex"})
     public void signUpNegativeZipCodeWrongTest() {
         alexsignuppage
                 .fillFirstnameField("TestName")
@@ -126,7 +130,7 @@ public class AlexSignUpTest extends TestNgTestBase {
         assertTrue("No zipcode invalid warning", alexsignuppage.checkforZipCodeInvalidFieldMessage());
     }
 
-    @Test
+    @Test(groups = {"Alex"})
     public void signUpNegativeZipCodeEmptyTest() {
         alexsignuppage
                 .fillFirstnameField("TestName")
@@ -140,7 +144,7 @@ public class AlexSignUpTest extends TestNgTestBase {
         assertTrue("No zipcode empty warning", alexsignuppage.checkforZipCodeEmptyFieldMessage());
     }
 
-    @Test
+    @Test(groups = {"Alex"})
     public void signUpNegativeZipCodeWrongFormatTest() {
         alexsignuppage
                 .fillFirstnameField("TestName")
@@ -154,7 +158,7 @@ public class AlexSignUpTest extends TestNgTestBase {
         assertTrue("No zipcode wrong format warning", alexsignuppage.checkforZipCodeWrongFormatMessage());
     }
 
-    @Test
+    @Test(groups = {"Alex"})
     public void signUpNegativeCaptchaTest() {
         alexsignuppage
                 .fillFirstnameField("TestName")
@@ -166,6 +170,11 @@ public class AlexSignUpTest extends TestNgTestBase {
                 .clickToContinue()
                 .waitforCaptchaWarning();
         assertTrue("No captcha warning", alexsignuppage.checkforCapchaErrorMessage());
+    }
+
+    @AfterSuite(alwaysRun = true)
+    public void tearDown() {
+        driver.quit();
     }
 
     /*** CLASS ENDS ***/

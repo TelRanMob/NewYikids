@@ -5,17 +5,17 @@ package com.yikids;
  */
 
 import com.yikids.pages.AlexLoginPage;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 import static org.testng.Assert.assertTrue;
 
-public class AlexLoginDataDrivenTest extends TestNgTestBase {
+public class AlexLoginDataDrivenTest {
 
     public AlexLoginPage alexloginpage;
+    public WebDriver driver = new FirefoxDriver();
 
     @BeforeClass(alwaysRun = true)
     public void setup() {
@@ -24,7 +24,7 @@ public class AlexLoginDataDrivenTest extends TestNgTestBase {
 
     @BeforeMethod(alwaysRun = true)
     public void openSetUp() {
-        driver.get("http://admin.yikids.com/");
+        alexloginpage.OpenLoginPage();
     }
 
     @DataProvider(name="NegativeLogin")
@@ -37,7 +37,7 @@ public class AlexLoginDataDrivenTest extends TestNgTestBase {
 
     /* Tests */
 
-    @Test(dataProvider = "NegativeLogin")
+    @Test(groups = {"Alex"}, dataProvider = "NegativeLogin")
     public void loginNeganiveTest(String login, String pass, String message){
         alexloginpage.fillPasswordField(pass)
                 .fillEmailField(login)
@@ -45,7 +45,7 @@ public class AlexLoginDataDrivenTest extends TestNgTestBase {
         assertTrue(alexloginpage.isOnLoginPage());
     }
 
-    @Test(dataProviderClass = DataProviders.class, dataProvider = "loadInvalidLoginFromFile")
+    @Test(groups = {"Alex"}, dataProviderClass = DataProviders.class, dataProvider = "loadInvalidLoginFromFile")
     public void loginNeganiveTest(String login, String pass) {
         alexloginpage.fillEmailField(login)
                 .fillPasswordField(pass)
@@ -53,4 +53,8 @@ public class AlexLoginDataDrivenTest extends TestNgTestBase {
         assertTrue(alexloginpage.isOnLoginPage());
     }
 
+    @AfterSuite(alwaysRun = true)
+    public void tearDown() {
+        driver.quit();
+    }
 }

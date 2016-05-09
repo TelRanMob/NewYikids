@@ -5,7 +5,10 @@ package com.yikids;
  */
 
 import com.yikids.pages.AlexLoginPage;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -16,9 +19,10 @@ import static org.testng.AssertJUnit.assertTrue;
  * CLASS STARTS
  ***/
 
-public class AlexLoginTest extends TestNgTestBase {
+public class AlexLoginTest {
 
     public AlexLoginPage alexloginpage;
+    public WebDriver driver = new FirefoxDriver();
     public String adminLogin = "admin@erdocfinder.com";
     public String adminPassword = "Test123";
 
@@ -29,7 +33,7 @@ public class AlexLoginTest extends TestNgTestBase {
 
     @BeforeMethod(alwaysRun = true)
     public void openSetUp() {
-        driver.get("http://admin.yikids.com/");
+        alexloginpage.OpenLoginPage();
     }
 
     /* Positive tests */
@@ -45,7 +49,7 @@ public class AlexLoginTest extends TestNgTestBase {
 
     }
 
-    @Test
+    @Test(groups = {"Alex"})
     public void loginPositiveForgotPasswordTest() {
         alexloginpage
                 .fillEmailField(adminLogin)
@@ -64,7 +68,7 @@ public class AlexLoginTest extends TestNgTestBase {
                 alexloginpage.checkforForgotPasswordEmailLabel());
     }
 
-    @Test
+    @Test(groups = {"Alex"})
     public void loginPositiveSignUpLink() {
         alexloginpage.clickSignUpLink();
         assertTrue("Going to Sign Up page failed", alexloginpage.isOnSignUpPage());
@@ -72,14 +76,14 @@ public class AlexLoginTest extends TestNgTestBase {
 
     /* Negative tests */
 
-    @Test
+    @Test(groups = {"Alex"})
     public void loginNegativeWrongLoginTest() {
         alexloginpage.fillEmailField("asdasd@youpmail.com")
                 .fillPasswordField(adminPassword);
         assertTrue("Wrong login accepted", alexloginpage.isOnLoginPage());
     }
 
-    @Test
+    @Test(groups = {"Alex"})
     public void loginNegativeEmptyLoginTest() throws InterruptedException {
         alexloginpage.fillEmailField(" ")
                 .fillPasswordField(adminPassword)
@@ -87,7 +91,7 @@ public class AlexLoginTest extends TestNgTestBase {
         assertTrue("Empty login accepted", alexloginpage.isOnLoginPage());
     }
 
-    @Test
+    @Test(groups = {"Alex"})
     public void loginNegativeWrongPasswordTest() {
         alexloginpage.fillEmailField(adminLogin)
                 .fillPasswordField("wrong")
@@ -95,7 +99,7 @@ public class AlexLoginTest extends TestNgTestBase {
         assertTrue("Wrong passwordField accepted", alexloginpage.isOnLoginPage());
     }
 
-    @Test
+    @Test(groups = {"Alex"})
     public void loginNegativeEmptyPasswordTest() {
         alexloginpage.fillEmailField(adminLogin)
                 .fillPasswordField("")
@@ -103,12 +107,17 @@ public class AlexLoginTest extends TestNgTestBase {
         assertTrue("Empty passwordField accepted", alexloginpage.isOnLoginPage());
     }
 
-    @Test
+    @Test(groups = {"Alex"})
     public void loginNegativeEmptyFieldsTest() {
         alexloginpage.fillEmailField("")
                 .fillPasswordField("")
                 .clickLoginButton();
         assertTrue("Empty fields accepted", alexloginpage.isOnLoginPage());
+    }
+
+    @AfterSuite(alwaysRun = true)
+    public void tearDown() {
+        driver.quit();
     }
 
     /*** CLASS ENDS ***/

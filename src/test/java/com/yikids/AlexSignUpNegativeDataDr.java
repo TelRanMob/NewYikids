@@ -5,11 +5,13 @@ package com.yikids;
  */
 
 import com.yikids.pages.AlexSignUpPage;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
+import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import java.io.IOException;
@@ -18,11 +20,12 @@ import java.io.IOException;
  * CLASS STARTS
  ***/
 
-public class AlexSignUpNegativeDataDr extends TestNgTestBase {
+public class AlexSignUpNegativeDataDr {
 
     /* Building */
 
     public AlexSignUpPage alexsignuppage;
+    public WebDriver driver = new FirefoxDriver();
 
     @BeforeClass(alwaysRun = true)
     public void setup() {
@@ -31,17 +34,13 @@ public class AlexSignUpNegativeDataDr extends TestNgTestBase {
 
     @BeforeMethod(alwaysRun = true)
     public void openSetUp() {
-        driver.get("http://physician.yikids.com/recruiter/signup");
+        alexsignuppage.openSignUpPage();
     }
 
     /* Tests */
 
-    @Test(dataProviderClass = DataProvider.class, dataProvider = "")
-    public void loginNeganiveTest(){
 
-    }
-
-    @Test(dataProviderClass = DataProviders.class, dataProvider = "AlexloadProfileDataFromFile")
+    @Test(groups = {"Alex"}, dataProviderClass = DataProviders.class, dataProvider = "AlexloadProfileDataFromFile")
     public void signUpNegativeTest(String name, String surname, String email, String zip1, String zip2, String number, String message) throws IOException, InterruptedException {
         alexsignuppage.fillFirstnameField(name)
                 .fillLastNameField(surname)
@@ -51,6 +50,11 @@ public class AlexSignUpNegativeDataDr extends TestNgTestBase {
                 .clickToContinue();
 
         Assert.assertEquals(alexsignuppage.waitforWrongDataMessages(number), message, "Wrong message is not displayed");
+    }
+
+    @AfterSuite(alwaysRun = true)
+    public void tearDown() {
+        driver.quit();
     }
 
     /*** CLASS ENDS ***/

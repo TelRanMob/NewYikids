@@ -6,7 +6,10 @@ package com.yikids;
 
 import com.yikids.pages.AlexHospOwnerMangmntPage;
 import com.yikids.pages.AlexLoginPage;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -15,10 +18,11 @@ import org.testng.annotations.Test;
  * CLASS STARTS
  ***/
 
-public class AlexHospOwnerMangmntPageTest extends TestNgTestBase {
+public class AlexHospOwnerMangmntPageTest {
 
     public AlexHospOwnerMangmntPage alexhospownermangmntpage;
     public AlexLoginPage alexloginpage;
+    public WebDriver driver = new FirefoxDriver();
 
     @BeforeClass(alwaysRun = true)
     public void setup() {
@@ -31,11 +35,11 @@ public class AlexHospOwnerMangmntPageTest extends TestNgTestBase {
 
     @BeforeMethod(alwaysRun = true)
     public void openSetUp() {
-        driver.get("http://admin.yikids.com/admin/hospital_owner_management");
+        alexhospownermangmntpage.OpenPage();
     }
 
 
-    @Test
+    @Test(groups = {"Alex"})
     public void checkingBoxesStatus() {
         alexhospownermangmntpage.checkCheckBoxes(10);
     }
@@ -43,6 +47,11 @@ public class AlexHospOwnerMangmntPageTest extends TestNgTestBase {
     //@Test
     public void checkingNotAllBoxesStatus() {
         alexhospownermangmntpage.checkForNotAllCheckBoxes(10, "Owned");
+    }
+
+    @AfterSuite(alwaysRun = true)
+    public void tearDown() {
+        driver.quit();
     }
 
     /*** CLASS ENDS ***/
