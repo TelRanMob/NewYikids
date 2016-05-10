@@ -4,14 +4,17 @@ import com.yikids.pages.RutLoginPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import java.io.IOException;
+
 import static org.testng.AssertJUnit.assertTrue;
 
 /**
- * Created by rutga on 05.04.2016.
+ * Created by rut on 05.04.2016.
  */
 public class RutLoginTest {
     // static String driverPath = "C:\\Telran\\browserDriver\\";
@@ -32,6 +35,7 @@ public class RutLoginTest {
     public void beforeMethodSetUp() {
         rutLoginPage.openLoginPage();
     }
+
     @Test
     public void loginPositive() throws InterruptedException {
         rutLoginPage
@@ -39,8 +43,9 @@ public class RutLoginTest {
                 .fillPasswordField("Test123")
                 .clickLoginButton()
                 .waitForLogOutLinkButton();
-        assertTrue("We are on Log In page", rutLoginPage.isOnOverviewPage());
+        assertTrue("We are on Login page", rutLoginPage.isOnOverviewPage());
     }
+
     @Test (dataProviderClass = RutDataProviders.class, dataProvider = "loadInvalidLogInFromFile")
     public void loginNegative(String login, String pass) throws InterruptedException {
         rutLoginPage
@@ -48,26 +53,32 @@ public class RutLoginTest {
                 .fillPasswordField(pass)
                 .clickLoginButton();
 //        String assertText = "rutLoginPage."+method+";";
-
-        assertTrue("We are not on the Log In page", rutLoginPage.isOnLoginPage());
-//        assertTrue("No Email error message", rutLoginPage.checkEmailNotValidMessage());
-//        assertTrue("No Email error message", rutLoginPage.checkEmailNotValidMessage());
-//        assertTrue("No Password error message", rutLoginPage.checkPasswordNotValidMessage());
-//        assertTrue("No Forgot passwordField button", rutLoginPage.checkForgotPasswordMessage());
-        Thread.sleep(3000);
+        assertTrue("We are not on the Login page", rutLoginPage.isOnLoginPage());
     }
+
+    @Test (dataProviderClass = RutDataProviders.class, dataProvider = "loadLoginMessageFromFile")
+    public void loginNegativeMessage(String login, String pass,String message) throws InterruptedException, IOException {
+        rutLoginPage
+                .fillEmailField(login)
+                .fillPasswordField(pass)
+                .clickLoginButton();
+        Thread.sleep(3000);
+
+        Assert.assertEquals(rutLoginPage.waitAndGetTextofSelectedMessage(), message, "Message is not correct");
+        assertTrue("We are not on the Login page", rutLoginPage.isOnLoginPage());
+    }
+
     @Test
     public void goToSignUpPage() throws InterruptedException {
         rutLoginPage
                 .clickSignUpButton();
-        assertTrue("We are on the Log In page", rutLoginPage.isOnSignUpPage());
-        Thread.sleep(3000);
+        assertTrue("We are on the Login page", rutLoginPage.isOnSignUpPage());
     }
+
     @Test
     public void goToForgotPasswordPage() throws InterruptedException {
         rutLoginPage
                 .clickForgotPasswordButton();
-        assertTrue("We are on the Log In page", rutLoginPage.isOnForgotPasswordPage());
-        Thread.sleep(3000);
+        assertTrue("We are on the Login page", rutLoginPage.isOnForgotPasswordPage());
     }
 }

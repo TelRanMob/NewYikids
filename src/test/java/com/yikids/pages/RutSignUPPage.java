@@ -4,18 +4,19 @@ package com.yikids.pages;
  * Created by rutga on 29.03.2016.
  */
 
-//import com.telran.LogLog4j;
-//import org.apache.log4j.Logger;
-
+import com.yikids.LogLog4j;
+import org.apache.log4j.Logger;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.io.IOException;
 import java.util.Random;
 
 public class RutSignUPPage extends Page {
-    //private static Logger Log = Logger.getLogger(LogLog4j.class.getName());
+    private static Logger Log = Logger.getLogger(LogLog4j.class.getName());
     private static Random rnd = new Random();
 
     //fields
@@ -42,29 +43,35 @@ public class RutSignUPPage extends Page {
     WebElement continueButton;
 
     //System messages
-    @FindBy(xpath = "//*[@id='section-account']/span")
+    @FindBy(xpath = "//*[contains(text(),'Please check Captcha!')]")
     WebElement captchaMessage;
 
-    @FindBy(xpath = "//span[@class='error error-first_name']")
+    @FindBy(xpath = "//*[contains(text(),'The first name field is required.')]")
     WebElement firstNameEmptyFieldMessage;
+    @FindBy(xpath = "//*[contains(text(),'The first name may only contain letters and numbers.')]")
+    WebElement firstNameErrorMessage;
+    @FindBy(xpath = "//*[contains(text(),'The first name must be at least 3 characters.')]")
+    WebElement firstName3NumMessage;
 
-    @FindBy(xpath = "//span[@class='error error-last_name']")
+    @FindBy(xpath = "//*[contains(text(),'The last name field is required.')]")
     WebElement lastNameEmptyFieldMessage;
+    @FindBy(xpath = "//*[contains(text(),'The last name may only contain letters and numbers.')]")
+    WebElement lastNameErrorMessage;
 
     @FindBy(xpath = "//*[contains(text(),'The email field is required.')]")
     WebElement emailEmptyFieldMessage;
-
     @FindBy(xpath = "//*[contains(text(),'The email format is invalid.')]")
     WebElement emailNotValidFieldMessage;
-
-//    @FindBy(xpath = "//*[@id='hints[]']")
+//    @FindBy(xpath = "//*[contains(text(),'Your email will not be Shared')]")
 //    WebElement emailNotBeSharredMessage;
 
     @FindBy(xpath = "//*[contains(text(),'The zipcode field is required.')]")
     WebElement zipCodeEmptyFieldMessage;
-
     @FindBy(xpath = "//*[contains(text(),'Zipcode is invalid')]")
     WebElement zipCodeNotValidFieldMessage;
+    @FindBy(xpath = "//*[contains(text(),'The zipcode must be a number.')]")
+    WebElement zipCodeErrorMessage;
+
 
     //Labels
     @FindBy(xpath = "//*[@id='section-account']/div[1]//label")
@@ -88,8 +95,8 @@ public class RutSignUPPage extends Page {
         PageFactory.initElements(driver, this);
     }
 
-    private static java.lang.String getRandomString(final int length) {
-        java.lang.String chars = "abcdefghijklmnopqrstuvwxyz";
+    private static String getRandomString(final int length) {
+        String chars = "abcdefghijklmnopqrstuvwxyz";
         StringBuilder buf = new StringBuilder();
         for (int i = 0; i < length; i++) {
             buf.append(chars.charAt(rnd.nextInt(chars.length())));
@@ -105,50 +112,50 @@ public class RutSignUPPage extends Page {
 
     //Fill the fields
     public RutSignUPPage fillFirstnameField(String firstname) {
-        //Log.info("Filling firstname field");
+        Log.info("Filling firstname field");
         setElementText(firstNameField, firstname);
         return this;
     }
 
-    public RutSignUPPage fillLastNameField(java.lang.String lastname) {
-        //Log.info("Filling lastname field");
+    public RutSignUPPage fillLastNameField(String lastname) {
+        Log.info("Filling lastname field");
         setElementText(lastNameField, lastname);
         return this;
     }
 
-    public RutSignUPPage fillEmailField(java.lang.String email) {
-        //Log.info("Filling email field");
+    public RutSignUPPage fillEmailField(String email) {
+        Log.info("Filling email field");
         setElementText(emailField, email);
         return this;
     }
 
-    public RutSignUPPage fillZipCode1Field(java.lang.String zipcode1) {
-        //Log.info("Filling zipcode field");
+    public RutSignUPPage fillZipCode1Field(String zipcode1) {
+        Log.info("Filling zipcode field");
         setElementText(zipCode1Field, zipcode1);
         return this;
     }
 
-    public RutSignUPPage fillZipCode2Field(java.lang.String zipcode2) {
-        //Log.info("Filling zipplus field");
+    public RutSignUPPage fillZipCode2Field(String zipcode2) {
+        Log.info("Filling zipplus field");
         setElementText(zipCode2Field, zipcode2);
         return this;
     }
 
-    public RutSignUPPage fillCompanyField(java.lang.String company) {
-        //Log.info("Filling company field");
+    public RutSignUPPage fillCompanyField(String company) {
+        Log.info("Filling company field");
         setElementText(companyField, company);
         return this;
     }
 
     //Click the buttons
     public RutSignUPPage clickToContinue() {
-        //Log.info("Filling continueButton field");
+        Log.info("Filling continueButton field");
         clickElement(continueButton);
         return this;
     }
 
     public RutSignUPPage fillSignUPFields() {
-        //Log.info("Filling all fields");
+        Log.info("Filling all fields");
         openSignUpPage();
         fillFirstnameField("firstname");
         fillLastNameField("lastname");
@@ -160,10 +167,10 @@ public class RutSignUPPage extends Page {
         return this;
     }
 
-    public java.lang.String generateEmail() {
-        java.lang.String rand = getRandomString(5);
-        java.lang.String username = rand + "@yopmail.com";
-        // Log.info("User's Email generated is <" + username + ">");
+    public String generateEmail() {
+        String rand = getRandomString(5);
+        String username = rand + "@yopmail.com";
+        Log.info("User's Email generated is <" + username + ">");
         return username;
     }
 //  check page for message
@@ -173,8 +180,17 @@ public class RutSignUPPage extends Page {
     public boolean checkFirstNameEmptyFieldMessage() {
         return verifyTextBoolean(firstNameEmptyFieldMessage, "The first name field is required.");
     }
+    public boolean checkFirstNameErrorMessage() {
+        return verifyTextBoolean(firstNameErrorMessage, "The first name may only contain letters and numbers.");
+    }
+    public boolean checkFirstName3NumbersMessage() {
+        return verifyTextBoolean(firstNameEmptyFieldMessage, "The first name must be at least 3 characters.");
+    }
     public boolean checkLastNameEmptyFieldMessage() {
         return verifyTextBoolean(lastNameEmptyFieldMessage, "The last name field is required.");
+    }
+    public boolean checkLastNameErrorMessage() {
+        return verifyTextBoolean(lastNameErrorMessage, "The last name may only contain letters and numbers.");
     }
     public boolean checkEmailEmptyFieldMessage() {
         return exists(emailEmptyFieldMessage);
@@ -188,9 +204,13 @@ public class RutSignUPPage extends Page {
     public boolean checkZipCodeNotValidFieldMessage() {
         return exists(zipCodeNotValidFieldMessage);
     }
+    public boolean checkZipCodeErrorMessage() {
+        return exists(zipCodeErrorMessage);
+    }
     public boolean checkPageForCaptchaMessage() {
         return verifyTextBoolean(captchaMessage, "Please check Captcha!");
     }
+
 //  wait for warning
     public void waitForFirstNameWarning() {
         waitUntilIsLoaded(firstNameEmptyFieldMessage);
@@ -208,5 +228,12 @@ public class RutSignUPPage extends Page {
         waitUntilIsLoaded(captchaMessage);
     }
 
+
+    public String waitAndGetTextofSelectedMessage(String number) throws IOException, InterruptedException {
+        String locator = "//*[@id='section-account']/div[" + number + "]//div[2]/span";
+        WebElement elem = driver.findElement(By.xpath(locator));
+        waitUntilElementIsLoaded(elem);
+        return elem.getText();
+    }
 
 }

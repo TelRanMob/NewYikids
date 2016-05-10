@@ -2,22 +2,27 @@ package com.yikids;
 
 
 import com.yikids.pages.RutSignUPPage;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import java.io.IOException;
+
 import static org.testng.AssertJUnit.assertTrue;
 
 /**
- * Created by rutga on 29.03.2016.
+ * Created by rut on 29.03.2016.
  */
 public class RutSignUpTest {
-    static String driverPath = "C:\\Telran\\browserDriver\\";
+//    static String driverPath = "C:\\Telran\\browserDriver\\";
     public RutSignUPPage rutSignUPPage;
     public WebDriver driver;
+    private static Logger Log = Logger.getLogger(LogLog4j.class.getName());
 
     @BeforeClass
     public void setup() {
@@ -33,9 +38,10 @@ public class RutSignUpTest {
     public void beforeMethodSetUp() {
         rutSignUPPage.openSignUpPage();
     }
+
     @Test
     public void signUpPositive() {
-        //  Log.info("TestLoginWithExtData was started....");
+//        Log.info("Test LoginWithExtData was started....");
         rutSignUPPage
                 .fillFirstnameField("firstname")
                 .fillLastNameField("lastname")
@@ -46,7 +52,8 @@ public class RutSignUpTest {
 //        rutSignUPPage.clickToContinue();
     }
     @Test(dataProviderClass = RutDataProviders.class, dataProvider = "loadInvalidSignInFromFile")
-    public void fillFieldsNegative(String fn, String lastName, java.lang.String email, java.lang.String zipCode1, java.lang.String zipCode2, java.lang.String company) throws InterruptedException {
+    public void fillFieldsNegative(String fn, String lastName, String email, String zipCode1, String zipCode2,
+                                   String company, String nubmer,String message) throws InterruptedException, IOException {
         rutSignUPPage
                 .fillFirstnameField(fn)
                 .fillLastNameField(lastName)
@@ -55,15 +62,8 @@ public class RutSignUpTest {
                 .fillZipCode2Field(zipCode2)
                 .fillCompanyField(company)
                 .clickToContinue();
-//                .waitForFirstNameWarning();
-//        assertTrue("No First name empty warning", rutSignUPPage.checkFirstNameEmptyFieldMessage());
-//        assertTrue("No Lastname empty warning", rutSignUPPage.checkLastNameEmptyFieldMessage());
-//        assertTrue("No Email empty warning", rutSignUPPage.checkEmailEmptyFieldMessage());
-//        assertTrue("No Email not valid warning", rutSignUPPage.checkEmailNotValidFieldMessage());
-//        assertTrue("No Zip code empty warning", rutSignUPPage.checkZipCodeEmptyFieldMessage());
-//        assertTrue("No Zip code not valid warning", rutSignUPPage.checkZipCodeNotValidFieldMessage());
-//        assertTrue("No Capcha message warning", rutSignUPPage.checkPageForCaptchaMessage());
-        Thread.sleep(3000);
+                Thread.sleep(3000);
+        Assert.assertEquals(rutSignUPPage.waitAndGetTextofSelectedMessage(nubmer), message, "Message is not correct");
     }
     @Test
     public void fillFieldsNegativeFirstNameEmpty() throws InterruptedException {

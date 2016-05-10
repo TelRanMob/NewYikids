@@ -7,10 +7,13 @@ package com.yikids.pages;
 //import com.telran.LogLog4j;
 //import org.apache.log4j.Logger;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+
+import java.io.IOException;
 
 public class RutLoginPage extends Page {
     //private static Logger Log = Logger.getLogger(LogLog4j.class.getName());
@@ -48,6 +51,10 @@ public class RutLoginPage extends Page {
     //message
     @FindBy(xpath = "//div[@class='err']")
     WebElement emailNotValid;
+
+    @FindBy(xpath = "//div[@class='err']")
+    WebElement emailNotCorrect;
+    //Please sign up because your email does not exist in our system.
 
     @FindBy(xpath = "//div[@class='err'][contains(text(),'Your passwordField is not correct. Please try again.')]")
     WebElement passwordNotValid;
@@ -130,6 +137,9 @@ public class RutLoginPage extends Page {
     public boolean checkForgotPasswordMessage() {
         return verifyTextBoolean(forgotPasswordButton, "Forgot passwordField?");
     }
+    public boolean checkEmailNotCorrectMessage(){
+        return verifyTextBoolean(emailNotCorrect, "Please sign up because your email does not exist in our system.");
+    }
 
     public boolean checkPasswordNotValidMessage() {
         return exists(passwordNotValid);
@@ -142,7 +152,10 @@ public class RutLoginPage extends Page {
         waitForLogOutLinkButton();
         return this;
     }
-    //    wait for warning
-//     waitUntilIsLoaded(firstNameEmptyFieldMessage);
-//    }
+    public String waitAndGetTextofSelectedMessage() throws IOException, InterruptedException {
+        String locator = "//div[@class='err']";
+        WebElement elem = driver.findElement(By.xpath(locator));
+        waitUntilElementIsLoaded(elem);
+        return elem.getText();
+    }
 }

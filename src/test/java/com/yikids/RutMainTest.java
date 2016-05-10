@@ -15,7 +15,7 @@ import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertTrue;
 
 /**
- * Created by rutga on 06.05.2016.
+ * Created by rut on 06.05.2016.
  */
 public class RutMainTest extends TestNgTestBase{
     public WebDriver driver;

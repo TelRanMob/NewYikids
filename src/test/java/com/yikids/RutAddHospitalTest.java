@@ -38,6 +38,5 @@ public class RutAddHospitalTest extends TestNgTestBase {
     @Test
     public void addHospitalPositive (){
         addHospitalPage.fillAddHospitalProfile();
-
     }
 }

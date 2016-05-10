@@ -1,6 +1,10 @@
-;lastname;email@yopmail.com;00501;11;company
-firstname;;email@yopmail.com;00501;11;company
-firstname;lastname;;00501;11;company
-firstname;lastname;email.com;00501;11;company
-firstname;lastname;email@yopmail.com;;11;"company
-firstname;lastname;email@yopmail.com;111111;11;company
+ ;lastname;email@yopmail.com;00501;11;company;1;The first name field is required.
+first+name;lastname;email@yopmail.com;00501;11;company;1;The first name may only contain letters and numbers.
+ee;lastname;email@yopmail.com;00501;11;company;1;The first name must be at least 3 characters.
+firstname; ;email@yopmail.com;00501;11;company;2;The last name field is required.
+firstname;last+name;email@yopmail.com;00501;11;company;2;The last name may only contain letters and numbers.
+firstname;lastname; ;00501;11;company;3;The email field is required.
+firstname;lastname;email;00501;11;company;3;The email format is invalid.
+firstname;lastname;email@yopmail.com; ;11;company;4;The zipcode field is required.
+firstname;lastname;email@yopmail.com;00;11;company;4;Zipcode is invalid
+firstname;lastname;email@yopmail.com;fffff;11;company;4;The zipcode must be a number.
