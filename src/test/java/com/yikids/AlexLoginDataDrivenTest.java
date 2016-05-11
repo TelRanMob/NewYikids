@@ -53,8 +53,11 @@ public class AlexLoginDataDrivenTest {
         assertTrue(alexloginpage.isOnLoginPage());
     }
 
-    @AfterSuite(alwaysRun = true)
+    @AfterClass(alwaysRun = true)
     public void tearDown() {
         driver.quit();
     }
+
+    /*** CLASS ENDS ***/
+
 }

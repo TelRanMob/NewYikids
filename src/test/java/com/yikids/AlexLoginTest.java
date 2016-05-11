@@ -5,7 +5,10 @@ package com.yikids;
  */
 
 import com.yikids.pages.AlexLoginPage;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -16,10 +19,10 @@ import static org.testng.AssertJUnit.assertTrue;
  * CLASS STARTS
  ***/
 
-public class AlexLoginTest extends TestNgTestBase {
+public class AlexLoginTest {
 
     public AlexLoginPage alexloginpage;
-    // public WebDriver driver = new FirefoxDriver();
+    public WebDriver driver = new FirefoxDriver();
     public String adminLogin = "admin@erdocfinder.com";
     public String adminPassword = "Test123";
 
@@ -112,11 +115,11 @@ public class AlexLoginTest extends TestNgTestBase {
         assertTrue("Empty fields accepted", alexloginpage.isOnLoginPage());
     }
 
-   /* @AfterSuite(alwaysRun = true)
+    @AfterClass(alwaysRun = true)
     public void tearDown() {
         driver.quit();
     }
-*/
+
     /*** CLASS ENDS ***/
 
 }

@@ -4,11 +4,11 @@
   <test name="Test1">
     <groups>
       <run>
-        <include name="automatic"/>
-        <include name="Tania"/>
-        <exclude name="manual"/>
+        <exclude name="Elena"/>
+        <exclude name="Rut"/>
         <exclude name="Irina"/>
-        <exclude name="Alex"/>
+        <exclude name="Tania"/>
+        <include name="Alex"/>
       </run>
     </groups>
     <packages>
