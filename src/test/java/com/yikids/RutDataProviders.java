@@ -10,7 +10,7 @@ import java.util.Iterator;
 import java.util.List;
 
 /**
- * Created by rutga on 12.04.2016.
+ * Created by rut on 12.04.2016.
  */
 public class RutDataProviders {
 

@@ -2,9 +2,11 @@ package com.yikids;
 
 
 import com.yikids.pages.*;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -13,7 +15,7 @@ import org.testng.annotations.Test;
  * Created by rut on 05.05.2016.
  */
 public class RutAddHospitalTest extends TestNgTestBase {
-    // private static Logger Log = Logger.getLogger(LogLog4j.class.getName());
+    private static Logger Log = Logger.getLogger(LogLog4j.class.getName());
     public RutAddHospitalPage addHospitalPage;
     public RutLoginPage loginPage;
     public RutMainPage mainPage;
@@ -38,5 +40,9 @@ public class RutAddHospitalTest extends TestNgTestBase {
     @Test
     public void addHospitalPositive (){
         addHospitalPage.fillAddHospitalProfile();
+    }
+        @AfterClass(alwaysRun = true)
+    public void tearDown(){
+        this.driver.quit();
     }
 }

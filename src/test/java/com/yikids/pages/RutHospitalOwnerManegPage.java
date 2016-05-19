@@ -37,7 +37,11 @@ public class RutHospitalOwnerManegPage extends Page{
         driver.get(PAGE_URL);
         return this;
     }
-//генерация локаторов чекбоксов разных строк
+    public RutHospitalOwnerManegPage openMenu() {
+        moveMouseOverElement(hospitalButton);
+        return this;
+    }
+    //генерация локаторов чекбоксов разных строк
     public void  checkCheckboxes(int check){
         int rowNumber;
         for(rowNumber = 0; rowNumber <= check; rowNumber++) {

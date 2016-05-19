@@ -2,9 +2,11 @@ package com.yikids;
 
 import com.yikids.pages.RutLoginPage;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -16,15 +18,15 @@ import static org.testng.AssertJUnit.assertTrue;
 /**
  * Created by rut on 05.04.2016.
  */
-public class RutLoginTest {
-    // static String driverPath = "C:\\Telran\\browserDriver\\";
+public class RutLoginTest extends TestNgTestBase{
+    static String driverPath = "C:\\Telran\\browserDriver\\";
     public RutLoginPage rutLoginPage;
     public WebDriver driver;
 
     @BeforeClass(alwaysRun = true)
     public void setup() {
-        driver = new FirefoxDriver();
-//        System.setProperty("webdriver.ie.driver", driverPath + "chromedriver.exe");
+//        driver = new FirefoxDriver();
+//        System.setProperty("webdriver.chrome.driver", driverPath + "chromedriver.exe");
 //      driver = new ChromeDriver();
 
 //        System.setProperty("webdriver.ie.driver", driverPath + "IEDriverServer.exe");
@@ -33,7 +35,8 @@ public class RutLoginTest {
     }
     @BeforeMethod(alwaysRun = true)
     public void beforeMethodSetUp() {
-        rutLoginPage.openLoginPage();
+//        rutLoginPage.openLoginPage();
+        driver.get("http://admin.yikids.com/");
     }
 
     @Test
@@ -80,5 +83,9 @@ public class RutLoginTest {
         rutLoginPage
                 .clickForgotPasswordButton();
         assertTrue("We are on the Login page", rutLoginPage.isOnForgotPasswordPage());
+    }
+        @AfterClass(alwaysRun = true)
+    public void tearDown(){
+        this.driver.quit();
     }
 }
