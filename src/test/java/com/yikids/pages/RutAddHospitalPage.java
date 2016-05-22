@@ -1,5 +1,7 @@
 package com.yikids.pages;
 
+import com.yikids.LogLog4j;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -9,6 +11,8 @@ import org.openqa.selenium.support.PageFactory;
  * Created by rut on 04.05.2016.
  */
 public class RutAddHospitalPage extends Page {
+    private static Logger Log = Logger.getLogger(LogLog4j.class.getName());
+
     //fields
     @FindBy(id = "name")
     WebElement nameField;
@@ -103,7 +107,7 @@ public class RutAddHospitalPage extends Page {
     }
 
     public RutAddHospitalPage openAddHospitalPage() {
-        //Log.info("Opening AddHospitalPage page");
+        Log.info("Opening AddHospitalPage page");
         driver.get(PAGE_URL);
         return this;
     }
@@ -111,47 +115,47 @@ public class RutAddHospitalPage extends Page {
     //Fill the fields
 
     public RutAddHospitalPage fillNameField(String name) {
-        //Log.info("Filling name field");
+        Log.info("Filling name field");
         setElementText(nameField, name);
         return this;
     }
     public RutAddHospitalPage fillAddresssField(String address) {
-        //Log.info("Filling address field");
+        Log.info("Filling address field");
         setElementText(addressField, address);
         return this;
     }
     public RutAddHospitalPage fillCityField(String city) {
-        //Log.info("Filling city field");
+        Log.info("Filling city field");
         setElementText(cityField, city);
         return this;
     }
     public RutAddHospitalPage fillCountryField(String country) {
-        //Log.info("Filling country field");
+        Log.info("Filling country field");
         setElementText(countryField, country);
         return this;
     }
     public RutAddHospitalPage fillZipCodeField(String zipCode) {
-        //Log.info("Filling zipCode field");
+        Log.info("Filling zipCode field");
         setElementText(zipCodeField, zipCode);
         return this;
     }
     public RutAddHospitalPage fillPhoneNumberField(String phoneNumber) {
-        //Log.info("Filling phoneNumber field");
+        Log.info("Filling phoneNumber field");
         setElementText(phoneNumberField, phoneNumber);
         return this;
     }
     public RutAddHospitalPage fillEmailField(String email) {
-        //Log.info("Filling email field");
+        Log.info("Filling email field");
         setElementText(emailField, email);
         return this;
     }
     public RutAddHospitalPage fillTypeOfFacilityField(String typeOfFacility) {
-        //Log.info("Filling typeOfFacility field");
+        Log.info("Filling typeOfFacility field");
         setElementText(typeOfFacilityField, typeOfFacility);
         return this;
     }
     public RutAddHospitalPage fillOtherInfoField(String otherInfo) {
-        //Log.info("Filling otherInfo field");
+        Log.info("Filling otherInfo field");
         setElementText(otherInfoField, otherInfo);
         return this;
     }
@@ -159,12 +163,12 @@ public class RutAddHospitalPage extends Page {
     //Select in Dropdown
 
     public RutAddHospitalPage selectStateInDropdown(String state){
-        //Log.info("Selecting state in dropdown");
+        Log.info("Selecting state in dropdown");
         selectValueInDropdownbyText(stateFieldDropdown,state);
         return this;
     }
     public RutAddHospitalPage selectHaveAnERInDropdown(String haveAnER){
-        //Log.info("Selecting haveAnER in dropdown");
+        Log.info("Selecting haveAnER in dropdown");
         selectValueInDropdownbyText(haveAnERDropdown,haveAnER);
         return this;
     }
@@ -172,52 +176,52 @@ public class RutAddHospitalPage extends Page {
     //Check the checkboxes
 
     public RutAddHospitalPage checkRecrutingStatusCheckbox(){
-        //Log.info("Clicking on recrutingStatusCheckbox");
+        Log.info("Clicking on recrutingStatusCheckbox");
         clickElement(recrutingStatusCheckbox);
         return this;
     }
     public RutAddHospitalPage checkTierCheckbox(){
-        //Log.info("Clicking on tierCheckbox");
+        Log.info("Clicking on tierCheckbox");
         clickElement(tierCheckbox);
         return this;
     }
     public RutAddHospitalPage checkAcademicCheckbox(){
-        //Log.info("Clicking on academicCheckbox");
+        Log.info("Clicking on academicCheckbox");
         clickElement(academicCheckbox);
         return this;
     }
     public RutAddHospitalPage checkCmpsn200PlusCheckbox(){
-        ///Log.info("Clicking on cmpsn200PlusCheckbox");
+        Log.info("Clicking on cmpsn200PlusCheckbox");
         clickElement(cmpsn200PlusCheckbox);
         return this;
     }
     public RutAddHospitalPage checkCmeCompensationCheckbox(){
-        //Log.info("Clicking on cmeCompensationCheckbox");
-        clickElement(cmeCompensationCheckbox);
+        Log.info("Clicking on cmeCompensationCheckbox");
+//        clickElement(cmeCompensationCheckbox);
         return this;
     }
     public RutAddHospitalPage checkMajorDoubleCoverageCheckbox(){
-        //Log.info("Clicking on majorDoubleCoverageCheckbox");
+        Log.info("Clicking on majorDoubleCoverageCheckbox");
         clickElement(majorDoubleCoverageCheckbox);
         return this;
     }
     public RutAddHospitalPage checkMdlvlcvgCheckbox(){
-        //Log.info("Clicking on mdlvlcvgCheckbox");
+        Log.info("Clicking on mdlvlcvgCheckbox");
         clickElement(mdlvlcvgCheckbox);
         return this;
     }
     public RutAddHospitalPage checkEmrCheckbox(){
-        //Log.info("Clicking on emrCheckbox");
+        Log.info("Clicking on emrCheckbox");
         clickElement(emrCheckbox);
         return this;
     }
     public RutAddHospitalPage checkNoihcdcvgCheckbox(){
-        //Log.info("Clicking on noihcdcvgCheckbox");
+        Log.info("Clicking on noihcdcvgCheckbox");
         clickElement(noihcdcvgCheckbox);
         return this;
     }
     public RutAddHospitalPage checkNoadmordrsCheckbox(){
-        //Log.info("Clicking on noadmordrsCheckbox");
+        Log.info("Clicking on noadmordrsCheckbox");
         clickElement(noadmordrsCheckbox);
         return this;
     }
@@ -227,18 +231,18 @@ public class RutAddHospitalPage extends Page {
         return this;
     }
     public RutAddHospitalPage checkAnystlicCheckbox(){
-        //Log.info("Clicking on anystlicCheckbox");
+        Log.info("Clicking on anystlicCheckbox");
         clickElement(anystlicCheckbox);
         return this;
     }
     public RutAddHospitalPage checkReprentationCheckbox(){
-        //Log.info("Clicking on reprentationCheckbox");
+        Log.info("Clicking on reprentationCheckbox");
         clickElement(reprentationCheckbox);
         return this;
     }
 
     public RutAddHospitalPage clickToSave(){
-        //Log.info("Clicking on saveButton");
+        Log.info("Clicking on saveButton");
         clickElement(saveButton);
         return this;
     }
@@ -254,7 +258,7 @@ public class RutAddHospitalPage extends Page {
     }
 
     public RutAddHospitalPage fillAddHospitalProfile(){
-        //Log.info("Filling all fields");
+        Log.info("Filling all fields");
         isRecrutingCheckboxExsists();
         checkRecrutingStatusCheckbox();
         fillNameField("name");
@@ -267,8 +271,9 @@ public class RutAddHospitalPage extends Page {
         fillTypeOfFacilityField("type");
         fillOtherInfoField("text text");
         selectStateInDropdown("Alabama");
-        selectHaveAnERInDropdown("true");
+        selectHaveAnERInDropdown("True");
         clickToSave();
+        Log.info("Save Hospital");
         return this;
     }
 }

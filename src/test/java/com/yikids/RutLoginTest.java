@@ -4,6 +4,7 @@ import com.yikids.pages.RutLoginPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
@@ -25,9 +26,9 @@ public class RutLoginTest extends TestNgTestBase{
 
     @BeforeClass(alwaysRun = true)
     public void setup() {
-//        driver = new FirefoxDriver();
+        driver = new FirefoxDriver();
 //        System.setProperty("webdriver.chrome.driver", driverPath + "chromedriver.exe");
-//      driver = new ChromeDriver();
+//        driver = new ChromeDriver();
 
 //        System.setProperty("webdriver.ie.driver", driverPath + "IEDriverServer.exe");
 //        driver = new InternetExplorerDriver();

@@ -5,10 +5,10 @@
     <groups>
       <run>
         <exclude name="Elena"/>
-        <exclude name="Rut"/>
+        <include name="Rut"/>
         <exclude name="Irina"/>
         <exclude name="Tania"/>
-        <include name="Alex"/>
+        <exclude name="Alex"/>
       </run>
     </groups>
     <packages>

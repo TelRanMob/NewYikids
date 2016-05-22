@@ -7,6 +7,8 @@ package com.yikids.pages;
 //import com.telran.LogLog4j;
 //import org.apache.log4j.Logger;
 
+import com.yikids.LogLog4j;
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -16,7 +18,7 @@ import org.openqa.selenium.support.PageFactory;
 import java.io.IOException;
 
 public class RutLoginPage extends Page {
-    //private static Logger Log = Logger.getLogger(LogLog4j.class.getName());
+    private static Logger Log = Logger.getLogger(LogLog4j.class.getName());
 
     //fields
     @FindBy(id = "email")
@@ -66,61 +68,61 @@ public class RutLoginPage extends Page {
     }
 
     public RutLoginPage openLoginPage() {
-        //Log.info("Opening Login page");
+        Log.info("Opening Login page");
         driver.get(PAGE_URL);
         return this;
     }
 
     //Fill the fields
     public RutLoginPage fillEmailField(String email) {
-        //Log.info("Filling email field");
+        Log.info("Filling email field");
         setElementText(emailField, email);
         return this;
     }
 
     public RutLoginPage fillPasswordField(String password) {
-        //Log.info("Filling passwordField field");
+        Log.info("Filling passwordField field");
         setElementText(passwordField, password);
         return this;
     }
 
     //Click the buttons
     public RutLoginPage clickLoginButton() {
-        //Log.info("Click login button");
+        Log.info("Click login button");
         clickElement(loginLinkButton);
         return this;
     }
 
     public RutLoginPage clickSignUpButton() {
-        //Log.info("Click signUp button");
+        Log.info("Click signUp button");
         clickElement(signUpLinkButton);
         return this;
     }
 
     public RutLoginPage clickForgotPasswordButton() {
-        //Log.info("Click forgotPassword button");
+        Log.info("Click forgotPassword button");
         clickElement(forgotPasswordLinkButton);
         return this;
     }
 
     //check is on page
     public boolean isOnLoginPage() {
-        //Log.info("Click forgotPassword button");
+        Log.info("Click forgotPassword button");
         return exists(loginLinkButton);
     }
 
     public boolean isOnOverviewPage() {
-        //Log.info("Click forgotPassword button");
+        Log.info("Click forgotPassword button");
         return exists(logOutLinkButton);
     }
 
     public boolean isOnSignUpPage() {
-        //Log.info("Click forgotPassword button");
+        Log.info("Click forgotPassword button");
         return exists(titleSignUpPageLabel);
     }
 
     public boolean isOnForgotPasswordPage() {
-        //Log.info("Click forgotPassword button");
+        Log.info("Click forgotPassword button");
         return exists(titleForgotPasswordPageLabel);
     }
 

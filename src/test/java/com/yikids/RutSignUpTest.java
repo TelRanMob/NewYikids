@@ -7,6 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -167,8 +168,8 @@ public class RutSignUpTest {
     public void fillSignUpManual(){
         rutSignUPPage.fillSignUPFields();
     }
-//    @AfterClass(alwaysRun = true)
-//    public void tearDown(){
-//        this.driver.quit();
-//    }
+    @AfterClass(alwaysRun = true)
+    public void tearDown(){
+        this.driver.quit();
+    }
 }
