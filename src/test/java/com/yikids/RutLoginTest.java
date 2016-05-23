@@ -30,13 +30,13 @@ public class RutLoginTest extends TestNgTestBase{
 //        System.setProperty("webdriver.chrome.driver", driverPath + "chromedriver.exe");
 //        driver = new ChromeDriver();
 
-//        System.setProperty("webdriver.ie.driver", driverPath + "IEDriverServer.exe");
-//        driver = new InternetExplorerDriver();
+        System.setProperty("webdriver.ie.driver", driverPath + "IEDriverServer.exe");
+        driver = new InternetExplorerDriver();
         rutLoginPage = PageFactory.initElements(driver, RutLoginPage.class);
     }
     @BeforeMethod(alwaysRun = true)
     public void beforeMethodSetUp() {
-//        rutLoginPage.openLoginPage();
+        rutLoginPage.openLoginPage();
         driver.get("http://admin.yikids.com/");
     }
 

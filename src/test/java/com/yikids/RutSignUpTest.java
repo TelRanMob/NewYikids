@@ -21,7 +21,7 @@ import static org.testng.AssertJUnit.assertTrue;
  */
 public class RutSignUpTest {
 //    static String driverPath = "C:\\Telran\\browserDriver\\";
-    public RutSignUPPage rutSignUPPage;
+    public RutSignUPPage signUPPage;
     public WebDriver driver;
     private static Logger Log = Logger.getLogger(LogLog4j.class.getName());
 
@@ -33,29 +33,29 @@ public class RutSignUpTest {
 
 //        System.setProperty("webdriver.ie.driver", driverPath + "IEDriverServer.exe");
 //        driver = new InternetExplorerDriver();
-        rutSignUPPage = PageFactory.initElements(driver, RutSignUPPage.class);
+        signUPPage = PageFactory.initElements(driver, RutSignUPPage.class);
     }
     @BeforeMethod(alwaysRun = true)
     public void beforeMethodSetUp() {
-        rutSignUPPage.openSignUpPage();
+        signUPPage.openSignUpPage();
     }
 
     @Test
     public void signUpPositive() {
 //        Log.info("Test LoginWithExtData was started....");
-        rutSignUPPage
+        signUPPage
                 .fillFirstnameField("firstname")
                 .fillLastNameField("lastname")
                 .fillEmailField("email1@yopmail.com")
                 .fillZipCode1Field("111111")
                 .fillZipCode2Field("222")
                 .fillCompanyField("company");
-//        rutSignUPPage.clickToContinue();
+//        signUPPage.clickToContinue();
     }
     @Test(dataProviderClass = RutDataProviders.class, dataProvider = "loadInvalidSignInFromFile")
     public void fillFieldsNegative(String fn, String lastName, String email, String zipCode1, String zipCode2,
                                    String company, String nubmer,String message) throws InterruptedException, IOException {
-        rutSignUPPage
+        signUPPage
                 .fillFirstnameField(fn)
                 .fillLastNameField(lastName)
                 .fillEmailField(email)
@@ -64,11 +64,11 @@ public class RutSignUpTest {
                 .fillCompanyField(company)
                 .clickToContinue();
                 Thread.sleep(3000);
-        Assert.assertEquals(rutSignUPPage.waitAndGetTextofSelectedMessage(nubmer), message, "Message is not correct");
+        Assert.assertEquals(signUPPage.waitAndGetTextofSelectedMessage(nubmer), message, "Message is not correct");
     }
     @Test
     public void fillFieldsNegativeFirstNameEmpty() throws InterruptedException {
-        rutSignUPPage
+        signUPPage
                 .fillFirstnameField("")
                 .fillLastNameField("lastname")
                 .fillEmailField("email@yopmail.com")
@@ -77,12 +77,12 @@ public class RutSignUpTest {
                 .fillCompanyField("company")
                 .clickToContinue()
                 .waitForFirstNameWarning();
-        assertTrue("No First name empty warning", rutSignUPPage.checkFirstNameEmptyFieldMessage());
+        assertTrue("No First name empty warning", signUPPage.checkFirstNameEmptyFieldMessage());
         Thread.sleep(3000);
     }
     @Test
     public void fillFieldsNegativeLastNameEmpty() throws InterruptedException {
-        rutSignUPPage
+        signUPPage
                 .fillFirstnameField("firstname")
                 .fillLastNameField("")
                 .fillEmailField("email@yopmail.com")
@@ -91,12 +91,12 @@ public class RutSignUpTest {
                 .fillCompanyField("company")
                 .clickToContinue()
                 .waitForLastNameWarning();
-        assertTrue("No Lastname empty warning", rutSignUPPage.checkLastNameEmptyFieldMessage());
+        assertTrue("No Lastname empty warning", signUPPage.checkLastNameEmptyFieldMessage());
         Thread.sleep(3000);
     }
     @Test
     public void fillFieldsNegativeEmailEmpty() throws InterruptedException {
-        rutSignUPPage
+        signUPPage
                 .fillFirstnameField("firstname")
                 .fillLastNameField("lastname")
                 .fillEmailField("")
@@ -105,12 +105,12 @@ public class RutSignUpTest {
                 .fillCompanyField("company")
                 .clickToContinue()
                 .waitForEmailWarning();
-        assertTrue("No Email empty warning", rutSignUPPage.checkEmailEmptyFieldMessage());
+        assertTrue("No Email empty warning", signUPPage.checkEmailEmptyFieldMessage());
         Thread.sleep(3000);
     }
     @Test
     public void fillFieldsNegativeEmailNotValid() throws InterruptedException {
-        rutSignUPPage
+        signUPPage
                 .fillFirstnameField("firstname")
                 .fillLastNameField("lastname")
                 .fillEmailField("aaa")
@@ -119,12 +119,12 @@ public class RutSignUpTest {
                 .fillCompanyField("company")
                 .clickToContinue()
                 .waitForEmailWarning();
-        assertTrue("No Email not valid warning", rutSignUPPage.checkEmailNotValidFieldMessage());
+        assertTrue("No Email not valid warning", signUPPage.checkEmailNotValidFieldMessage());
         Thread.sleep(3000);
     }
     @Test
     public void fillFieldsNegativeZipCode1Empty() throws InterruptedException {
-        rutSignUPPage
+        signUPPage
                 .fillFirstnameField("firstname")
                 .fillLastNameField("lastname")
                 .fillEmailField("email@yopmail.com")
@@ -133,12 +133,12 @@ public class RutSignUpTest {
                 .fillCompanyField("company")
                 .clickToContinue()
                 .waitForZipCodeWarning();
-        assertTrue("No Zip code empty warning", rutSignUPPage.checkZipCodeEmptyFieldMessage());
+        assertTrue("No Zip code empty warning", signUPPage.checkZipCodeEmptyFieldMessage());
         Thread.sleep(3000);
     }
     @Test
     public void fillFieldsNegativeZipCode1NotValid() throws InterruptedException {
-        rutSignUPPage
+        signUPPage
                 .fillFirstnameField("firstname")
                 .fillLastNameField("lastname")
                 .fillEmailField("email@yopmail.com")
@@ -147,12 +147,12 @@ public class RutSignUpTest {
                 .fillCompanyField("company")
                 .clickToContinue()
                 .waitForZipCodeWarning();
-        assertTrue("No Zip code not valid warning", rutSignUPPage.checkZipCodeNotValidFieldMessage());
+        assertTrue("No Zip code not valid warning", signUPPage.checkZipCodeNotValidFieldMessage());
         Thread.sleep(3000);
     }
     @Test
     public void signUpNegativeCapchaMessage() throws InterruptedException {
-        rutSignUPPage
+        signUPPage
                 .fillFirstnameField("firstname")
                 .fillLastNameField("lastname")
                 .fillEmailField("email@yopmail.com")
@@ -161,12 +161,12 @@ public class RutSignUpTest {
                 .fillCompanyField("company")
                 .clickToContinue()
                 .waitForCapchaWarning();
-        assertTrue("No Capcha message warning", rutSignUPPage.checkPageForCaptchaMessage());
+        assertTrue("No Capcha message warning", signUPPage.checkPageForCaptchaMessage());
         Thread.sleep(3000);
     }
     @Test
     public void fillSignUpManual(){
-        rutSignUPPage.fillSignUPFields();
+        signUPPage.fillSignUPFields();
     }
     @AfterClass(alwaysRun = true)
     public void tearDown(){

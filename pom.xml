@@ -126,9 +126,7 @@
         <browser.version></browser.version>
         <browser.platform></browser.platform>
       </properties>
-      <activation>
-        <activeByDefault>true</activeByDefault>
-      </activation>
+
     </profile>
     <profile>
       <id>chrome</id>
